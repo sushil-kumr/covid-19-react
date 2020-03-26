@@ -336,7 +336,7 @@ const optionPropertiesDeaths = {
             fontColor: '#rgba(0,0,0,0.8)'
         },
         gridLines: {
-          color: 'rgba(0,0,0,0.05)',
+          color: 'rgba(0,0,0,0.01)',
           zeroLineColor: 'rgba(0,0,0,0.05)'
         }
       }],
@@ -510,7 +510,7 @@ const mapOptions = {
   };
 
   const loadUsers = () =>
-  fetch("http://13.233.233.156/readings/get_summary")
+  fetch("https://curecovid19.in/readings/readings/get_summary")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
 
@@ -615,7 +615,7 @@ const mapOptions = {
                      <div className="content-box">
               {/* first one start */} 
               <div className="row">
-                <div className="col-sm-6">
+                <div className="col-sm-5">
                     <div className="element-wrapper pb-2">
                         <h6 className="pb-4">
                      <span className="font-weight-bold"> Dashboard for COVID-19 Outbreak in India </span> <br/> <span className="small font-weight-bold text-success"> Last Updated: {last_updated_date}</span>
@@ -627,7 +627,7 @@ const mapOptions = {
                                 <div className="tablos">
                                 <div className="row mb-xl-4 mb-xxl-3">
                                     <div className="col-sm-3">
-                                    <div className="element-box el-tablo centered trend-in-corner padded bold-label" >
+                                    <a className="element-box el-tablo centered trend-in-corner padded bold-label" >
                                         <div className="label" style={{fontWeight:"500"}}>
                                         Confirmed
                                         </div>
@@ -642,10 +642,10 @@ const mapOptions = {
                                                 options={optionPropertiesTotal} 
                                                />
                                         </div> 
-                                    </div>
+                                    </a>
                                     </div>
                                     <div className="col-sm-3">
-                                    <div className="element-box el-tablo centered trend-in-corner padded bold-label" >
+                                    <a className="element-box el-tablo centered trend-in-corner padded bold-label" >
                                             <div className="label"  style={{fontWeight:"500"}}>
                                             Active
                                             </div>
@@ -659,10 +659,10 @@ const mapOptions = {
                                             <Line data={simpleActive}
                                                 options={optionPropertiesActive} />
                                          </div> 
-                                    </div>
+                                    </a>
                                     </div>
                                     <div className="col-sm-3">
-                                    <div className="element-box el-tablo centered trend-in-corner padded bold-label" >
+                                    <a className="element-box el-tablo centered trend-in-corner padded bold-label" >
                                         <div className="label"  style={{fontWeight:"500"}}>
                                             Recovered
                                             </div>
@@ -676,10 +676,10 @@ const mapOptions = {
                                             <Line data={simpleRecovered}
                                                 options={optionPropertiesRecovered} />
                                             </div> 
-                                    </div>
+                                    </a>
                                     </div>
                                     <div className="col-sm-3">
-                                    <div className="element-box el-tablo centered trend-in-corner padded bold-label" >
+                                    <a className="element-box el-tablo centered trend-in-corner padded bold-label" >
                                         <div className="label"  style={{fontWeight:"500"}}>
                                         Deaths
                                         </div>
@@ -693,7 +693,7 @@ const mapOptions = {
                                         <Line data={simpleDeaths} 
                                             options={optionPropertiesDeaths}/>
                                         </div>
-                                    </div>
+                                    </a>
                                     </div>
                                 </div>
                              
@@ -706,7 +706,7 @@ const mapOptions = {
                 </div>
 
                 <div className="element-wrapper">
-                    <div className="element-box">
+                    <div className="element-box pt-0">
                       <div className="os-tabs-w">
                         <div className="os-tabs-controls">
                           <ul className="nav nav-tabs smaller">
@@ -759,29 +759,13 @@ const mapOptions = {
 
 
 
-                <div className="row">
                 
-                  <div className="col-sm-5 d-xxxl-5">
-                  <div className="element-wrapper">
-                    <h6 className="element-header">
-                      Gender Distribution
-                    </h6>
-                    <div className="element-box">
-                      <div className="el-chart-w">
-                            <Doughnut data={piedata} 
-                             height="380px"
-                             options={{ maintainAspectRatio: true }}/>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-                </div>
 
 
                   
                 
                 </div>
-                <div className="col-sm-6">
+                <div className="col-sm-4">
                     <div className="element-box pl-xxl-5 pr-xxl-5">
                                 <div className="el-tablo highlight pt-lg-4">
                                     <div className="label font-weight-bold smaller">
@@ -800,18 +784,30 @@ const mapOptions = {
 
 
                                 </div>
-                </div>
-{/* first one finised */}               
-{/* middle one start */}
-                <div className="row pt-4">
-                <div className="col-sm-12 col-xxxl-9">
+
+                    <div className="col-sm-3">
+                    <div className="element-wrapper">
+                    <h6 className="element-header">
+                      Gender Distribution
+                    </h6>
+                    <div className="element-box">
+                      <div className="el-chart-w">
+                            <Doughnut data={piedata} 
+                             height="380px"
+                             options={{ maintainAspectRatio: true, cutoutPercentage: 60 }}/>
+                      </div>
+                    </div>
+                  </div>
+                    </div>
+
+                <div className="col-sm-6">
                 <div className="element-wrapper">
                 <h6 className="element-header">
                   Statewise BreakUp
                 </h6>
                 <div className="element-box-tp">
                   <div className="table-responsive text-center">
-                    <table className="table table-padded">
+                    <table className="table table-lightborder">
                       <thead>
                         <tr>
                           <th>
@@ -838,7 +834,7 @@ const mapOptions = {
                              
                               return(
                               <tr key={state.id}>
-                              <td className="nowrap">
+                              <td>
                                 <span>{state.state}</span>
                               </td>
                               <td>
@@ -847,48 +843,33 @@ const mapOptions = {
                               <td>
                                 <span>{active}</span>
                               </td>
-                              <td className="text-center">
+                              <td>
                                 <span>{state.recovered}</span>
                               </td>
-                              <td className="bolder nowrap">
+                              <td className="bolder">
                                 <span className="text-danger">{state.deaths}</span>
                               </td>
                             </tr>
                            ) })}
                         
-                      </tbody>
+                    </tbody>
                     </table>
-                  </div>
                 </div>
-              </div>
                 </div>
-                    
-                     
-                    
-              </div>
-{/* middle one finished */}
+            </div>
+            </div>
 
-                {/* last one start */}
+                </div>
 
-                <div className="row pt-5">
-                {/* <div className="col-sm-12 col-xxxl-6">
-        
-                  </div> */}
-              </div>
-              
-                {/* last one finished */}
-                
-                   
             </div>
             
         </div>
         </div>
-             )}}
+        )}}
             
             </Async>
-      
-      </Layout>
-      )
-  }
-  
+    </Layout>
+    )
+}
+
 
