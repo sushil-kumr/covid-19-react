@@ -50,7 +50,7 @@ export default function Header() {
         <div className="menu-w color-scheme-light fixed-top color-style-default menu-position-top menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-bright menu-activated-on-hover menu-has-selected-link">
           <div className="logo-w">
              <div className="logo-w menu-size">
-                 <Link  to="index.html" className="logo">
+                 <Link  to="/" className="logo">
                 <img src="img/logos2.png" alt="logo" width="100%"/>
                 </Link >
           </div>

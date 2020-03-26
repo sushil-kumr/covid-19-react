@@ -704,11 +704,8 @@ const mapOptions = {
                         </div>
                         </div>
                 </div>
-                <div className="row">
-                <div className="element-wrapper col-sm-7">
-                    <h6 className="element-header mb-2">
-                      Number of Cases
-                    </h6>
+
+                <div className="element-wrapper">
                     <div className="element-box">
                       <div className="os-tabs-w">
                         <div className="os-tabs-controls">
@@ -734,7 +731,8 @@ const mapOptions = {
                             </div>
                             <div className="el-chart-w"><div className="chartjs-size-monitor"><div className="chartjs-size-monitor-expand"><div className=""></div></div><div className="chartjs-size-monitor-shrink"><div className=""></div></div></div>
                                  <Line data={lineDataTotal}
-                                 options={optionProperties} />
+                                 options={optionProperties}
+                                  />
                              </div>
                           </div>
                           <div className="tab-pane" id="tab_deaths">
@@ -756,6 +754,13 @@ const mapOptions = {
                       </div>
                     </div>
                   </div>
+
+
+
+
+
+                <div className="row">
+                
                   <div className="col-sm-5 d-xxxl-5">
                   <div className="element-wrapper">
                     <h6 className="element-header">
@@ -880,4 +885,10 @@ const mapOptions = {
         </div>
              )}}
             
-       
+            </Async>
+      
+      </Layout>
+      )
+  }
+  
+
