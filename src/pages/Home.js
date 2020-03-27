@@ -639,10 +639,10 @@ const mapOptions = {
                             <div className="col-sm-12 col-xxl-12">
                                 <div className="tablos">
                                 <div className="row mb-xl-4 mb-xxl-3">
-                                    <div className="col-sm-3">
+                                    <div className="col-sm-3 col-6">
                                     <a className="element-box el-tablo centered trend-in-corner padded bold-label" >
-                                        <div className="label" style={{fontWeight:"500"}}>
-                                        Confirmed
+                                        <div className="label" style={{fontWeight:"500", fontSize: "12px"}}>
+                                        CONFIRMED
                                         </div>
                                         <div className="value text-danger font-weight-bold">
                                         {data.summary.total}
@@ -657,10 +657,10 @@ const mapOptions = {
                                         </div> 
                                     </a>
                                     </div>
-                                    <div className="col-sm-3">
+                                    <div className="col-sm-3 col-6">
                                     <a className="element-box el-tablo centered trend-in-corner padded bold-label" >
-                                            <div className="label"  style={{fontWeight:"500"}}>
-                                            Active
+                                            <div className="label"  style={{fontWeight:"500", fontSize: "12px"}}>
+                                            ACTIVE
                                             </div>
                                             <div className="value text-primary font-weight-bold">
                                             {active}
@@ -674,10 +674,10 @@ const mapOptions = {
                                          </div> 
                                     </a>
                                     </div>
-                                    <div className="col-sm-3">
+                                    <div className="col-sm-3 col-6">
                                     <a className="element-box el-tablo centered trend-in-corner padded bold-label" >
-                                        <div className="label"  style={{fontWeight:"500"}}>
-                                            Recovered
+                                        <div className="label"  style={{fontWeight:"500", fontSize: "12px"}}>
+                                            RECOVERED
                                             </div>
                                             <div className="value text-success font-weight-bold">
                                             {data.summary.recovered}
@@ -691,10 +691,10 @@ const mapOptions = {
                                             </div> 
                                     </a>
                                     </div>
-                                    <div className="col-sm-3">
+                                    <div className="col-sm-3 col-6">
                                     <a className="element-box el-tablo centered trend-in-corner padded bold-label" >
-                                        <div className="label"  style={{fontWeight:"500"}}>
-                                        Deaths
+                                        <div className="label"  style={{fontWeight:"500", fontSize: "12px"}}>
+                                        DECEASED
                                         </div>
                                         <div className="value text-secondary font-weight-bold">
                                         {data.summary.deaths}
@@ -727,7 +727,7 @@ const mapOptions = {
                             <a className="nav-link active" data-toggle="tab" href="#tab_total">Total Cases</a>
                             </li>
                             <li className="nav-item">
-                            <a className="nav-link" data-toggle="tab" href="#tab_deaths">Deaths</a>
+                            <a className="nav-link" data-toggle="tab" href="#tab_deaths">Deceased</a>
                             </li> 
                           </ul>
 
@@ -751,7 +751,7 @@ const mapOptions = {
                           <div className="tab-pane" id="tab_deaths">
                             <div className="el-tablo smaller">
                               <div className="label">
-                                Deaths
+                                Deceased
                               </div>
                               <div className="value">
                                  {data.summary.deaths}
@@ -827,16 +827,16 @@ const mapOptions = {
                             State
                           </th>
                           <th>
-                            Confirmed
+                            CNFMD
                           </th>    
                           <th>
-                            Active
+                            ACTV
                           </th>
                           <th>
-                            Recovered
+                            RCVD
                           </th>
                           <th>
-                            Deaths
+                            DCSD
                           </th>
                         </tr>
                       </thead>
@@ -844,27 +844,28 @@ const mapOptions = {
                           {data.statewise.map(state=>{
                               var confirm = state.total;
                               var active = confirm - state.deaths - state.recovered;
-                             
-                              return(
-                              <tr key={state.id}>
-                              <td className="text-left">
-                                <span>{state.state}</span>
-                              </td>
-                              <td>
-                                <span className="text-primary font-weight-bold smaller">{state.delta_total === 0?"": `(+${state.delta_total})`} </span><span className="font-weight-bold">{confirm}</span>
-                              </td>
-                              <td>
-                                <span className="text-danger font-weight-bold smaller">{state.delta_active === 0?"": `(+${state.delta_active})`} </span><span className="font-weight-bold">{active}  </span>
-                              </td>
-                              <td>
-                                <span className="text-success font-weight-bold smaller">{state.delta_recovered === 0?"": `(+${state.delta_recovered})`} </span><span className="font-weight-bold">{state.recovered}</span>
-                              </td>
-                              <td className="bolder">
-                                <span className="font-weight-bold smaller"> {state.delta_deaths === 0?"": `(+${state.delta_deaths})`} </span> <span className="font-weight-bold">{state.deaths}</span>
-                              </td>
-                            </tr>
-                           ) })}
-                        
+                              if(confirm){
+                                  return(
+
+                                  <tr key={state.id}>
+                                  <td className="text-left">
+                                    <span>{state.state}</span>
+                                  </td>
+                                  <td className="nowrap">
+                                    <span className="text-primary font-weight-bold smaller">{state.delta_total === 0?"": `(+${state.delta_total})`} </span><span className="font-weight-bold">{confirm}</span>
+                                  </td>
+                                  <td className="nowrap">
+                                    <span className="text-danger font-weight-bold smaller">{state.delta_active === 0?"": `(+${state.delta_active})`} </span><span className="font-weight-bold">{active}  </span>
+                                  </td>
+                                  <td className="nowrap">
+                                    <span className="text-success font-weight-bold smaller">{state.delta_recovered === 0?"": `(+${state.delta_recovered})`} </span><span className="font-weight-bold">{state.recovered}</span>
+                                  </td>
+                                  <td className="nowrap">
+                                    <span className="font-weight-bold smaller"> {state.delta_deaths === 0?"": `(+${state.delta_deaths})`} </span> <span className="font-weight-bold">{state.deaths}</span>
+                                  </td>
+                                </tr>
+                               )} 
+                             })}
                     </tbody>
                     </table>
                 </div>
