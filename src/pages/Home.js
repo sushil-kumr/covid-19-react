@@ -41,7 +41,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                     if (err) return `Something went wrong: ${err.message}`
                     if (data)
                     var active = data.summary.total - data.summary.recovered - data.summary.deaths;
-                    var mapValue=[];
+                  
                     data.statewise.forEach(element => {
                         mapData.forEach((field,i) => {
                             if(element.state.toLowerCase()=== field[0]){
@@ -58,7 +58,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                         genderValue.push(element.count);
                         gernderLabel.push(element.gender)
                     })
-                    if(data.gender.length == 2)
+                    if(data.gender.length === 2)
                     {
                         genderValue.push(0);
                     }
@@ -129,8 +129,8 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                     optionPropertiesActive.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                    var last_updated_time = new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[1] + " " + new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[2];
-                    var last_updated_date = new Date(Number(new Date(data.summary.record_time))).toDateString();
+                   // var last_updated_time = new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[1] + " " + new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[2];
+                   // var last_updated_date = new Date(Number(new Date(data.summary.record_time))).toDateString();
                     return ( 
                         <div className="content-w"><div className="content-i"><div className="content-box">
               {/* first one start */} 

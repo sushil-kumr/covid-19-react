@@ -1,17 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const menuItems = [
-  'projects',
-  'about',
-];
+// const menuItems = [
+//   'projects',
+//   'about',
+// ];
 
 export default function Header() {
     return (
         <>
         <div className="menu-mobile menu-activated-on-click color-scheme-light">
           <div className="mm-logo-buttons-w">
-            <Link className="mm-logo" to="/"><img src="img/logos2.png"/><span></span></Link>
+            <Link className="mm-logo" to="/"><img src="img/logos2.png" alt=""/><span></span></Link>
             <div className="mm-buttons">
               <div className="mobile-menu-trigger">
                 <div className="os-icon os-icon-hamburger-menu-1"></div>

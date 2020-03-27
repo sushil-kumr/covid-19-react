@@ -6,7 +6,6 @@ export const lineDataTotal = {
     labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
     datasets: [{
       fill: false,
-      lineTension: 0.8,
       backgroundColor: "#fff",
       borderColor: "#e65252",
       borderCapStyle: 'butt',
@@ -24,7 +23,7 @@ export const lineDataTotal = {
       pointHitRadius: 5,
       data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
-      lineTension: 0.4,
+      lineTension: 0.4
     }]
   };
 
@@ -32,7 +31,6 @@ export const lineDataTotal = {
     labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
     datasets: [{
       fill: false,
-      lineTension: 0.3,
       backgroundColor: "#fff",
       borderColor: "#3e4b5b",
       borderCapStyle: 'butt',
@@ -50,7 +48,7 @@ export const lineDataTotal = {
       pointHitRadius: 5,
       data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
-      lineTension: 0.4,
+      lineTension: 0.4
     }]
   };
 
@@ -58,7 +56,6 @@ export const lineDataTotal = {
     labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
     datasets: [{
       fill: false,
-      lineTension: 0.3,
       backgroundColor: "#fff",
       borderColor: "#047bf8",
       borderCapStyle: 'butt',
@@ -76,7 +73,7 @@ export const lineDataTotal = {
       pointHitRadius: 10,
       data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
-      lineTension: 0.4,
+      lineTension: 0.4
     }]
   };
 
@@ -84,7 +81,6 @@ export const lineDataTotal = {
     labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
     datasets: [{
       fill: false,
-      lineTension: 0.3,
       backgroundColor: "#fff",
       borderColor: "#047bf8",
       borderCapStyle: 'butt',
@@ -102,7 +98,7 @@ export const lineDataTotal = {
       pointHitRadius: 10,
       data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
-      lineTension: 0.4,
+      lineTension: 0.4
     }]
   };
 
