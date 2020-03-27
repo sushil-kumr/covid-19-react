@@ -631,7 +631,7 @@ const mapOptions = {
                 <div className="col-sm-5">
                     <div className="element-wrapper pb-2">
                         <h6 className="pb-4">
-                     <span className="font-weight-bold"> Dashboard for COVID-19 Outbreak in India </span> <br/> <span className="small font-weight-bold text-success"> Last Updated: {last_updated_date}</span>
+                     <span className="font-weight-bold"> Dashboard for COVID-19 Outbreak in India </span> <br/> <span className="small font-weight-bold text-success"> Last Updated: {data.summary.last_updated_time}</span>
                         </h6>
                         <div className="element-content">
                         <div className="tablo-with-chart">
