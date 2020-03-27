@@ -570,7 +570,7 @@ const mapOptions = {
                          recoveredValue.push(element.daily_recovered);
 
                          totalValue1.push(element.total);
-                         daysValue1.push(element.day);
+                         daysValue1.push(element.day.split(" ").slice(0, 2));
                          deathsValue1.push(element.deaths);
                          activeValue1.push(element.active);
                          recoveredValue1.push(element.recovered);
