@@ -1,20 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Suspense,lazy} from 'react';
 import './App.css';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
+import Loader from './component/Loader'
 
-import Home from '../src/pages/Home'
-import NotFound from '../src/pages/NotFound'
-
+const Home = lazy(() => import('./pages/Home'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 
 function App() {
   return (
     <Router>
+      <Suspense fallback={<Loader/>}>
     <Switch>
          <Route path="/" exact  component={Home}/>
          <Route path="*" component={NotFound}/>
      </Switch>
+     </Suspense>
  </Router>
   );
 }
