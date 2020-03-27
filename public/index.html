@@ -111,6 +111,28 @@
     <script src="bower_components/bootstrap/js/dist/popover.js"></script>
     <script src="js/demo_customizer.js?version=4.5.0"></script>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.0/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.0/firebase-analytics.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBRI8rqW0bgU_0btOffDib2_CHj9x12DOA",
+        authDomain: "covid-39b72.firebaseapp.com",
+        databaseURL: "https://covid-39b72.firebaseio.com",
+        projectId: "covid-39b72",
+        storageBucket: "covid-39b72.appspot.com",
+        messagingSenderId: "42215066759",
+        appId: "1:42215066759:web:06744818a94c7d7f5afc22",
+        measurementId: "G-DN2L23PLYQ"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
     <!-- <script src="https://code.highcharts.com/maps/highmaps.js"></script> 
     <script src="js/map2.js"></script>
     <script src="js/map.js"></script> -->
