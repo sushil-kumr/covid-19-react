@@ -457,7 +457,7 @@ var mapData = [
   ['himachal pradesh', 0],
   ['meghalaya', 0],
   ['kerala', 0],
-  ['telengana', 0],
+  ['telangana', 0],
   ['mizoram', 0],
   ['tripura', 0],
   ['manipur', 0],
