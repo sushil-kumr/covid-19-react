@@ -20,22 +20,22 @@ const lineDataTotal = {
     labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
     datasets: [{
       fill: false,
-      lineTension: 0.3,
+      lineTension: 0.8,
       backgroundColor: "#fff",
-      borderColor: "#047bf8",
+      borderColor: "#e65252",
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
       borderJoinStyle: 'miter',
       pointBorderColor: "#fff",
       pointBackgroundColor: "#141E41",
-      pointBorderWidth: 3,
+      pointBorderWidth: 2,
       pointHoverRadius: 10,
       pointHoverBackgroundColor: "#FC2055",
       pointHoverBorderColor: "#fff",
       pointHoverBorderWidth: 3,
-      pointRadius: 5,
-      pointHitRadius: 10,
+      pointRadius: 3,
+      pointHitRadius: 5,
       data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
       lineTension: 0.4,
@@ -48,20 +48,20 @@ const lineDataTotal = {
       fill: false,
       lineTension: 0.3,
       backgroundColor: "#fff",
-      borderColor: "#047bf8",
+      borderColor: "#3e4b5b",
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
       borderJoinStyle: 'miter',
       pointBorderColor: "#fff",
       pointBackgroundColor: "#141E41",
-      pointBorderWidth: 3,
+      pointBorderWidth: 2,
       pointHoverRadius: 10,
       pointHoverBackgroundColor: "#FC2055",
       pointHoverBorderColor: "#fff",
       pointHoverBorderWidth: 3,
-      pointRadius: 5,
-      pointHitRadius: 10,
+      pointRadius: 3,
+      pointHitRadius: 5,
       data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
       lineTension: 0.4,
@@ -532,7 +532,7 @@ const mapOptions = {
                      data.statewise.forEach(element => {
                         mapData.forEach((field,i) => {
                             if(element.state.toLowerCase()=== field[0]){
-                                mapData[i][1]=element.indian_cases + element.foreign_cases;
+                                mapData[i][1]=element.total;
                             }
                          });
                          //mapValue.push([element.state.toLowerCase(),element.indian_cases + element.foreign_cases])
@@ -556,39 +556,52 @@ const mapOptions = {
                      var deathsValue = [];
                      var activeValue = [];
                      var recoveredValue = [];
+
+                     var totalValue1 = [];
+                     var daysValue1 = [];
+                     var deathsValue1 = [];
+                     var activeValue1 = [];
+                     var recoveredValue1 = [];
                      data.dashboard_graphs.forEach(element => {
-                         totalValue.push(element.total);
+                         totalValue.push(element.daily_total);
                          daysValue.push(element.day);
-                         deathsValue.push(element.deaths);
-                         activeValue.push(element.active);
-                         recoveredValue.push(element.recovered);
+                         deathsValue.push(element.daily_deaths);
+                         activeValue.push(element.daily_active);
+                         recoveredValue.push(element.daily_recovered);
+
+                         totalValue1.push(element.total);
+                         daysValue1.push(element.day);
+                         deathsValue1.push(element.deaths);
+                         activeValue1.push(element.active);
+                         recoveredValue1.push(element.recovered);
                      });
 
-                    lineDataTotal.labels = lineDataDeaths.labels = daysValue;
-                    lineDataTotal.datasets[0].data = totalValue;
-                    lineDataDeaths.datasets[0].data = deathsValue;
-                    lineDataActive.datasets[0].data = activeValue;
-                    lineDataRecovered.datasets[0].data = recoveredValue;
-            
+                    lineDataTotal.labels = lineDataDeaths.labels = daysValue1;
+                    lineDataTotal.datasets[0].data = totalValue1;
+                    lineDataDeaths.datasets[0].data = deathsValue1;
+                    lineDataActive.datasets[0].data = activeValue1;
+                    lineDataRecovered.datasets[0].data = recoveredValue1;
+              
+                    var last_value = -20
                     const simpleTotal = Object.assign({}, lineDataTotal);
                     simpleTotal.datasets=othersTotal.datasets;
-                    simpleTotal.datasets[0].data = totalValue;
-                    simpleTotal.labels = daysValue;
+                    simpleTotal.datasets[0].data = totalValue.slice(last_value);
+                    simpleTotal.labels = daysValue.slice(last_value);
 
                     const simpleDeaths = Object.assign({}, lineDataDeaths);
                     simpleDeaths.datasets=othersDeaths.datasets;
-                    simpleDeaths.datasets[0].data = deathsValue;
-                    simpleDeaths.labels = daysValue;
+                    simpleDeaths.datasets[0].data = deathsValue.slice(last_value);
+                    simpleDeaths.labels = daysValue.slice(last_value);
 
                     const simpleActive = Object.assign({}, lineDataActive);
                     simpleActive.datasets=othersActive.datasets;
-                    simpleActive.datasets[0].data = activeValue;
-                    simpleActive.labels = daysValue;
+                    simpleActive.datasets[0].data = activeValue.slice(last_value);
+                    simpleActive.labels = daysValue.slice(last_value);
 
                     const simpleRecovered = Object.assign({}, lineDataRecovered);
                     simpleRecovered.datasets=othersRecovered.datasets;
-                    simpleRecovered.datasets[0].data = recoveredValue;
-                    simpleRecovered.labels = daysValue;
+                    simpleRecovered.datasets[0].data = recoveredValue.slice(last_value);
+                    simpleRecovered.labels = daysValue.slice(last_value);
                     // const simpleDeaths = Object.assign({}, lineDataTotal);
                     // simpleDeaths.datasets= Object.assign({}, others.datasets);
                     // simpleDeaths.datasets[0].data =Object.assign({}, deathsValue); 
@@ -601,12 +614,12 @@ const mapOptions = {
                     othersDeaths.datasets[0].borderColor = "#3e4b5b";
                     optionPropertiesTotal.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesTotal.scales.yAxes[0].ticks.min = -15;
-                    optionPropertiesDeaths.scales.yAxes[0].ticks.max = Math.round(Math.max(...deathsValue) + (Math.max(...deathsValue)*highscale));
-                    optionPropertiesDeaths.scales.yAxes[0].ticks.min = -10;
-                    optionPropertiesRecovered.scales.yAxes[0].ticks.min = -10;
+                    optionPropertiesDeaths.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
+                    optionPropertiesDeaths.scales.yAxes[0].ticks.min = -15;
+                    optionPropertiesRecovered.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesActive.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                    optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...recoveredValue) + (Math.max(...recoveredValue)*highscale));
+                    optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     var last_updated_time = new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[1] + " " + new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[2];
                     var last_updated_date = new Date(Number(new Date(data.summary.record_time))).toDateString();
                      return ( 
@@ -829,7 +842,7 @@ const mapOptions = {
                       </thead>
                       <tbody>
                           {data.statewise.map(state=>{
-                              var confirm = state.foreign_cases + state.indian_cases;
+                              var confirm = state.total;
                               var active = confirm - state.deaths - state.recovered;
                              
                               return(
