@@ -696,7 +696,7 @@ const mapOptions = {
                                         <div className="label"  style={{fontWeight:"500"}}>
                                         Deaths
                                         </div>
-                                        <div className="value font-weight-bold">
+                                        <div className="value text-secondary font-weight-bold">
                                         {data.summary.deaths}
                                         </div>
                                         <div className="trending text-dark trending-down-basic">
@@ -813,17 +813,17 @@ const mapOptions = {
                   </div>
                     </div>
 
-                <div className="col-sm-6">
+                <div className="col-sm-5">
                 <div className="element-wrapper">
                 <h6 className="element-header">
                   Statewise BreakUp
                 </h6>
                 <div className="element-box-tp">
-                  <div className="table-responsive text-center">
+                  <div className="table-responsive text-right">
                     <table className="table table-lightborder">
                       <thead>
                         <tr>
-                          <th>
+                          <th className="text-left">
                             State
                           </th>
                           <th>
@@ -847,20 +847,20 @@ const mapOptions = {
                              
                               return(
                               <tr key={state.id}>
-                              <td>
+                              <td className="text-left">
                                 <span>{state.state}</span>
                               </td>
                               <td>
-                                <span className="font-weight-bold">{confirm}</span>
+                                <span className="text-primary font-weight-bold smaller">{state.delta_total === 0?"": `(+${state.delta_total})`} </span><span className="font-weight-bold">{confirm}</span>
                               </td>
                               <td>
-                                <span>{active}</span>
+                                <span className="text-danger font-weight-bold smaller">{state.delta_active === 0?"": `(+${state.delta_active})`} </span><span className="font-weight-bold">{active}  </span>
                               </td>
                               <td>
-                                <span>{state.recovered}</span>
+                                <span className="text-success font-weight-bold smaller">{state.delta_recovered === 0?"": `(+${state.delta_recovered})`} </span><span className="font-weight-bold">{state.recovered}</span>
                               </td>
                               <td className="bolder">
-                                <span className="text-danger">{state.deaths}</span>
+                                <span className="font-weight-bold smaller"> {state.delta_deaths === 0?"": `(+${state.delta_deaths})`} </span> <span className="font-weight-bold">{state.deaths}</span>
                               </td>
                             </tr>
                            ) })}
