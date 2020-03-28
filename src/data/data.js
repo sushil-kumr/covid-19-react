@@ -57,7 +57,7 @@ export const lineDataTotal = {
     datasets: [{
       fill: false,
       backgroundColor: "#fff",
-      borderColor: "#047bf8",
+      borderColor: "#268df9",
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
@@ -82,7 +82,7 @@ export const lineDataTotal = {
     datasets: [{
       fill: false,
       backgroundColor: "#fff",
-      borderColor: "#047bf8",
+      borderColor: "#24b314",
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
@@ -325,7 +325,11 @@ export const optionProperties = {
       yAxes: [{
         display: true,
         ticks: {
-          beginAtZero: true
+          beginAtZero: true,
+          autoSkip:true,
+          maxRotation: 0,
+          minRotation: 0,
+          maxTicksLimit:6,
         }
       }]
     }
@@ -355,39 +359,81 @@ export const optionProperties = {
       yAxes: [{
         display: true,
         ticks: {
-          beginAtZero: true
+          beginAtZero: true,
+          autoSkip:true,
+          maxRotation: 0,
+          minRotation: 0,
+          maxTicksLimit:5,
         }
       }]
     }
   }
 
-  
+  export const optionPropertiesDataRecovered = {
+    legend: {
+      display: false
+    },
+    bezierCurve : true,
+    scales: {
+      xAxes: [{
+        ticks: {
+            autoSkip:true,
+            maxRotation: 0,
+            minRotation: 0,
+            maxTicksLimit:5,
+            fontSize: '11',
+            fontColor: '#rgba(0,0,0,0.8)'
+        },
+        gridLines: {
+          color: 'rgba(0,0,0,0.05)',
+          zeroLineColor: 'rgba(0,0,0,0.05)'
+        }
+      }],
+      yAxes: [{
+        display: true,
+        ticks: {
+          beginAtZero: true,
+          autoSkip:true,
+          maxRotation: 0,
+          minRotation: 0,
+          maxTicksLimit:5,
+        }
+      }]
+    }
+  }
 
-//   const lineDataDeaths = {
-//     labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
-//     datasets: [{
-//       fill: false,
-//       lineTension: 0.3,
-//       backgroundColor: "#fff",
-//       borderColor: "#047bf8",
-//       borderCapStyle: 'butt',
-//       borderDash: [],
-//       borderDashOffset: 0.0,
-//       borderJoinStyle: 'miter',
-//       pointBorderColor: "#fff",
-//       pointBackgroundColor: "#141E41",
-//       pointBorderWidth: 3,
-//       pointHoverRadius: 10,
-//       pointHoverBackgroundColor: "#FC2055",
-//       pointHoverBorderColor: "#fff",
-//       pointHoverBorderWidth: 3,
-//       pointRadius: 5,
-//       pointHitRadius: 10,
-//       data: [27, 20, 44, 24, 29, 22, 43, 52],
-//       spanGaps: false,
-//       lineTension: 0.4,
-//     }]
-//   };
+  export const optionPropertiesDataActive = {
+    legend: {
+      display: false
+    },
+    bezierCurve : true,
+    scales: {
+      xAxes: [{
+        ticks: {
+            autoSkip:true,
+            maxRotation: 0,
+            minRotation: 0,
+            maxTicksLimit:5,
+            fontSize: '11',
+            fontColor: '#rgba(0,0,0,0.8)'
+        },
+        gridLines: {
+          color: 'rgba(0,0,0,0.05)',
+          zeroLineColor: 'rgba(0,0,0,0.05)'
+        }
+      }],
+      yAxes: [{
+        display: true,
+        ticks: {
+          beginAtZero: true,
+          autoSkip:true,
+          maxRotation: 0,
+          minRotation: 0,
+          maxTicksLimit:5,
+        }
+      }]
+    }
+  }
 
 export const piedata = {
     chart: {
@@ -414,7 +460,7 @@ export const piedata = {
 };
 
 
-export var mapData = [
+export const mapData = [
   ['madhya pradesh', 0],
   ['uttar pradesh', 0],
   ['karnataka', 0],
@@ -490,6 +536,20 @@ export const mapOptions = {
       }
     ]
   };
+
+  export const barChartData = {
+    labels: [],
+    datasets: [
+      {
+        label: 'No. of Cases',
+        backgroundColor: '#ff0000',
+        borderWidth: 1,
+        hoverBackgroundColor: '#ff0000',
+        hoverBorderColor: '#ff0000',
+        data: []
+      }
+    ]
+  }
 
 export default function data() {
     return (

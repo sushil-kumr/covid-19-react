@@ -6,13 +6,13 @@ import highchartsMap from "highcharts/modules/map";
 
 import {mapData,piedata,lineDataTotal,lineDataActive,lineDataDeaths
     ,lineDataRecovered,othersActive,othersDeaths,othersRecovered,othersTotal
-    ,optionPropertiesData,optionPropertiesDeaths,optionProperties
+    ,optionProperties,optionPropertiesData,optionPropertiesDataActive,optionPropertiesDataRecovered,optionPropertiesDeaths
     ,optionPropertiesActive,optionPropertiesRecovered,optionPropertiesTotal
-    ,mapOptions} from "../data/data";
+    ,mapOptions,barChartData} from "../data/data";
 
 import Async from 'react-async';
 
-import {Doughnut} from 'react-chartjs-2';
+import {Doughnut,Bar} from 'react-chartjs-2';
 
 highchartsMap(Highcharts);
 
@@ -40,7 +40,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                     )
                     if (err) return `Something went wrong: ${err.message}`
                     if (data)
-                    var active = data.summary.total - data.summary.recovered - data.summary.deaths;
+                    var  active = data.summary.total - data.summary.recovered - data.summary.deaths;
                   
                     data.statewise.forEach(element => {
                         mapData.forEach((field,i) => {
@@ -52,29 +52,32 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                     });
                      //mapOptions.series[0].data = mapValue;
 
-                    var genderValue=[];
-                    var gernderLabel=[];
+                    barChartData.labels = Object.keys(data.age);
+                    barChartData.datasets[0].data = Object.values(data.age);
+
+                    const genderValue=[];
+                    const gernderLabel=[];
                     data.gender.forEach(element=>{
                         genderValue.push(element.count);
                         gernderLabel.push(element.gender)
                     })
                     if(data.gender.length === 2)
-                    {
-                        genderValue.push(0);
+                    { 
+                      genderValue.push(0);
                     }
                     piedata.datasets[0].data = genderValue;
 
-                    var totalValue = [];
-                    var daysValue = [];
-                    var deathsValue = [];
-                    var activeValue = [];
-                    var recoveredValue = [];
+                    const totalValue = [];
+                    const daysValue = [];
+                    const deathsValue = [];
+                    const activeValue = [];
+                    const recoveredValue = [];
 
-                    var totalValue1 = [];
-                    var daysValue1 = [];
-                    var deathsValue1 = [];
-                    var activeValue1 = [];
-                    var recoveredValue1 = [];
+                    const totalValue1 = [];
+                    const daysValue1 = [];
+                    const deathsValue1 = [];
+                    const activeValue1 = [];
+                    const recoveredValue1 = [];
                     data.dashboard_graphs.forEach(element => {
                         totalValue.push(element.daily_total);
                         daysValue.push(element.day);
@@ -89,13 +92,13 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                         recoveredValue1.push(element.recovered);
                     });
 
-                    lineDataTotal.labels = lineDataDeaths.labels = daysValue1;
+                    lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1;
                     lineDataTotal.datasets[0].data = totalValue1;
                     lineDataDeaths.datasets[0].data = deathsValue1;
                     lineDataActive.datasets[0].data = activeValue1;
                     lineDataRecovered.datasets[0].data = recoveredValue1;
               
-                    var last_value = -20
+                    const last_value = -20
                     const simpleTotal = Object.assign({}, lineDataTotal);
                     simpleTotal.datasets=othersTotal.datasets;
                     simpleTotal.datasets[0].data = totalValue.slice(last_value);
@@ -129,8 +132,8 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                     optionPropertiesActive.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                   // var last_updated_time = new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[1] + " " + new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[2];
-                   // var last_updated_date = new Date(Number(new Date(data.summary.record_time))).toDateString();
+                   // const last_updated_time = new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[1] + " " + new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[2];
+                   // const last_updated_date = new Date(Number(new Date(data.summary.record_time))).toDateString();
                     return ( 
                         <div className="content-w"><div className="content-i"><div className="content-box">
               {/* first one start */} 
@@ -185,14 +188,21 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                                 <div className="os-tabs-controls">
                                   <ul className="nav nav-tabs smaller">
                                     <li className="nav-item">
-                                    <a className="nav-link active" data-toggle="tab" href="#tab_total">Total Cases</a>
+                                      <a className="nav-link active" data-toggle="tab" href="#tab_total">CONFIRMED</a>
                                     </li>
                                     <li className="nav-item">
-                                    <a className="nav-link" data-toggle="tab" href="#tab_deaths">Deceased</a>
+                                      <a className="nav-link" data-toggle="tab" href="#active">ACTIVE</a>
+                                    </li> 
+                                    <li className="nav-item">
+                                      <a className="nav-link" data-toggle="tab" href="#rec">RECOVERED</a>
+                                    </li> 
+                                    <li className="nav-item">
+                                      <a className="nav-link" data-toggle="tab" href="#tab_deaths">DECEASED</a>
                                     </li> 
                                   </ul>
 
                                 </div>
+
                                 <div className="tab-content">
                                   <SimpleGraph name="Total Cases"
                                     id="tab_total"
@@ -207,6 +217,20 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                                     data={data.summary.deaths}
                                     values={lineDataDeaths}
                                     option={optionPropertiesData}
+                                    />
+                                  <SimpleGraph name="Active"
+                                    id="active"
+                                    text="" 
+                                    data={data.summary.active}
+                                    values={lineDataActive}
+                                    option={optionPropertiesDataActive}
+                                    />
+                                  <SimpleGraph name="Recovered"
+                                    id="rec"
+                                    text="" 
+                                    data={data.summary.recovered}
+                                    values={lineDataRecovered}
+                                    option={optionPropertiesDataRecovered}
                                     />
                                 </div>
                               </div>
@@ -230,8 +254,52 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                                         </div>
                                         </div>
                                         </div>
+                                        <div  className="pt-2" data-highcharts-chart="0" style={{overflow: "hidden"}}>
+                                        </div>
 
-                            <div className="col-sm-3">
+
+                          <div className="col-sm-3">
+                            <div className="element-wrapper">
+                              <h6 className="element-header">
+                                Age Distribution
+                              </h6>
+                              <div className="element-box">
+                                <div className="el-chart-w">
+                                  <Bar data={barChartData}
+                                  height="200px"
+                                  options={{ maintainAspectRatio: true,legend: {
+                                    display: false
+                                  },scales: {
+                                    xAxes: [{
+                                      ticks: {
+                                          autoSkip:true,
+                                          maxRotation: 0,
+                                          minRotation: 0,
+                                          maxTicksLimit:4,
+                                          fontSize: '11',
+                                          fontColor: '#rgba(0,0,0,0.8)'
+                                      },
+                                      gridLines: {
+                                        color: 'rgba(0,0,0,0.05)',
+                                        zeroLineColor: 'rgba(0,0,0,0.05)'
+                                      }
+                                    }],
+                                    yAxes: [{
+                                      display: true,
+                                      ticks: {
+                                        beginAtZero: true,
+                                        autoSkip:true,
+                                        maxRotation: 0,
+                                        minRotation: 0,
+                                        maxTicksLimit:5,
+                                      }
+                                    }]
+                                  } 
+                                  }} />
+                                  <span> Age not defined for {data.undefinedage} cases</span>
+                                </div>
+                              </div>
+                            </div>
                             <div className="element-wrapper">
                             <h6 className="element-header">
                               Gender Distribution
@@ -239,7 +307,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                             <div className="element-box">
                               <div className="el-chart-w">
                                     <Doughnut data={piedata} 
-                                    height="380px"
+                                    height="225px"
                                     options={{ maintainAspectRatio: true, cutoutPercentage: 60 }}/>
                               </div>
                             </div>
