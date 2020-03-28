@@ -296,7 +296,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                                     }]
                                   } 
                                   }} />
-                                  <span> Age not defined for {data.undefinedage} cases</span>
+                                  <span> *Age data not available for {data.undefinedage} cases</span>
                                 </div>
                               </div>
                             </div>
