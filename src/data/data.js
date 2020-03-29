@@ -2,6 +2,7 @@ import React from 'react'
 
 import usAll from "../data/india";
 
+
 export var lineDataTotal = {
     labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
     datasets: [{
@@ -101,7 +102,7 @@ export var lineDataTotal = {
   };
 
   export const lineDataDeaths = {
-    labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
+    labels: [],
     datasets: [{
       label: "Deceased",
       fill: false,
@@ -127,7 +128,7 @@ export var lineDataTotal = {
   };
 
   export const lineDataActive = {
-    labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
+    labels: [],
     datasets: [{
       label: "Active",
       fill: false,
@@ -153,7 +154,7 @@ export var lineDataTotal = {
   };
 
   export  const lineDataRecovered = {
-    labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
+    labels: [],
     datasets: [{
       label: "Recovered",
       fill: false,
@@ -407,13 +408,18 @@ export const optionProperties = {
           autoSkip:true,
           maxRotation: 0,
           minRotation: 0,
+<<<<<<< HEAD
           maxTicksLimit:6,
           fontSize: '11',
           fontColor: '#000'
+=======
+          maxTicksLimit:4,
+>>>>>>> 4b6a759a07474a3bb32deada666d55e94f492c91
         }
       }]
     }
   }
+  
 
 
   export const optionPropertiesData = {

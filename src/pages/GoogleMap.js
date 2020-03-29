@@ -1,5 +1,5 @@
 
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 
 import React, { Component } from 'react'
 
@@ -26,7 +26,7 @@ export default class GoogleMap extends Component {
         // Important! Always set the container height explicitly
         <Layout>
         <div style={{ height: '100vh', width: '100%' }}>
-          <GoogleMapReact
+          {/* <GoogleMapReact
             bootstrapURLKeys={{ key: "AIzaSyBnt9meLwKfGzZtUZuyGB1iPp346rph9YA" }}
             defaultCenter={this.state.center}
             defaultZoom={this.state.zoom}
@@ -36,7 +36,7 @@ export default class GoogleMap extends Component {
             lng={30.337844}
             text="My Marker"
           />
-          </GoogleMapReact>
+          </GoogleMapReact> */}
         </div>
         </Layout>
       );
