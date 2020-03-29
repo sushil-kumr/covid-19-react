@@ -94,9 +94,10 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
 
                     lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1;
                     lineDataTotal.datasets[0].data = totalValue1;
-                    lineDataTotal.datasets[1].data = deathsValue1;
-                    lineDataTotal.datasets[2].data = activeValue1;
-                    lineDataTotal.datasets[3].data = recoveredValue1;
+                    lineDataTotal.datasets[1].data = activeValue1;
+                    lineDataTotal.datasets[2].data = recoveredValue1;
+                    lineDataTotal.datasets[3].data = deathsValue1;
+
                     // lineDataTotal.datasets.push(lineDataRecovered.datasets[0])
                     // lineDataTotal.datasets.push(lineDataDeaths.datasets[0])
                     // lineDataTotal.datasets.push(lineDataActive.datasets[0])
@@ -186,11 +187,8 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                       </div> </div> </div></div>
 
                         <div className="element-wrapper pb-2">
-                            <div className="element-box pt-0">
+                            <div className="element-box">
                               <div className="os-tabs-w">
-                                <div className="os-tabs-controls">
-                                </div>
-
                                 <div className="tab-content">
                                   <SimpleGraph name="Stats"
                                     id="tab_total"
@@ -230,7 +228,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                               <h6 className="element-header">
                                 Age Distribution
                               </h6>
-                              <div className="element-box">
+                              <div className="element-box pt-0">
                                 <div className="el-chart-w">
                                   <Bar data={barChartData}
                                   height="200px"
@@ -244,7 +242,8 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                                           minRotation: 0,
                                           maxTicksLimit:4,
                                           fontSize: '11',
-                                          fontColor: '#rgba(0,0,0,0.8)'
+                                          fontColor: '#rgba(0,0,0,0.8)',
+                                          fontFamily: ["Inter", "Sans-serif"],
                                       },
                                       gridLines: {
                                         color: 'rgba(0,0,0,0.05)',
@@ -259,6 +258,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                                         maxRotation: 0,
                                         minRotation: 0,
                                         maxTicksLimit:5,
+                                        fontFamily: ["Inter", "Sans-serif"],
                                       }
                                     }]
                                   } 
@@ -271,11 +271,11 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                             <h6 className="element-header">
                               Gender Distribution
                             </h6>
-                            <div className="element-box">
+                            <div className="element-box pt-0">
                               <div className="el-chart-w">
                                     <Doughnut data={piedata} 
                                     height="225px"
-                                    options={{ maintainAspectRatio: true, cutoutPercentage: 60 }}/>
+                                    options={{ maintainAspectRatio: true, cutoutPercentage: 60, legend: { labels:{fontFamily: ["Inter", "Sans-serif"], boxWidth: 12}} }}/>
                               </div>
                             </div>
                           </div>

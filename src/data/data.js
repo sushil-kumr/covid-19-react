@@ -18,7 +18,7 @@ export var lineDataTotal = {
       // borderJoinStyle: 'miter',
       // pointBorderColor: "#fff",
       pointBackgroundColor: "#e65252",
-      // pointBorderWidth: 2,
+      // pointBorderWidth: 1,
       // pointHoverRadius: 5,
       // pointHoverBackgroundColor: "#FC2055",
       // pointHoverBorderColor: "#fff",
@@ -29,29 +29,7 @@ export var lineDataTotal = {
       spanGaps: false,
       lineTension: 0.4
     },
-    {
-      label: "Deceased",
-      legendText: "Deceased",
-      fill: false,
-      // backgroundColor: "#3e4b5b",
-      borderColor: "#3e4b5b",
-      // borderCapStyle: 'butt',
-      // borderDash: [],
-      // borderDashOffset: 0.0,
-      // borderJoinStyle: 'miter',
-      // pointBorderColor: "#fff",
-      pointBackgroundColor: "#3e4b5b",
-      // pointBorderWidth: 2,
-      // pointHoverRadius: 5,
-      // pointHoverBackgroundColor: "#FC2055",
-      // pointHoverBorderColor: "#fff",
-      // pointHoverBorderWidth: 2,
-      pointRadius: 2,
-      // pointHitRadius: 5,
-      data: [27, 20, 44, 24, 29, 22, 43, 52],
-      spanGaps: false,
-      lineTension: 0.4
-    },
+    
     {
       label: "Active",
       legendText: "Active",
@@ -92,6 +70,29 @@ export var lineDataTotal = {
       // pointHoverBackgroundColor: "#FC2055",
       // pointHoverBorderColor: "#fff",
       // pointHoverBorderWidth: 3,
+      pointRadius: 2,
+      // pointHitRadius: 5,
+      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      spanGaps: false,
+      lineTension: 0.4
+    },
+    {
+      label: "Deceased",
+      legendText: "Deceased",
+      fill: false,
+      // backgroundColor: "#3e4b5b",
+      borderColor: "#3e4b5b",
+      // borderCapStyle: 'butt',
+      // borderDash: [],
+      // borderDashOffset: 0.0,
+      // borderJoinStyle: 'miter',
+      // pointBorderColor: "#fff",
+      pointBackgroundColor: "#3e4b5b",
+      // pointBorderWidth: 2,
+      // pointHoverRadius: 5,
+      // pointHoverBackgroundColor: "#FC2055",
+      // pointHoverBorderColor: "#fff",
+      // pointHoverBorderWidth: 2,
       pointRadius: 2,
       // pointHitRadius: 5,
       data: [27, 20, 44, 24, 29, 22, 43, 52],
@@ -384,7 +385,15 @@ export const optionPropertiesDeaths = {
 export const optionProperties = {
     legend: {
       display: true,
+      labels:{
+        fontFamily: ["Inter", "Sans-serif"],
+        fontSize: 11,
+        boxWidth: 8,
+      },
     },
+    tooltips: {
+            mode: 'x'
+        },
     bezierCurve : true,
     scales: {
       xAxes: [{
@@ -394,7 +403,8 @@ export const optionProperties = {
             minRotation: 0,
             maxTicksLimit:5,
             fontSize: '11',
-            fontColor: '#000'
+            fontColor: '#000',
+            fontFamily: ["Inter", "Sans-serif"],
         },
         gridLines: {
           color: 'rgba(0,0,0,0.01)',
@@ -408,13 +418,10 @@ export const optionProperties = {
           autoSkip:true,
           maxRotation: 0,
           minRotation: 0,
-<<<<<<< HEAD
           maxTicksLimit:6,
           fontSize: '11',
-          fontColor: '#000'
-=======
-          maxTicksLimit:4,
->>>>>>> 4b6a759a07474a3bb32deada666d55e94f492c91
+          fontColor: '#000',
+          fontFamily: ["Inter", "Sans-serif"],
         }
       }]
     }
