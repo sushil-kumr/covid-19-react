@@ -183,21 +183,18 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
 
                         </div>
                         <div className="col-sm-4">
-                            <div className="element-box pl-xxl-5 pr-xxl-5">
                             <div className="element-wrapper">
-                            <h6 className="element-header">
-                                Statewise Map View
-                              </h6>
-                              </div>
-                                <div className="el-tablo highlight pt-lg-4">
-                                    
-                                </div>
+                                <h6 className="element-header">
+                                    Statewise Map View
+                                </h6>
+                                <div className="element-box pt-0">
                                 <div  className="pt-2" data-highcharts-chart="0" style={{overflow: "hidden"}}>
                                     <HighchartsReact
                                         constructorType={"mapChart"}
                                         highcharts={Highcharts}
                                         options={mapOptions}
                                         />
+                                </div>
                                 </div>
                             </div>
                         </div>
