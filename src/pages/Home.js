@@ -8,7 +8,7 @@ import {mapData,piedata,lineDataTotal,lineDataActive,lineDataDeaths
     ,lineDataRecovered,othersActive,othersDeaths,othersRecovered,othersTotal
     ,optionProperties,optionPropertiesData,optionPropertiesDataActive,optionPropertiesDataRecovered,optionPropertiesDeaths
     ,optionPropertiesActive,optionPropertiesRecovered,optionPropertiesTotal
-    ,mapOptions,barChartData} from "../data/data";
+    ,mapOptions,barChartData,axis} from "../data/data";
 
 import Async from 'react-async';
 
@@ -137,7 +137,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                     return ( 
                         <div className="content-w"><div className="content-i"><div className="content-box">
               {/* first one start */} 
-                        <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-2">
+                        <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
                             <h6 className="pb-4">
                               <span className="font-weight-bold"> Dashboard for COVID-19 Outbreak in India </span> <br/> <span className="small font-weight-bold text-success"> Last Updated: {data.summary.last_updated_time}</span>
                             </h6>
@@ -182,7 +182,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                                 
                       </div> </div> </div></div>
 
-                        <div className="element-wrapper">
+                        <div className="element-wrapper pb-2">
                             <div className="element-box pt-0">
                               <div className="os-tabs-w">
                                 <div className="os-tabs-controls">
@@ -259,7 +259,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
 
 
                           <div className="col-sm-3">
-                            <div className="element-wrapper">
+                            <div className="element-wrapper pb-2">
                               <h6 className="element-header">
                                 Age Distribution
                               </h6>
@@ -296,7 +296,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                                     }]
                                   } 
                                   }} />
-                                  <span> Age not defined for {data.undefinedage} cases</span>
+                                  <span> *Age data not available for {data.undefinedage} cases</span>
                                 </div>
                               </div>
                             </div>

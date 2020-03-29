@@ -3,7 +3,7 @@ import React from 'react'
 import usAll from "../data/india";
 
 export const lineDataTotal = {
-    labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
+    labels: [],
     datasets: [{
       fill: false,
       backgroundColor: "#fff",
@@ -21,14 +21,14 @@ export const lineDataTotal = {
       pointHoverBorderWidth: 3,
       pointRadius: 3,
       pointHitRadius: 5,
-      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      data: [],
       spanGaps: false,
       lineTension: 0.4
     }]
   };
 
   export const lineDataDeaths = {
-    labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
+    labels: [],
     datasets: [{
       fill: false,
       backgroundColor: "#fff",
@@ -46,14 +46,14 @@ export const lineDataTotal = {
       pointHoverBorderWidth: 3,
       pointRadius: 3,
       pointHitRadius: 5,
-      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      data: [],
       spanGaps: false,
       lineTension: 0.4
     }]
   };
 
   export const lineDataActive = {
-    labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
+    labels: [],
     datasets: [{
       fill: false,
       backgroundColor: "#fff",
@@ -69,16 +69,16 @@ export const lineDataTotal = {
       pointHoverBackgroundColor: "#FC2055",
       pointHoverBorderColor: "#fff",
       pointHoverBorderWidth: 3,
-      pointRadius: 5,
-      pointHitRadius: 10,
-      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      pointRadius: 3,
+      pointHitRadius: 5,
+      data: [],
       spanGaps: false,
       lineTension: 0.4
     }]
   };
 
   export  const lineDataRecovered = {
-    labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
+    labels: [],
     datasets: [{
       fill: false,
       backgroundColor: "#fff",
@@ -94,9 +94,9 @@ export const lineDataTotal = {
       pointHoverBackgroundColor: "#FC2055",
       pointHoverBorderColor: "#fff",
       pointHoverBorderWidth: 3,
-      pointRadius: 5,
-      pointHitRadius: 10,
-      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      pointRadius: 3,
+      pointHitRadius: 5,
+      data: [],
       spanGaps: false,
       lineTension: 0.4
     }]
@@ -329,11 +329,12 @@ export const optionProperties = {
           autoSkip:true,
           maxRotation: 0,
           minRotation: 0,
-          maxTicksLimit:6,
+          maxTicksLimit:4,
         }
       }]
     }
   }
+  
 
 
   export const optionPropertiesData = {
