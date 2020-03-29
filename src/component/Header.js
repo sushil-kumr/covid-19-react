@@ -32,7 +32,7 @@ export default class Header extends Component {
               <Link to="/">Home</Link >
             </li>
             <li>
-              <Link to="/help">Helplines and Support</Link >
+              <Link to="/help">Helpline No.s</Link >
             </li>
       
           </ul>
@@ -56,7 +56,7 @@ export default class Header extends Component {
               <Link to="/">Home</Link >
             </li>
             <li>
-              <Link to="/help">Helplines and Support</Link >
+              <Link to="/help">Helplines No.s</Link >
             </li>  
           </ul>
         </div>    

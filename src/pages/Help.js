@@ -18,17 +18,18 @@ export default function Help() {
                       
                        <div className="property-info-main">
                             <h6 className="pb-1">
-                                <i className="fa fa-phone text-danger"></i> <span className="font-weight-bold text-danger">Emergency/ Helpline Numbers in India </span>
+                                <i className="fa fa-phone text-danger"></i> <span className="font-weight-bold large text-danger">Emergency/ Helpline Numbers in India </span>
                             </h6>
                             
                             <div className="badge badge-primary">
                                 
-                              <a href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" className="text-white" target="_blank">All States and Union Territories</a>    
+                              <button className="btn btn-sm primary">
+                                <a href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" className="text-white" target="_blank" style={{textDecoration: "underline"}}>All States and Union Territories</a>
+                              </button>
                               
                             </div>  
                         
                             <div className="property-description">
-                                
                                 
                                 <div className="table-responsive">
                                   {/* <!--------------------
@@ -124,26 +125,22 @@ export default function Help() {
                          
                           <div className="property-info-side">
                             <div className="side-section">
-                              <div className="side-section-header font-weight-bold">
-                                HELPFUL LINKS AND CONTACTS
-                              </div>
                                 <div className="side-section-content">
                                 <div className="property-side-features">
                                   <div className="feature">
-                                    <span className="font-weight-bold"><i className="fa fa-phone"></i>National Toll Free Number</span>
+                                    <span className="font-weight-bold" style={{textTransform: "capitalize"}}><i className="fa fa-phone"></i>National Toll Free Number</span>
                                     <span className="font-weight-bold xlarge text-danger">1075</span>  
                                   </div>
                                     
-                                    <div className="feature">
-                                    <span className="font-weight-bold"><i className="fa fa-whatsapp"></i>Whatsapp Number</span>
+                                    <div className="feature" style={{textTransform: "lowercase"}}>
+                                    <i className="fa fa-whatsapp"></i><span className="font-weight-bold" style={{textTransform: "capitalize"}}>Whatsapp Number</span>
                                     <span className="font-weight-bold xlarge text-danger">9013151515</span>  
                                   </div>
                                     
                                     
                                     
-                                  <div className="feature">
-                                      
-                                      <span className="font-weight-bold pb-2"><i className="fa fa-envelope"></i> Helpline Email ID</span>
+                                  <div className="feature" style={{textTransform: "lowercase"}}>
+                                      <span className="font-weight-bold pb-2" style={{textTransform: "capitalize"}}><i className="fa fa-envelope"></i> Helpline Email ID</span>
                                       <span className="font-weight-bold large text-danger pb-1">ncov2019@gov.in</span>
                                       <span className="font-weight-bold large text-danger">ncov2019@gmail.com</span>
                                   </div>

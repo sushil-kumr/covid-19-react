@@ -23,9 +23,9 @@ const SimpleGraph = lazy(() => import('../component/SimpleGraph'));
 const StateWiseData = lazy(() => import('../component/StateWiseData'));
 
   const loadUsers = () =>
-  fetch("https://curecovid19.in/readings/readings/get_summary")
-    .then(res => (res.ok ? res : Promise.reject(res)))
-    .then(res => res.json())
+  fetch("https:\/\/curecovid19.in/readings/readings/get_summary")
+  .then(res => (res.ok ? res : Promise.reject(res)))
+  .then(res => res.json())
 
   
   export default function Home() {
@@ -34,10 +34,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
           
           <Async promiseFn={loadUsers} >
                 {({ data, err, isLoading }) => {
-                    if (isLoading) return (
-                  <Loader
-                    />
-                    )
+                    if (isLoading) return (<Loader/>)
                     if (err) return `Something went wrong: ${err.message}`
                     if (data)
                     var  active = data.summary.total - data.summary.recovered - data.summary.deaths;
@@ -48,9 +45,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                                 mapData[i][1]=element.total;
                             }
                         });
-                         //mapValue.push([element.state.toLowerCase(),element.indian_cases + element.foreign_cases])
                     });
-                     //mapOptions.series[0].data = mapValue;
 
                     barChartData.labels = Object.keys(data.age);
                     barChartData.datasets[0].data = Object.values(data.age);
@@ -92,16 +87,9 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                         recoveredValue1.push(element.recovered);
                     });
 
-                    lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1;
-                    lineDataTotal.datasets[0].data = totalValue1;
-                    lineDataTotal.datasets[1].data = activeValue1;
-                    lineDataTotal.datasets[2].data = recoveredValue1;
-                    lineDataTotal.datasets[3].data = deathsValue1;
-
-                    // lineDataTotal.datasets.push(lineDataRecovered.datasets[0])
-                    // lineDataTotal.datasets.push(lineDataDeaths.datasets[0])
-                    // lineDataTotal.datasets.push(lineDataActive.datasets[0])
-                    // console.log(lineDataTotal);
+                    lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1.slice(-30);
+                    lineDataTotal.datasets[0].data = totalValue1.slice(-30);
+                    lineDataTotal.datasets[1].data = recoveredValue1.slice(-30);
                     const last_value = -20
                     const simpleTotal = Object.assign({}, lineDataTotal);
                     simpleTotal.datasets=othersTotal.datasets;
@@ -136,11 +124,9 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                     optionPropertiesActive.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                   // const last_updated_time = new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[1] + " " + new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[2];
-                   // const last_updated_date = new Date(Number(new Date(data.summary.record_time))).toDateString();
                     return ( 
                         <div className="content-w"><div className="content-i"><div className="content-box">
-              {/* first one start */} 
+                        {/* first one start */} 
                         <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
                             <h6 className="pb-4">
                               <span className="font-weight-bold"> Dashboard for COVID-19 Outbreak in India </span> <br/> <span className="small font-weight-bold text-success"> Last Updated: {data.summary.last_updated_time}</span>
@@ -188,39 +174,34 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
 
                         <div className="element-wrapper pb-2">
                             <div className="element-box">
-                              <div className="os-tabs-w">
-                                <div className="tab-content">
-                                  <SimpleGraph name="Stats"
-                                    id="tab_total"
-                                    text="active" 
-                                    // data={data.summary.total}
-                                    values={lineDataTotal}
-                                    option={optionProperties}
-                                    />
-                                </div>
-                              </div>
+                              <SimpleGraph 
+                                values={lineDataTotal}
+                                option={optionProperties}
+                                />
                             </div>
-                          </div>
+                        </div>
 
                         </div>
                         <div className="col-sm-4">
                             <div className="element-box pl-xxl-5 pr-xxl-5">
-                                        <div className="el-tablo highlight pt-lg-4">
-                                            <div className="label font-weight-bold smaller">
-                                            Statewise Summary
-                                            </div>
-                                        </div>
-                                        <div  className="pt-2" data-highcharts-chart="0" style={{overflow: "hidden"}}>
-                                            <HighchartsReact
-                                                constructorType={"mapChart"}
-                                                highcharts={Highcharts}
-                                                options={mapOptions}
-                                                />
-                                        </div>
-                                        </div>
-                                        </div>
-                                        <div  className="pt-2" data-highcharts-chart="0" style={{overflow: "hidden"}}>
-                                        </div>
+                            <div className="element-wrapper">
+                            <h6 className="element-header">
+                                Statewise Map View
+                              </h6>
+                              </div>
+                                <div className="el-tablo highlight pt-lg-4">
+                                    
+                                </div>
+                                <div  className="pt-2" data-highcharts-chart="0" style={{overflow: "hidden"}}>
+                                    <HighchartsReact
+                                        constructorType={"mapChart"}
+                                        highcharts={Highcharts}
+                                        options={mapOptions}
+                                        />
+                                </div>
+                            </div>
+                        </div>
+                                        
 
 
                           <div className="col-sm-3">
@@ -269,8 +250,8 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                             </div>
                             <div className="element-wrapper">
                             <h6 className="element-header">
-                              Gender Distribution
-                            </h6>
+                                Gender Distribution
+                              </h6>
                             <div className="element-box pt-0">
                               <div className="el-chart-w">
                                     <Doughnut data={piedata} 
@@ -284,7 +265,7 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                         <div className="col-sm-5">
                         <div className="element-wrapper">
                         <h6 className="element-header">
-                          Statewise BreakUp
+                          Statewise Breakup
                         </h6>
                         <div className="element-box-tp">
                           <div className="table-responsive text-right">

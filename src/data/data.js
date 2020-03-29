@@ -4,13 +4,15 @@ import usAll from "../data/india";
 
 
 export var lineDataTotal = {
+    type: 'bar',
     labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
-    datasets: [{
+    datasets: [
+    {
       label: "Confirmed",
       legendText: "Confirmed",
       fill: false,
       // fillColor: "rgba(151,187,205,0.1)",
-      // backgroundColor: "#e65252",
+      backgroundColor: "#ed2939",
       borderColor: "#e65252",
       // borderCapStyle: 'butt',
       // borderDash: [],
@@ -30,34 +32,34 @@ export var lineDataTotal = {
       lineTension: 0.4
     },
     
-    {
-      label: "Active",
-      legendText: "Active",
-      fill: false,
-      // backgroundColor: "#268df9",
-      borderColor: "#268df9",
-      // borderCapStyle: 'butt',
-      // borderDash: [],
-      // borderDashOffset: 0.0,
-      // borderJoinStyle: 'miter',
-      // pointBorderColor: "#fff",
-      pointBackgroundColor: "#268df9",
-      // pointBorderWidth: 2,
-      // pointHoverRadius: 5,
-      // pointHoverBackgroundColor: "#FC2055",
-      // pointHoverBorderColor: "#fff",
-      // pointHoverBorderWidth: 3,
-      pointRadius: 2,
-      // pointHitRadius: 5,
-      data: [27, 20, 44, 24, 29, 22, 43, 52],
-      spanGaps: false,
-      lineTension: 0.4
-    },
+    // {
+    //   label: "Active",
+    //   legendText: "Active",
+    //   fill: false,
+    //   backgroundColor: "#e65252",
+    //   borderColor: "#e65252",
+    //   // borderCapStyle: 'butt',
+    //   // borderDash: [],
+    //   // borderDashOffset: 0.0,
+    //   // borderJoinStyle: 'miter',
+    //   // pointBorderColor: "#fff",
+    //   pointBackgroundColor: "#268df9",
+    //   // pointBorderWidth: 2,
+    //   // pointHoverRadius: 5,
+    //   // pointHoverBackgroundColor: "#FC2055",
+    //   // pointHoverBorderColor: "#fff",
+    //   // pointHoverBorderWidth: 3,
+    //   pointRadius: 2,
+    //   // pointHitRadius: 5,
+    //   data: [27, 20, 44, 24, 29, 22, 43, 52],
+    //   spanGaps: false,
+    //   lineTension: 0.4
+    // },
     {
       label: "Recovered",
       legendText: "Recovered",
       fill: false,
-      // backgroundColor: "#fff",
+      backgroundColor: "#50c878",
       borderColor: "#24b314",
       // borderCapStyle: 'butt',
       // borderDash: [],
@@ -76,29 +78,29 @@ export var lineDataTotal = {
       spanGaps: false,
       lineTension: 0.4
     },
-    {
-      label: "Deceased",
-      legendText: "Deceased",
-      fill: false,
-      // backgroundColor: "#3e4b5b",
-      borderColor: "#3e4b5b",
-      // borderCapStyle: 'butt',
-      // borderDash: [],
-      // borderDashOffset: 0.0,
-      // borderJoinStyle: 'miter',
-      // pointBorderColor: "#fff",
-      pointBackgroundColor: "#3e4b5b",
-      // pointBorderWidth: 2,
-      // pointHoverRadius: 5,
-      // pointHoverBackgroundColor: "#FC2055",
-      // pointHoverBorderColor: "#fff",
-      // pointHoverBorderWidth: 2,
-      pointRadius: 2,
-      // pointHitRadius: 5,
-      data: [27, 20, 44, 24, 29, 22, 43, 52],
-      spanGaps: false,
-      lineTension: 0.4
-    }
+    // {
+    //   label: "Deceased",
+    //   legendText: "Deceased",
+    //   fill: false,
+    //   backgroundColor: "#3e4b5b",
+    //   borderColor: "#3e4b5b",
+    //   // borderCapStyle: 'butt',
+    //   // borderDash: [],
+    //   // borderDashOffset: 0.0,
+    //   // borderJoinStyle: 'miter',
+    //   // pointBorderColor: "#fff",
+    //   pointBackgroundColor: "#3e4b5b",
+    //   // pointBorderWidth: 2,
+    //   // pointHoverRadius: 5,
+    //   // pointHoverBackgroundColor: "#FC2055",
+    //   // pointHoverBorderColor: "#fff",
+    //   // pointHoverBorderWidth: 2,
+    //   pointRadius: 2,
+    //   // pointHitRadius: 5,
+    //   data: [27, 20, 44, 24, 29, 22, 43, 52],
+    //   spanGaps: false,
+    //   lineTension: 0.4
+    // }
     ]
   };
 
@@ -383,6 +385,7 @@ export const optionPropertiesDeaths = {
 }
 
 export const optionProperties = {
+  maintainAspectRatio: true,
     legend: {
       display: true,
       labels:{
@@ -392,11 +395,12 @@ export const optionProperties = {
       },
     },
     tooltips: {
-            mode: 'x'
-        },
+      mode: 'x'
+    },
     bezierCurve : true,
     scales: {
       xAxes: [{
+        stacked: true,
         ticks: {
             autoSkip:true,
             maxRotation: 0,
@@ -412,13 +416,14 @@ export const optionProperties = {
         }
       }],
       yAxes: [{
+        stacked: true,
         display: true,
         ticks: {
           beginAtZero: true,
           autoSkip:true,
           maxRotation: 0,
           minRotation: 0,
-          maxTicksLimit:6,
+          maxTicksLimit:8,
           fontSize: '11',
           fontColor: '#000',
           fontFamily: ["Inter", "Sans-serif"],
