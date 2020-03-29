@@ -2,51 +2,129 @@ import React from 'react'
 
 import usAll from "../data/india";
 
-export const lineDataTotal = {
-    labels: [],
-    datasets: [{
+
+export var lineDataTotal = {
+    type: 'bar',
+    labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
+    datasets: [
+    {
+      label: "Confirmed",
+      legendText: "Confirmed",
       fill: false,
-      backgroundColor: "#fff",
+      // fillColor: "rgba(151,187,205,0.1)",
+      backgroundColor: "#ed2939",
       borderColor: "#e65252",
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: "#fff",
-      pointBackgroundColor: "#141E41",
-      pointBorderWidth: 2,
-      pointHoverRadius: 10,
-      pointHoverBackgroundColor: "#FC2055",
-      pointHoverBorderColor: "#fff",
-      pointHoverBorderWidth: 3,
-      pointRadius: 3,
-      pointHitRadius: 5,
-      data: [],
+      // borderCapStyle: 'butt',
+      // borderDash: [],
+      // borderDashOffset: 0.0,
+      // borderJoinStyle: 'miter',
+      // pointBorderColor: "#fff",
+      pointBackgroundColor: "#e65252",
+      // pointBorderWidth: 1,
+      // pointHoverRadius: 5,
+      // pointHoverBackgroundColor: "#FC2055",
+      // pointHoverBorderColor: "#fff",
+      // pointHoverBorderWidth: 3,
+      pointRadius: 2,
+      // pointHitRadius: 5,
+      data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
       lineTension: 0.4
-    }]
+    },
+    
+    // {
+    //   label: "Active",
+    //   legendText: "Active",
+    //   fill: false,
+    //   backgroundColor: "#e65252",
+    //   borderColor: "#e65252",
+    //   // borderCapStyle: 'butt',
+    //   // borderDash: [],
+    //   // borderDashOffset: 0.0,
+    //   // borderJoinStyle: 'miter',
+    //   // pointBorderColor: "#fff",
+    //   pointBackgroundColor: "#268df9",
+    //   // pointBorderWidth: 2,
+    //   // pointHoverRadius: 5,
+    //   // pointHoverBackgroundColor: "#FC2055",
+    //   // pointHoverBorderColor: "#fff",
+    //   // pointHoverBorderWidth: 3,
+    //   pointRadius: 2,
+    //   // pointHitRadius: 5,
+    //   data: [27, 20, 44, 24, 29, 22, 43, 52],
+    //   spanGaps: false,
+    //   lineTension: 0.4
+    // },
+    {
+      label: "Recovered",
+      legendText: "Recovered",
+      fill: false,
+      backgroundColor: "#50c878",
+      borderColor: "#24b314",
+      // borderCapStyle: 'butt',
+      // borderDash: [],
+      // borderDashOffset: 0.0,
+      // borderJoinStyle: 'miter',
+      // pointBorderColor: "#fff",
+      pointBackgroundColor: "#24b314",
+      // pointBorderWidth: 0,
+      // pointHoverRadius: 5,
+      // pointHoverBackgroundColor: "#FC2055",
+      // pointHoverBorderColor: "#fff",
+      // pointHoverBorderWidth: 3,
+      pointRadius: 2,
+      // pointHitRadius: 5,
+      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      spanGaps: false,
+      lineTension: 0.4
+    },
+    // {
+    //   label: "Deceased",
+    //   legendText: "Deceased",
+    //   fill: false,
+    //   backgroundColor: "#3e4b5b",
+    //   borderColor: "#3e4b5b",
+    //   // borderCapStyle: 'butt',
+    //   // borderDash: [],
+    //   // borderDashOffset: 0.0,
+    //   // borderJoinStyle: 'miter',
+    //   // pointBorderColor: "#fff",
+    //   pointBackgroundColor: "#3e4b5b",
+    //   // pointBorderWidth: 2,
+    //   // pointHoverRadius: 5,
+    //   // pointHoverBackgroundColor: "#FC2055",
+    //   // pointHoverBorderColor: "#fff",
+    //   // pointHoverBorderWidth: 2,
+    //   pointRadius: 2,
+    //   // pointHitRadius: 5,
+    //   data: [27, 20, 44, 24, 29, 22, 43, 52],
+    //   spanGaps: false,
+    //   lineTension: 0.4
+    // }
+    ]
   };
 
   export const lineDataDeaths = {
     labels: [],
     datasets: [{
+      label: "Deceased",
       fill: false,
-      backgroundColor: "#fff",
+      // backgroundColor: "#3e4b5b",
       borderColor: "#3e4b5b",
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: "#fff",
-      pointBackgroundColor: "#141E41",
-      pointBorderWidth: 2,
-      pointHoverRadius: 10,
-      pointHoverBackgroundColor: "#FC2055",
-      pointHoverBorderColor: "#fff",
-      pointHoverBorderWidth: 3,
-      pointRadius: 3,
-      pointHitRadius: 5,
-      data: [],
+      // borderCapStyle: 'butt',
+      // borderDash: [],
+      // borderDashOffset: 0.0,
+      // borderJoinStyle: 'miter',
+      // pointBorderColor: "#fff",
+      pointBackgroundColor: "#3e4b5b",
+      // pointBorderWidth: 2,
+      // pointHoverRadius: 5,
+      // pointHoverBackgroundColor: "#FC2055",
+      // pointHoverBorderColor: "#fff",
+      // pointHoverBorderWidth: 2,
+      pointRadius: 2,
+      // pointHitRadius: 5,
+      data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
       lineTension: 0.4
     }]
@@ -55,23 +133,24 @@ export const lineDataTotal = {
   export const lineDataActive = {
     labels: [],
     datasets: [{
+      label: "Active",
       fill: false,
-      backgroundColor: "#fff",
+      // backgroundColor: "#268df9",
       borderColor: "#268df9",
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: "#fff",
-      pointBackgroundColor: "#141E41",
-      pointBorderWidth: 3,
-      pointHoverRadius: 10,
-      pointHoverBackgroundColor: "#FC2055",
-      pointHoverBorderColor: "#fff",
-      pointHoverBorderWidth: 3,
-      pointRadius: 3,
-      pointHitRadius: 5,
-      data: [],
+      // borderCapStyle: 'butt',
+      // borderDash: [],
+      // borderDashOffset: 0.0,
+      // borderJoinStyle: 'miter',
+      // pointBorderColor: "#fff",
+      pointBackgroundColor: "#268df9",
+      // pointBorderWidth: 2,
+      // pointHoverRadius: 5,
+      // pointHoverBackgroundColor: "#FC2055",
+      // pointHoverBorderColor: "#fff",
+      // pointHoverBorderWidth: 3,
+      pointRadius: 2,
+      // pointHitRadius: 5,
+      data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
       lineTension: 0.4
     }]
@@ -80,28 +159,31 @@ export const lineDataTotal = {
   export  const lineDataRecovered = {
     labels: [],
     datasets: [{
+      label: "Recovered",
       fill: false,
-      backgroundColor: "#fff",
+      // backgroundColor: "#fff",
       borderColor: "#24b314",
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: "#fff",
-      pointBackgroundColor: "#141E41",
-      pointBorderWidth: 3,
-      pointHoverRadius: 10,
-      pointHoverBackgroundColor: "#FC2055",
-      pointHoverBorderColor: "#fff",
-      pointHoverBorderWidth: 3,
-      pointRadius: 3,
-      pointHitRadius: 5,
-      data: [],
+      // borderCapStyle: 'butt',
+      // borderDash: [],
+      // borderDashOffset: 0.0,
+      // borderJoinStyle: 'miter',
+      // pointBorderColor: "#fff",
+      pointBackgroundColor: "#24b314",
+      // pointBorderWidth: 0,
+      // pointHoverRadius: 5,
+      // pointHoverBackgroundColor: "#FC2055",
+      // pointHoverBorderColor: "#fff",
+      // pointHoverBorderWidth: 3,
+      pointRadius: 2,
+      // pointHitRadius: 5,
+      data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
       lineTension: 0.4
     }]
   };
 
+
+// ------------------------------------------------------------------------------------
   export const othersTotal = {datasets: [{
         
           fill: true,
@@ -303,19 +385,30 @@ export const optionPropertiesDeaths = {
 }
 
 export const optionProperties = {
+  maintainAspectRatio: true,
     legend: {
-      display: false
+      display: true,
+      labels:{
+        fontFamily: ["Inter", "Sans-serif"],
+        fontSize: 11,
+        boxWidth: 8,
+      },
+    },
+    tooltips: {
+      mode: 'x'
     },
     bezierCurve : true,
     scales: {
       xAxes: [{
+        stacked: true,
         ticks: {
             autoSkip:true,
             maxRotation: 0,
             minRotation: 0,
             maxTicksLimit:5,
             fontSize: '11',
-            fontColor: '#rgba(0,0,0,0.8)'
+            fontColor: '#000',
+            fontFamily: ["Inter", "Sans-serif"],
         },
         gridLines: {
           color: 'rgba(0,0,0,0.01)',
@@ -323,13 +416,17 @@ export const optionProperties = {
         }
       }],
       yAxes: [{
+        stacked: true,
         display: true,
         ticks: {
           beginAtZero: true,
           autoSkip:true,
           maxRotation: 0,
           minRotation: 0,
-          maxTicksLimit:4,
+          maxTicksLimit:8,
+          fontSize: '11',
+          fontColor: '#000',
+          fontFamily: ["Inter", "Sans-serif"],
         }
       }]
     }

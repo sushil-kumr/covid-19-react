@@ -27,9 +27,9 @@ highchartsMap(Highcharts);
 
 
   const loadUsers = () =>
-  fetch("https://curecovid19.in/readings/readings/get_summary")
-    .then(res => (res.ok ? res : Promise.reject(res)))
-    .then(res => res.json())
+  fetch("https:\/\/curecovid19.in/readings/readings/get_summary")
+  .then(res => (res.ok ? res : Promise.reject(res)))
+  .then(res => res.json())
 
   
   export default function Home() {
@@ -38,10 +38,7 @@ highchartsMap(Highcharts);
           
           <Async promiseFn={loadUsers} >
                 {({ data, err, isLoading }) => {
-                    if (isLoading) return (
-                  <Loader
-                    />
-                    )
+                    if (isLoading) return (<Loader/>)
                     if (err) return `Something went wrong: ${err.message}`
                     if (data)
                     var  active = data.summary.total - data.summary.recovered - data.summary.deaths;
@@ -52,9 +49,7 @@ highchartsMap(Highcharts);
                                 mapData[i][1]=element.total;
                             }
                         });
-                         //mapValue.push([element.state.toLowerCase(),element.indian_cases + element.foreign_cases])
                     });
-                     //mapOptions.series[0].data = mapValue;
 
                     barChartData.labels = Object.keys(data.age);
                     barChartData.datasets[0].data = Object.values(data.age);
@@ -96,12 +91,9 @@ highchartsMap(Highcharts);
                         recoveredValue1.push(element.recovered);
                     });
 
-                    lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1;
-                    lineDataTotal.datasets[0].data = totalValue1;
-                    lineDataDeaths.datasets[0].data = deathsValue1;
-                    lineDataActive.datasets[0].data = activeValue1;
-                    lineDataRecovered.datasets[0].data = recoveredValue1;
-              
+                    lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1.slice(-30);
+                    lineDataTotal.datasets[0].data = totalValue1.slice(-30);
+                    lineDataTotal.datasets[1].data = recoveredValue1.slice(-30);
                     const last_value = -20
                     const simpleTotal = Object.assign({}, lineDataTotal);
                     simpleTotal.datasets=othersTotal.datasets;
@@ -136,11 +128,9 @@ highchartsMap(Highcharts);
                     optionPropertiesActive.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                   // const last_updated_time = new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[1] + " " + new Date(Number(new Date(data.summary.record_time))).toLocaleString().split(" ")[2];
-                   // const last_updated_date = new Date(Number(new Date(data.summary.record_time))).toDateString();
                     return ( 
                         <div className="content-w"><div className="content-i"><div className="content-box">
-              {/* first one start */} 
+                        {/* first one start */} 
                         <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
                             <h6 className="pb-4">
                               <span className="font-weight-bold"> Dashboard for COVID-19 Outbreak in India </span> <br/> <span className="small font-weight-bold text-success"> Last Updated: {data.summary.last_updated_time}</span>
@@ -187,79 +177,32 @@ highchartsMap(Highcharts);
                       </div> </div> </div></div>
 
                         <div className="element-wrapper pb-2">
-                            <div className="element-box pt-0">
-                              <div className="os-tabs-w">
-                                <div className="os-tabs-controls">
-                                  <ul className="nav nav-tabs smaller">
-                                    <li className="nav-item">
-                                      <a className="nav-link active" data-toggle="tab" href="#tab_total">CONFIRMED</a>
-                                    </li>
-                                    <li className="nav-item">
-                                      <a className="nav-link" data-toggle="tab" href="#active">ACTIVE</a>
-                                    </li> 
-                                    <li className="nav-item">
-                                      <a className="nav-link" data-toggle="tab" href="#rec">RECOVERED</a>
-                                    </li> 
-                                    <li className="nav-item">
-                                      <a className="nav-link" data-toggle="tab" href="#tab_deaths">DECEASED</a>
-                                    </li> 
-                                  </ul>
-
-                                </div>
-
-                                <div className="tab-content">
-                                  <SimpleGraph name="Total Cases"
-                                    id="tab_total"
-                                    text="active" 
-                                    data={data.summary.total}
-                                    values={lineDataTotal}
-                                    option={optionProperties}
-                                    />
-                                  <SimpleGraph name="Deceased"
-                                    id="tab_deaths"
-                                    text="" 
-                                    data={data.summary.deaths}
-                                    values={lineDataDeaths}
-                                    option={optionPropertiesData}
-                                    />
-                                  <SimpleGraph name="Active"
-                                    id="active"
-                                    text="" 
-                                    data={data.summary.active}
-                                    values={lineDataActive}
-                                    option={optionPropertiesDataActive}
-                                    />
-                                  <SimpleGraph name="Recovered"
-                                    id="rec"
-                                    text="" 
-                                    data={data.summary.recovered}
-                                    values={lineDataRecovered}
-                                    option={optionPropertiesDataRecovered}
-                                    />
-                                </div>
-                              </div>
+                            <div className="element-box">
+                              <SimpleGraph 
+                                values={lineDataTotal}
+                                option={optionProperties}
+                                />
                             </div>
-                          </div>
+                        </div>
 
                         </div>
                         <div className="col-sm-4">
-                            <div className="element-box pl-xxl-5 pr-xxl-5">
-                                        <div className="el-tablo highlight pt-lg-4">
-                                            <div className="label font-weight-bold smaller">
-                                            Statewise Summary
-                                            </div>
-                                        </div>
-                                        <div  className="pt-2" data-highcharts-chart="0" style={{overflow: "hidden"}}>
-                                            <HighchartsReact
-                                                constructorType={"mapChart"}
-                                                highcharts={Highcharts}
-                                                options={mapOptions}
-                                                />
-                                        </div>
-                                        </div>
-                                        </div>
-                                        <div  className="pt-2" data-highcharts-chart="0" style={{overflow: "hidden"}}>
-                                        </div>
+                            <div className="element-wrapper">
+                                <h6 className="element-header">
+                                    Statewise Map View
+                                </h6>
+                                <div className="element-box pt-0">
+                                <div  className="pt-2" data-highcharts-chart="0" style={{overflow: "hidden"}}>
+                                    <HighchartsReact
+                                        constructorType={"mapChart"}
+                                        highcharts={Highcharts}
+                                        options={mapOptions}
+                                        />
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                                        
 
 
                           <div className="col-sm-3">
@@ -267,7 +210,7 @@ highchartsMap(Highcharts);
                               <h6 className="element-header">
                                 Age Distribution
                               </h6>
-                              <div className="element-box">
+                              <div className="element-box pt-0">
                                 <div className="el-chart-w">
                                   <Bar data={barChartData}
                                   height="200px"
@@ -281,7 +224,8 @@ highchartsMap(Highcharts);
                                           minRotation: 0,
                                           maxTicksLimit:4,
                                           fontSize: '11',
-                                          fontColor: '#rgba(0,0,0,0.8)'
+                                          fontColor: '#rgba(0,0,0,0.8)',
+                                          fontFamily: ["Inter", "Sans-serif"],
                                       },
                                       gridLines: {
                                         color: 'rgba(0,0,0,0.05)',
@@ -296,6 +240,7 @@ highchartsMap(Highcharts);
                                         maxRotation: 0,
                                         minRotation: 0,
                                         maxTicksLimit:5,
+                                        fontFamily: ["Inter", "Sans-serif"],
                                       }
                                     }]
                                   } 
@@ -306,13 +251,13 @@ highchartsMap(Highcharts);
                             </div>
                             <div className="element-wrapper">
                             <h6 className="element-header">
-                              Gender Distribution
-                            </h6>
-                            <div className="element-box">
+                                Gender Distribution
+                              </h6>
+                            <div className="element-box pt-0">
                               <div className="el-chart-w">
                                     <Doughnut data={piedata} 
                                     height="225px"
-                                    options={{ maintainAspectRatio: true, cutoutPercentage: 60 }}/>
+                                    options={{ maintainAspectRatio: true, cutoutPercentage: 60, legend: { labels:{fontFamily: ["Inter", "Sans-serif"], boxWidth: 12}} }}/>
                               </div>
                             </div>
                           </div>
@@ -321,7 +266,7 @@ highchartsMap(Highcharts);
                         <div className="col-sm-5">
                         <div className="element-wrapper">
                         <h6 className="element-header">
-                          Statewise BreakUp
+                          Statewise Breakup
                         </h6>
                         <div className="element-box-tp">
                           <div className="table-responsive text-right">
