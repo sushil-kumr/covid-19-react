@@ -34,7 +34,7 @@ highchartsMap(Highcharts);
   
   export default function Home() {
 
-      return (<Layout>
+      return (
           
           <Async promiseFn={loadUsers} >
                 {({ data, err, isLoading }) => {
@@ -130,6 +130,7 @@ highchartsMap(Highcharts);
                     optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     return ( 
+                        <Layout>
                         <div className="content-w"><div className="content-i"><div className="content-box">
                         {/* first one start */} 
                         <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
@@ -300,10 +301,9 @@ highchartsMap(Highcharts);
                         </div>
                     </div>
                     </div></div></div></div></div>
+                    </Layout>
         )}}
-            
       </Async>
-    </Layout>
     )
 }
 
