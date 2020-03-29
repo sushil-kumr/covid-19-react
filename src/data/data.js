@@ -31,30 +31,6 @@ export var lineDataTotal = {
       spanGaps: false,
       lineTension: 0.4
     },
-    
-    // {
-    //   label: "Active",
-    //   legendText: "Active",
-    //   fill: false,
-    //   backgroundColor: "#e65252",
-    //   borderColor: "#e65252",
-    //   // borderCapStyle: 'butt',
-    //   // borderDash: [],
-    //   // borderDashOffset: 0.0,
-    //   // borderJoinStyle: 'miter',
-    //   // pointBorderColor: "#fff",
-    //   pointBackgroundColor: "#268df9",
-    //   // pointBorderWidth: 2,
-    //   // pointHoverRadius: 5,
-    //   // pointHoverBackgroundColor: "#FC2055",
-    //   // pointHoverBorderColor: "#fff",
-    //   // pointHoverBorderWidth: 3,
-    //   pointRadius: 2,
-    //   // pointHitRadius: 5,
-    //   data: [27, 20, 44, 24, 29, 22, 43, 52],
-    //   spanGaps: false,
-    //   lineTension: 0.4
-    // },
     {
       label: "Recovered",
       legendText: "Recovered",
@@ -77,7 +53,32 @@ export var lineDataTotal = {
       data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
       lineTension: 0.4
-    },
+    }
+    // {
+    //   type: "line",
+    //   yAxisID: "bar-y-axis",
+    //   label: "Total Cases",
+    //   legendText: "Active",
+    //   fill: false,
+    //   backgroundColor: "#000",
+    //   borderColor: "#000",
+    //   // borderCapStyle: 'butt',
+    //   // borderDash: [],
+    //   // borderDashOffset: 0.0,
+    //   // borderJoinStyle: 'miter',
+    //   // pointBorderColor: "#fff",
+    //   pointBackgroundColor: "#268df9",
+    //   // pointBorderWidth: 2,
+    //   // pointHoverRadius: 5,
+    //   // pointHoverBackgroundColor: "#FC2055",
+    //   // pointHoverBorderColor: "#fff",
+    //   // pointHoverBorderWidth: 3,
+    //   pointRadius: 2,
+    //   // pointHitRadius: 5,
+    //   data: [27, 20, 44, 24, 29, 22, 43, 52],
+    //   spanGaps: false,
+    //   lineTension: 0.4,
+    // }
     // {
     //   label: "Deceased",
     //   legendText: "Deceased",
@@ -427,8 +428,17 @@ export const optionProperties = {
           fontSize: '11',
           fontColor: '#000',
           fontFamily: ["Inter", "Sans-serif"],
-        }
-      }]
+        }}]
+      // },
+      // {
+      //   id: "bar-y-axis",
+      //   stacked: true,
+      //   display: false, //optional
+      //   ticks: {
+      //     beginAtZero: true,
+      //   },
+      //   type: 'linear'
+      // }]
     }
   }
   

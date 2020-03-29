@@ -92,8 +92,9 @@ highchartsMap(Highcharts);
                     });
 
                     lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1.slice(-30);
-                    lineDataTotal.datasets[0].data = totalValue1.slice(-30);
-                    lineDataTotal.datasets[1].data = recoveredValue1.slice(-30);
+                    lineDataTotal.datasets[0].data = totalValue.slice(-30);
+                    // lineDataTotal.datasets[2].data = totalValue1.slice(-30);
+                    lineDataTotal.datasets[1].data = recoveredValue.slice(-30);
                     const last_value = -20
                     const simpleTotal = Object.assign({}, lineDataTotal);
                     simpleTotal.datasets=othersTotal.datasets;

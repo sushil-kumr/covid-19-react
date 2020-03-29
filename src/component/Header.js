@@ -34,7 +34,7 @@ export default function Header() {
 
     <div className="menu-mobile menu-activated-on-click color-scheme-light">
            <div className="mm-logo-buttons-w">
-             <Link className="mm-logo" to="/"><img src="img/logos2.png"/><span></span></Link>
+             <Link className="mm-logo" to="/" onClick={() => window.location.reload(false)}><img src="img/logos2.png"/><span></span></Link>
             <div className="mm-buttons">
               <div className="mobile-menu-trigger">                 
               <div onClick={toggleNav} className="os-icon os-icon-hamburger-menu-1"></div>
@@ -49,30 +49,8 @@ export default function Header() {
         unmountOnExit
       >
         <nav className="Nav">
-                 <Link to="/">Home</Link >
-              
-                 <Link to="/analytics">Analytics</Link >
-             
-                 <Link to="/help">Helplines and Support</Link >
-             
-                 <Link to="/about">About</Link >
-             
-                 <Link to="/donate">Donate</Link >
-            
-           {/* <div className="menu-and-user">
-             <ul className="main-menu">
-                
-           <li className="">
-               <Link to="/">Home</Link >
-             </li>
-           
-              <li>
-                <Link to="/help">Helplines and Support</Link >
-              </li> 
-        
-           </ul>
-          
-         </div> */}
+           <Link to="/">Home</Link >             
+           <Link to="/help">Helpline No.s</Link >             
          </nav>
         </CSSTransition>
        </div>
@@ -80,7 +58,7 @@ export default function Header() {
     <div className="menu-w  color-scheme-light fixed-top color-style-default menu-position-top menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-bright menu-activated-on-hover menu-has-selected-link">
        <div className="logo-w">
            <div className="logo-w menu-size">
-                <Link  to="/" className="logo">
+                <Link  to="/" className="logo" onClick={() => window.location="/"}>
                 <img src='img/logos2.png' className="Logo" alt="logo" />
                  </Link >
            </div>
@@ -93,18 +71,9 @@ export default function Header() {
            <li className="">
                  <Link to="/">Home</Link >
                </li>
-               <li>
-                 <Link to="/analytics">Analytics</Link >
-              </li>
               <li>
-                 <Link to="/help">Helplines and Support</Link >
+                 <Link to="/help">Helpline No.s</Link >
               </li>
-              <li>
-                 <Link to="/about">About</Link >
-              </li>
-               <li>
-                 <Link to="/donate">Donate</Link >
-               </li>    
             </ul> 
         </div>
     </div>
