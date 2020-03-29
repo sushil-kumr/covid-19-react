@@ -6,9 +6,9 @@ export default function SimpleGraph(props) {
     return (
         <div className={`tab-pane ${props.text}`} id={props.id}>
             <div className="el-tablo smaller">
-                <div className="label">
-                    {props.name}
-                </div>
+                <h6 className="element-header">
+                    Stats
+                </h6>
                 <div className="value">
                     {props.data}
                 </div>

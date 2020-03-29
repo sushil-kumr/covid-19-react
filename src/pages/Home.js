@@ -94,10 +94,13 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
 
                     lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1;
                     lineDataTotal.datasets[0].data = totalValue1;
-                    lineDataDeaths.datasets[0].data = deathsValue1;
-                    lineDataActive.datasets[0].data = activeValue1;
-                    lineDataRecovered.datasets[0].data = recoveredValue1;
-              
+                    lineDataTotal.datasets[1].data = deathsValue1;
+                    lineDataTotal.datasets[2].data = activeValue1;
+                    lineDataTotal.datasets[3].data = recoveredValue1;
+                    // lineDataTotal.datasets.push(lineDataRecovered.datasets[0])
+                    // lineDataTotal.datasets.push(lineDataDeaths.datasets[0])
+                    // lineDataTotal.datasets.push(lineDataActive.datasets[0])
+                    // console.log(lineDataTotal);
                     const last_value = -20
                     const simpleTotal = Object.assign({}, lineDataTotal);
                     simpleTotal.datasets=othersTotal.datasets;
@@ -186,51 +189,15 @@ const StateWiseData = lazy(() => import('../component/StateWiseData'));
                             <div className="element-box pt-0">
                               <div className="os-tabs-w">
                                 <div className="os-tabs-controls">
-                                  <ul className="nav nav-tabs smaller">
-                                    <li className="nav-item">
-                                      <a className="nav-link active" data-toggle="tab" href="#tab_total">CONFIRMED</a>
-                                    </li>
-                                    <li className="nav-item">
-                                      <a className="nav-link" data-toggle="tab" href="#active">ACTIVE</a>
-                                    </li> 
-                                    <li className="nav-item">
-                                      <a className="nav-link" data-toggle="tab" href="#rec">RECOVERED</a>
-                                    </li> 
-                                    <li className="nav-item">
-                                      <a className="nav-link" data-toggle="tab" href="#tab_deaths">DECEASED</a>
-                                    </li> 
-                                  </ul>
-
                                 </div>
 
                                 <div className="tab-content">
-                                  <SimpleGraph name="Total Cases"
+                                  <SimpleGraph name="Stats"
                                     id="tab_total"
                                     text="active" 
-                                    data={data.summary.total}
+                                    // data={data.summary.total}
                                     values={lineDataTotal}
                                     option={optionProperties}
-                                    />
-                                  <SimpleGraph name="Deceased"
-                                    id="tab_deaths"
-                                    text="" 
-                                    data={data.summary.deaths}
-                                    values={lineDataDeaths}
-                                    option={optionPropertiesData}
-                                    />
-                                  <SimpleGraph name="Active"
-                                    id="active"
-                                    text="" 
-                                    data={data.summary.active}
-                                    values={lineDataActive}
-                                    option={optionPropertiesDataActive}
-                                    />
-                                  <SimpleGraph name="Recovered"
-                                    id="rec"
-                                    text="" 
-                                    data={data.summary.recovered}
-                                    values={lineDataRecovered}
-                                    option={optionPropertiesDataRecovered}
                                     />
                                 </div>
                               </div>
