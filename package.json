@@ -6,6 +6,8 @@
     "chart.js": "^2.9.3",
     "highcharts": "^8.0.4",
     "highcharts-react-official": "^3.0.0",
+    "jquery": "^3.4.1",
+    "jquery-react": "^1.0.0",
     "react": "^16.13.1",
     "react-async": "^10.0.0",
     "react-bootstrap": "^1.0.0",
@@ -13,9 +15,11 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
     "react-highcharts": "^16.1.0",
+    "react-icons": "^3.9.0",
     "react-loader-spinner": "^3.1.5",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "react-transition-group": "^4.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

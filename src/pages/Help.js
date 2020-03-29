@@ -46,7 +46,7 @@ export default function Help() {
                                       </tr>
                                     </thead>
                                     <tbody>
-                                        <tr><td>Andhra Pradesh</td><td className="font-weight-bold large text-danger">0866-2410978</td> </tr>
+                                        <tr><td>Andhra Pradesh</td><td className="font-weight-bold large text-danger">0866-2410978</td></tr>
                                         <tr><td>Arunachal Pradesh</td><td className="font-weight-bold large text-danger">9436055743</td></tr>
                                         <tr><td>Assam</td><td className="font-weight-bold large  text-danger">6913347770</td></tr>
                                         <tr><td>Bihar</td><td className="font-weight-bold large  text-danger">104</td></tr>

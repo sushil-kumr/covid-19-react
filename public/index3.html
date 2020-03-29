@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#663399"/>
+
+    <title>COVID-19 | India Dashboard</title>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta content="covid19, coronavirus, india, cases, coroana, outbreak, statistics, stats" name="keywords">
+    <meta content="VectorX" name="author">
+    <meta content="Statewise Statistics of Coronavirus Cases in India" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://curecovid19.in">
+    <meta property="og:title" content="COVID-19 | India Dashboard">
+    <meta property="og:description" content="Statewise Statistics of Coronavirus Cases in India">
+    <meta property="og:image" content="%PUBLIC_URL%/logo512.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://curecovid19.in">
+    <meta property="twitter:title" content="COVID-19 | India Dashboard">
+    <meta property="twitter:description" content="Statewise Statistics of Coronavirus Cases in India">
+    <meta property="twitter:image" content="%PUBLIC_URL%/logo512.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+    <link href="icon_fonts_assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link href="bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="css/main.css?version=4.5.0" rel="stylesheet">
+
+
+  </head>
+  <body class="menu-position-top full-screen with-content-panel">
+    
+    <div id="root" class="all-wrapper with-side-panel solid-bg-all"></div>
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+
+    <script src="bower_components/bootstrap/js/dist/util.js"></script>
+    <script src="bower_components/bootstrap/js/dist/tab.js"></script>
+    
+     <script src="js/main.js"></script>
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.0/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.0/firebase-analytics.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBRI8rqW0bgU_0btOffDib2_CHj9x12DOA",
+        authDomain: "covid-39b72.firebaseapp.com",
+        databaseURL: "https://covid-39b72.firebaseio.com",
+        projectId: "covid-39b72",
+        storageBucket: "covid-39b72.appspot.com",
+        messagingSenderId: "42215066759",
+        appId: "1:42215066759:web:06744818a94c7d7f5afc22",
+        measurementId: "G-DN2L23PLYQ"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-XXXXXXXX-9', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

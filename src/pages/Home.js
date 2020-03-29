@@ -12,15 +12,19 @@ import {mapData,piedata,lineDataTotal,lineDataActive,lineDataDeaths
 
 import Async from 'react-async';
 
+import Layout from '../component/Layout'
+import Loader  from '../component/Loader'
+import Card  from '../component/Card'
+import SimpleGraph  from '../component/SimpleGraph'
+import StateWiseData  from '../component/StateWiseData'
+
 import {Doughnut,Bar} from 'react-chartjs-2';
 
 highchartsMap(Highcharts);
 
-const Layout = lazy(() => import('../component/Layout'));
-const Loader = lazy(() => import('../component/Loader'));
-const Card = lazy(() => import('../component/Card'));
-const SimpleGraph = lazy(() => import('../component/SimpleGraph'));
-const StateWiseData = lazy(() => import('../component/StateWiseData'));
+
+// const Layout = lazy(() => import('../component/Layout'));
+
 
   const loadUsers = () =>
   fetch("https://curecovid19.in/readings/readings/get_summary")

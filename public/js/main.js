@@ -682,35 +682,35 @@ $(function () {
     // -----------------
 
 
-    if ($("#donutChart").length) {
-      var donutChart = $("#donutChart"); // donut chart data
+    // if ($("#donutChart").length) {
+    //   var donutChart = $("#donutChart"); // donut chart data
 
-      var data = {
-        labels: ["Red", "Blue", "Yellow"],
-        datasets: [{
-          data: [300, 50, 100],
-          backgroundColor: ["#5797fc", "#7e6fff", "#4ecc48"],
-          hoverBackgroundColor: ["#5797fc", "#7e6fff", "#4ecc48"],
-          borderWidth: 3
-        }]
-      }; // -----------------
+    //   var data = {
+    //     labels: ["Red", "Blue", "Yellow"],
+    //     datasets: [{
+    //       data: [300, 50, 100],
+    //       backgroundColor: ["#5797fc", "#7e6fff", "#4ecc48"],
+    //       hoverBackgroundColor: ["#5797fc", "#7e6fff", "#4ecc48"],
+    //       borderWidth: 3
+    //     }]
+    //   }; // -----------------
       // init donut chart
       // -----------------
 
-      new Chart(donutChart, {
-        type: 'doughnut',
-        data: data,
-        options: {
-          legend: {
-            display: false
-          },
-          animation: {
-            animateScale: true
-          },
-          cutoutPercentage: 65
-        }
-      });
-    } // -----------------
+      // new Chart(donutChart, {
+      //   type: 'doughnut',
+      //   data: data,
+      //   options: {
+      //     legend: {
+      //       display: false
+      //     },
+      //     animation: {
+      //       animateScale: true
+      //     },
+      //     cutoutPercentage: 65
+      //   }
+      // });
+    // } // -----------------
     // init donut chart if element exists
     // -----------------
 
@@ -839,9 +839,6 @@ $(function () {
   }); // #17. BOOTSTRAP RELATED JS ACTIVATIONS
   // - Activate tooltips
 
-  $('[data-toggle="tooltip"]').tooltip(); // - Activate popovers
-
-  $('[data-toggle="popover"]').popover(); // #18. TODO Application
   // Tasks foldable trigger
 
   $('.tasks-header-toggler').on('click', function () {

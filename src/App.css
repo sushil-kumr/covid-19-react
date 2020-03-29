@@ -38,3 +38,45 @@
 }
 
 /* All website Data */
+
+/* body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+.app {
+  display: flex;
+} */
+
+.navbar-container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.navbar {
+  height: 100%;
+  width: 200px;
+  padding-top: 25px;
+  background-color: lightgray;
+}
+
+.navbar-link {
+  padding: 10px;
+}
+.navbar-link:hover {
+  border-right: 5px solid dimgray;
+  background-color: gainsboro;
+}
+
+.navbar-icon {
+  padding-top: 10px;
+  padding-left: 10px;
+  color: dimgray;
+}
+
+.content-container {
+  padding: 25px;
+  font-family: 'Playfair Display', serif;
+  line-height: 1.5em;
+}
