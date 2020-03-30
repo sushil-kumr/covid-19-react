@@ -16,7 +16,7 @@ function App() {
       {/* <Suspense fallback={<Loader/>}> */}
     <Switch>
          <Route path="/" exact  component={Tab}/>
-         <Route path="/Analytics" exact component={Tabs}/>
+         <Route path="/analytics" exact component={Tabs}/>
          <Route path="/lab" exact  component={Map}/>
          <Route path="/help" exact  component={Help}/>
          <Route path="/about" exact  component={About}/>

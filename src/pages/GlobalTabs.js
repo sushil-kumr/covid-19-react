@@ -27,7 +27,7 @@ export default class GlobalTabs extends Component {
                 <div className="element-wrapper pb-0"><div className="element-box-tp pt-0"><div className="os-tabs-w"></div><div className="os-tabs-controls">    
                 <TabList className="nav nav-tabs smaller" style={{cursor:"pointer"}}>
                 <Link to="/" style={{textDecoration:"none"}}><Tab className="nav-item nav-link">India</Tab></Link>
-                <Link to="/Analytics" style={{textDecoration:"none"}}><Tab className="nav-item nav-link active" >Analytics</Tab></Link>
+                <Link to="/analytics" style={{textDecoration:"none"}}><Tab className="nav-item nav-link active" >Analytics</Tab></Link>
                 </TabList>
                 </div></div></div>
 

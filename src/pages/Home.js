@@ -25,11 +25,9 @@ highchartsMap(Highcharts);
 
 
 // const Layout = lazy(() => import('../component/Layout'));
-
-
   const loadUsers = () =>
-    fetch("https:\/\/curecovid19.in/readings/readings/get_summary")
-    // fetch("http:\/\/192.168.0.103:5000/readings/get_summary")
+    fetch("https://curecovid19.in/readings/readings/get_summary")
+    // fetch("http://192.168.1.157:5000/readings/get_summary")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
 
@@ -204,7 +202,7 @@ highchartsMap(Highcharts);
                                     Statewise Map View
                                 </h6>
                                 <div className="element-box pt-0">
-                                <div  className="pt-2" data-highcharts-chart="0" style={{overflow: "hidden"}}>
+                                <div data-highcharts-chart="0" style={{overflow: "hidden"}}>
                                     <HighchartsReact
                                         constructorType={"mapChart"}
                                         highcharts={Highcharts}
