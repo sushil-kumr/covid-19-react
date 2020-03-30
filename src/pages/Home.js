@@ -343,37 +343,7 @@ highchartsMap(Highcharts);
                     </div>
                     <div className="col-sm-1">
                     </div>
-                    <div className="col-sm-6">
-                        <div className="row">
-                          <div className="col-sm-12">
-                            <div className="element-wrapper">
-                              <h6 className="element-header">
-                                Countrywise Spread
-                              </h6>
-                              <div className="element-box-tp">
-                                  <CountrywiseLine 
-                                  values={lineDataCountrywise}
-                                  option={optionPropertiesCountrywise}
-                                  />
-                              </div>
-                            </div>
-                          </div>
-                        
-                          <div className="col-sm-12">
-                            <div className="element-wrapper">
-                              <h6 className="element-header">
-                                Countrywise Infection Rate
-                              </h6>
-                              <div className="element-box-tp">
-                                  <CountrywiseLine 
-                                  values={lineDataCountrywiseInfectionRate}
-                                  option={optionPropertiesCountrywiseInfectionRate}
-                                  />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
+                    
 
                     </div></div></div></div>
                     </Layout>
