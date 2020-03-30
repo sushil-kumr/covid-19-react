@@ -131,10 +131,8 @@ highchartsMap(Highcharts);
                     optionPropertiesActive.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                    
                   
                     const metaContent = `Total Cases:${data.summary.total},Active Cases:${active},Recovered:${data.summary.recovered},Deaths:${data.summary.deaths}`
-
                     
                     return ( 
                         <>
