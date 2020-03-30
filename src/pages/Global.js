@@ -65,8 +65,8 @@ export default function Global() {
                         <>
                           <Helmet>
                            <title>Analytics Between Countries</title>
-                            <meta name="description" content="Comparision between India, China, Itlay, USA and Spain" />
-                            <meta name="theme-color" content="#008f68" />
+                            <meta name="description" content="Comparision between India, China, Itlay, USA and Spain"  data-react-helmet="true" />
+                            <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
                           </Helmet>
                         <div className="row">
                         <div className="col-sm-6">

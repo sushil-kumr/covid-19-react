@@ -9,8 +9,8 @@ export default function Help() {
 
         <Helmet>
           <title>Emergency/ Helpline Numbers in India</title>
-          <meta name="description" content="All cities Emergency No. and Helpline No." />
-          <meta name="theme-color" content="#008f68" />
+          <meta name="description" content="All cities Emergency No. and Helpline No."  data-react-helmet="true" />
+          <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
         </Helmet>
 
             <div className="content-w"><div className="content-i"><div className="content-box">
