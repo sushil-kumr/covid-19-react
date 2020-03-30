@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
     return (
-        <div className="invoice-footer" style={{position: "absolute", bottom: "0px"}}>
+        <div className="invoice-footer ml-4 centered">
 
             <div className="invoice-info">
                 <b> Stay Home Stay Safe | #IndiaFightsCorona</b> 

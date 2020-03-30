@@ -2,6 +2,127 @@ import React from 'react'
 
 import usAll from "../data/india";
 
+// export const colorsCountrywise = ["#ed2939", "#ffea00", "#268df9", "#24b314", "#0033a0", "#66033c"]
+export const colorsCountrywise = ["rgb(237,41,57,0.3)", "rgb(38,141,249,1)", "rgb(36,179,20,0.3)", "rgb(255,234,0,0.3)", "rgb(102,3,60,0.3)"]
+
+export const lineDataCountrywise = {
+    type: 'line',
+    labels: [],
+    datasets: []
+  };
+
+export const lineDataCountrywiseInfectionRate = {
+    type: 'line',
+    labels: [],
+    datasets: []
+};
+
+export const optionPropertiesCountrywiseInfectionRate = {
+  maintainAspectRatio: true,
+    legend: {
+      display: true,
+      labels:{
+        fontFamily: ["Inter", "Sans-serif"],
+        fontSize: 11,
+        boxWidth: 8,
+      },
+    },
+    tooltips: {
+      mode: 'x'
+    },
+    bezierCurve : true,
+    scales: {
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Days since 500 Confirmed cases'
+        },
+        ticks: {
+            autoSkip:true,
+            maxRotation: 0,
+            minRotation: 0,
+            maxTicksLimit:15,
+            fontSize: '11',
+            fontColor: '#000',
+            fontFamily: ["Inter", "Sans-serif"],
+        },
+        gridLines: {
+          color: 'rgba(0,0,0,0.01)',
+          zeroLineColor: 'rgba(0,0,0,0.05)'
+        }
+      }],
+      yAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Confirmed today/yesterday'
+        },  
+        ticks: {
+          min: 1,
+          autoSkip:true,
+          maxRotation: 0,
+          minRotation: 0,
+          maxTicksLimit:8,
+          fontSize: '11',
+          fontColor: '#000',
+          fontFamily: ["Inter", "Sans-serif"], 
+        }}]
+    }
+  }
+
+export const optionPropertiesCountrywise = {
+  maintainAspectRatio: true,
+    legend: {
+      display: true,
+      labels:{
+        fontFamily: ["Inter", "Sans-serif"],
+        fontSize: 11,
+        boxWidth: 8,
+      },
+    },
+    tooltips: {
+      mode: 'x'
+    },
+    bezierCurve : true,
+    scales: {
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Days since 500 Confirmed cases'
+        },
+        ticks: {
+            autoSkip:true,
+            maxRotation: 0,
+            minRotation: 0,
+            maxTicksLimit:15,
+            fontSize: '11',
+            fontColor: '#000',
+            fontFamily: ["Inter", "Sans-serif"],
+        },
+        gridLines: {
+          color: 'rgba(0,0,0,0.01)',
+          zeroLineColor: 'rgba(0,0,0,0.05)'
+        }
+      }],
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Confirmed Cases'
+        },
+        display: true,
+        ticks: {
+          // beginAtZero: true,
+          autoSkip:true,
+          maxRotation: 0,
+          minRotation: 0,
+          maxTicksLimit:8,
+          fontSize: '11',
+          fontColor: '#000',
+          fontFamily: ["Inter", "Sans-serif"],
+        }}]
+    }
+  }
+
 
 export var lineDataTotal = {
     type: 'bar',

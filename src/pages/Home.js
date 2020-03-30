@@ -8,7 +8,8 @@ import {mapData,piedata,lineDataTotal,lineDataActive,lineDataDeaths
     ,lineDataRecovered,othersActive,othersDeaths,othersRecovered,othersTotal
     ,optionProperties,optionPropertiesData,optionPropertiesDataActive,optionPropertiesDataRecovered,optionPropertiesDeaths
     ,optionPropertiesActive,optionPropertiesRecovered,optionPropertiesTotal
-    ,mapOptions,barChartData,axis} from "../data/data";
+    ,mapOptions,barChartData,axis, lineDataCountrywise, optionPropertiesCountrywise, colorsCountrywise, 
+    lineDataCountrywiseInfectionRate, optionPropertiesCountrywiseInfectionRate} from "../data/data";
 
 import Async from 'react-async';
 
@@ -16,6 +17,7 @@ import Layout from '../component/Layout'
 import Loader  from '../component/Loader'
 import Card  from '../component/Card'
 import SimpleGraph  from '../component/SimpleGraph'
+import CountrywiseLine  from '../component/CountrywiseLine'
 import StateWiseData  from '../component/StateWiseData'
 
 import {Doughnut,Bar} from 'react-chartjs-2';
@@ -28,6 +30,7 @@ highchartsMap(Highcharts);
 
   const loadUsers = () =>
   fetch("https:\/\/curecovid19.in/readings/readings/get_summary")
+  // fetch("http:\/\/192.168.0.103:5000/readings/get_summary")
   .then(res => (res.ok ? res : Promise.reject(res)))
   .then(res => res.json())
 
@@ -129,6 +132,44 @@ highchartsMap(Highcharts);
                     optionPropertiesActive.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
+                    
+                    // for country wise graphs
+                    lineDataCountrywise.labels = [...Array(data.counts["China"].length).keys()];
+                    lineDataCountrywise.datasets = [];
+                    console.log(data.counts);
+                    var countries = Object.keys(data.counts);
+                    countries.forEach((item, index) =>{
+                        lineDataCountrywise.datasets.push({
+                            label: item,
+                            legendText: item,
+                            fill: false,
+                            borderColor: colorsCountrywise[index],
+                            pointBackgroundColor: colorsCountrywise[index],
+                            pointRadius: 2,
+                            data: data.counts[item],
+                            spanGaps: false,
+                            lineTension: 0.4
+                        })
+                    });
+
+                    lineDataCountrywiseInfectionRate.labels = [...Array(data.counts["China"].length).keys()];
+                    lineDataCountrywiseInfectionRate.datasets = [];
+                    console.log(data.counts);
+                    var countries = Object.keys(data.counts);
+                    countries.forEach((item, index) =>{
+                        lineDataCountrywiseInfectionRate.datasets.push({
+                            label: item,
+                            legendText: item,
+                            fill: false,
+                            borderColor: colorsCountrywise[index],
+                            pointBackgroundColor: colorsCountrywise[index],
+                            pointRadius: 2,
+                            data: data.infection_rate[item],
+                            spanGaps: false,
+                            lineTension: 0.4
+                        })
+                    });
+                    
                     return ( 
                         <Layout>
                         <div className="content-w"><div className="content-i"><div className="content-box">
@@ -293,14 +334,48 @@ highchartsMap(Highcharts);
                                 </tr>
                               </thead>
                               <tbody>
-                                  {data.statewise.map(state=><StateWiseData key={state.id} data={state}/>
-                                  )}
+                                  {data.statewise.map(state=><StateWiseData key={state.id} data={state}/>)}
                             </tbody>
                             </table>
                         </div>
                         </div>
                     </div>
-                    </div></div></div></div></div>
+                    </div>
+                    <div className="col-sm-1">
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="row">
+                          <div className="col-sm-12">
+                            <div className="element-wrapper">
+                              <h6 className="element-header">
+                                Countrywise Spread
+                              </h6>
+                              <div className="element-box-tp">
+                                  <CountrywiseLine 
+                                  values={lineDataCountrywise}
+                                  option={optionPropertiesCountrywise}
+                                  />
+                              </div>
+                            </div>
+                          </div>
+                        
+                          <div className="col-sm-12">
+                            <div className="element-wrapper">
+                              <h6 className="element-header">
+                                Countrywise Infection Rate
+                              </h6>
+                              <div className="element-box-tp">
+                                  <CountrywiseLine 
+                                  values={lineDataCountrywiseInfectionRate}
+                                  option={optionPropertiesCountrywiseInfectionRate}
+                                  />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    </div></div></div></div>
                     </Layout>
         )}}
       </Async>
