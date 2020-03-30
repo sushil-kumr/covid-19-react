@@ -134,41 +134,41 @@ highchartsMap(Highcharts);
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     
                     // for country wise graphs
-                    lineDataCountrywise.labels = [...Array(data.counts["China"].length).keys()];
-                    lineDataCountrywise.datasets = [];
-                    console.log(data.counts);
-                    var countries = Object.keys(data.counts);
-                    countries.forEach((item, index) =>{
-                        lineDataCountrywise.datasets.push({
-                            label: item,
-                            legendText: item,
-                            fill: false,
-                            borderColor: colorsCountrywise[index],
-                            pointBackgroundColor: colorsCountrywise[index],
-                            pointRadius: 2,
-                            data: data.counts[item],
-                            spanGaps: false,
-                            lineTension: 0.4
-                        })
-                    });
+                    // lineDataCountrywise.labels = [...Array(data.counts["China"].length).keys()];
+                    // lineDataCountrywise.datasets = [];
+                    // console.log(data.counts);
+                    // var countries = Object.keys(data.counts);
+                    // countries.forEach((item, index) =>{
+                    //     lineDataCountrywise.datasets.push({
+                    //         label: item,
+                    //         legendText: item,
+                    //         fill: false,
+                    //         borderColor: colorsCountrywise[index],
+                    //         pointBackgroundColor: colorsCountrywise[index],
+                    //         pointRadius: 2,
+                    //         data: data.counts[item],
+                    //         spanGaps: false,
+                    //         lineTension: 0.4
+                    //     })
+                    // });
 
-                    lineDataCountrywiseInfectionRate.labels = [...Array(data.counts["China"].length).keys()];
-                    lineDataCountrywiseInfectionRate.datasets = [];
-                    console.log(data.counts);
-                    var countries = Object.keys(data.counts);
-                    countries.forEach((item, index) =>{
-                        lineDataCountrywiseInfectionRate.datasets.push({
-                            label: item,
-                            legendText: item,
-                            fill: false,
-                            borderColor: colorsCountrywise[index],
-                            pointBackgroundColor: colorsCountrywise[index],
-                            pointRadius: 2,
-                            data: data.infection_rate[item],
-                            spanGaps: false,
-                            lineTension: 0.4
-                        })
-                    });
+                    // lineDataCountrywiseInfectionRate.labels = [...Array(data.counts["China"].length).keys()];
+                    // lineDataCountrywiseInfectionRate.datasets = [];
+                    // console.log(data.counts);
+                    // var countries = Object.keys(data.counts);
+                    // countries.forEach((item, index) =>{
+                    //     lineDataCountrywiseInfectionRate.datasets.push({
+                    //         label: item,
+                    //         legendText: item,
+                    //         fill: false,
+                    //         borderColor: colorsCountrywise[index],
+                    //         pointBackgroundColor: colorsCountrywise[index],
+                    //         pointRadius: 2,
+                    //         data: data.infection_rate[item],
+                    //         spanGaps: false,
+                    //         lineTension: 0.4
+                    //     })
+                    // });
                     
                     return ( 
                         <Layout>
