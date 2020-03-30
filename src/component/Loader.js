@@ -6,10 +6,10 @@ export default function loader() {
             <Loader
              type="Oval"
              color="#00BFFF"
-             height={100}
-             width={100}
+             height={50}
+             width={50}
              timeout={1000} //3 secs
-             style={{position: "relative", top: "300px", textAlign: "center"}} 
+             style={{position: "relative",  textAlign: "center"}} 
             />
     )
 }

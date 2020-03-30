@@ -26,7 +26,11 @@ import PropTypes from 'prop-types';
 //   />
 // );
 
-const Marker ={};
+const Marker ={
+  render(){
+    return(<></>)
+  }
+};
 
 Marker.defaultProps = {
   onClick: null,

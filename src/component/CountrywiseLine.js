@@ -2,7 +2,7 @@ import React from 'react'
 
 import {Line} from 'react-chartjs-2';
 
-export default function SimpleGraph(props) {
+export default function CountrywiseLine(props) {
     return (
         <div className={`tab-pane ${props.text}`} id={props.id}>
                 <div className="value">

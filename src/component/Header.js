@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
+import {Link,NavLink} from 'react-router-dom'
 import "./Header.css"
 import { CSSTransition } from "react-transition-group";
 
@@ -26,6 +26,9 @@ export default function Header() {
     }
   };
 
+  const style={ color:"#000"
+  }
+
   const toggleNav = () => {
     setNavVisibility(!isNavVisible);
   };
@@ -47,11 +50,10 @@ export default function Header() {
         in={!isSmallScreen || isNavVisible}
         timeout={350}
         classNames="NavAnimation"
-        unmountOnExit
-      >
+        unmountOnExit>
         <nav className="Nav">
-           <Link to="/">Home</Link >             
-           <Link to="/help">Helpline No.s</Link >             
+           <NavLink to="/">Home</NavLink >             
+           <NavLink to="/help">Helpline No.s</NavLink >             
          </nav>
         </CSSTransition>
        </div>
@@ -69,11 +71,12 @@ export default function Header() {
         <div className="top-bar color-scheme-light">
        
         <ul>
-           <li className="">
-                 <Link to="/">Home</Link >
+           <li>
+           <NavLink exact to="/" activeStyle={style} >Home</NavLink >
                </li>
               <li>
-                 <Link to="/help">Helpline No.s</Link >
+                 <NavLink exact to="/help" activeStyle={style}>Helpline No.s</NavLink >
+
               </li>
             </ul> 
         </div>
@@ -81,3 +84,14 @@ export default function Header() {
     </>
   );
 }
+
+
+// {
+//   content: "";
+//   position: absolute;
+//   bottom: 0px;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   height: 2px;
+//   transition: all 0.2s ease;
+// }

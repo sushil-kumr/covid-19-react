@@ -58,7 +58,7 @@ export const optionPropertiesCountrywiseInfectionRate = {
           labelString: 'Confirmed today/yesterday'
         },  
         ticks: {
-          min: 1,
+          min: 0.9,
           autoSkip:true,
           maxRotation: 0,
           minRotation: 0,
@@ -68,6 +68,38 @@ export const optionPropertiesCountrywiseInfectionRate = {
           fontFamily: ["Inter", "Sans-serif"], 
         }}]
     }
+  }
+
+  export const optionBar = { maintainAspectRatio: true,legend: {
+    display: false
+  },scales: {
+    xAxes: [{
+      ticks: {
+          autoSkip:true,
+          maxRotation: 0,
+          minRotation: 0,
+          maxTicksLimit:4,
+          fontSize: '11',
+          fontColor: '#rgba(0,0,0,0.8)',
+          fontFamily: ["Inter", "Sans-serif"],
+      },
+      gridLines: {
+        color: 'rgba(0,0,0,0.05)',
+        zeroLineColor: 'rgba(0,0,0,0.05)'
+      }
+    }],
+    yAxes: [{
+      display: true,
+      ticks: {
+        beginAtZero: true,
+        autoSkip:true,
+        maxRotation: 0,
+        minRotation: 0,
+        maxTicksLimit:5,
+        fontFamily: ["Inter", "Sans-serif"],
+      }
+    }]
+  } 
   }
 
 export const optionPropertiesCountrywise = {

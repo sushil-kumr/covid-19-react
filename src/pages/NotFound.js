@@ -7,6 +7,8 @@ export default function NotFound() {
         <Layout>
             <div className="content-w">
             <div className="content-i"><div className="content-box">
+
+            <div className="row">    
             <div className="big-error-w">
                     <h1>
                     404
@@ -18,6 +20,7 @@ export default function NotFound() {
                     Oops, Something went missing...
                     </h4>
                     
+            </div>
             </div> </div>
             </div></div>
     </Layout>

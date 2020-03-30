@@ -1,10 +1,17 @@
 import React from 'react'
+import {Helmet} from 'react-helmet'
 
 import Layout from '../component/Layout'
 
 export default function Help() {
     return (
         <Layout>
+
+        <Helmet>
+          <title>Emergency/ Helpline Numbers in India</title>
+          <meta name="description" content="All cities Emergency No. and Helpline No." />
+          <meta name="theme-color" content="#008f68" />
+        </Helmet>
 
             <div className="content-w"><div className="content-i"><div className="content-box">
             <div className="row">
@@ -16,7 +23,7 @@ export default function Help() {
                       
                       <div className="element-box">
                       
-                       <div className="property-info-main">
+                      <div className="property-info-main">
                             <h6 className="pb-1">
                                 <i className="fa fa-phone text-danger"></i> <span className="font-weight-bold large text-danger">Emergency/ Helpline Numbers in India </span>
                             </h6>
@@ -107,8 +114,8 @@ export default function Help() {
                   
                   
                   
-                 <div className="col-sm-4"> 
-                     
+                <div className="col-sm-4"> 
+                
                          {/* <!--START - Grid of tablo statistics--> */}
                   <div className="element-wrapper">
                   
@@ -120,9 +127,9 @@ export default function Help() {
                       START - Rentals Content
                       --------------------> */}
                         <div className="property-single">
-                       
+                      
                         <div className="property-info-w">
-                         
+                        
                           <div className="property-info-side">
                             <div className="side-section">
                                 <div className="side-section-content">
@@ -150,18 +157,18 @@ export default function Help() {
                             </div>
                           </div>
                         </div>
-                 
+                
                       </div>
                       {/* <!--------------------
                       END - Rentals Content
                       --------------------> */}
                       </div>
                     </div>
-                     
-                     
+                  
+                  
                   </div>
             
-             
+            
                 
             
                 

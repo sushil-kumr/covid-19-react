@@ -1,4 +1,4 @@
-import React , { lazy }  from 'react'
+import React  from 'react'
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -6,21 +6,20 @@ import highchartsMap from "highcharts/modules/map";
 
 import {mapData,piedata,lineDataTotal,lineDataActive,lineDataDeaths
     ,lineDataRecovered,othersActive,othersDeaths,othersRecovered,othersTotal
-    ,optionProperties,optionPropertiesData,optionPropertiesDataActive,optionPropertiesDataRecovered,optionPropertiesDeaths
-    ,optionPropertiesActive,optionPropertiesRecovered,optionPropertiesTotal
-    ,mapOptions,barChartData,axis, lineDataCountrywise, optionPropertiesCountrywise, colorsCountrywise, 
-    lineDataCountrywiseInfectionRate, optionPropertiesCountrywiseInfectionRate} from "../data/data";
+    ,optionProperties,optionPropertiesData,optionPropertiesDataActive,optionPropertiesDataRecovered
+    ,optionPropertiesDeaths,optionPropertiesActive,optionPropertiesRecovered,optionPropertiesTotal
+    ,mapOptions,barChartData,axis ,optionBar} from "../data/data";
 
 import Async from 'react-async';
 
-import Layout from '../component/Layout'
 import Loader  from '../component/Loader'
 import Card  from '../component/Card'
 import SimpleGraph  from '../component/SimpleGraph'
-import CountrywiseLine  from '../component/CountrywiseLine'
 import StateWiseData  from '../component/StateWiseData'
 
 import {Doughnut,Bar} from 'react-chartjs-2';
+
+import {Helmet} from 'react-helmet'
 
 highchartsMap(Highcharts);
 
@@ -29,10 +28,10 @@ highchartsMap(Highcharts);
 
 
   const loadUsers = () =>
-  fetch("https:\/\/curecovid19.in/readings/readings/get_summary")
-  // fetch("http:\/\/192.168.0.103:5000/readings/get_summary")
-  .then(res => (res.ok ? res : Promise.reject(res)))
-  .then(res => res.json())
+    fetch("https:\/\/curecovid19.in/readings/readings/get_summary")
+    // fetch("http:\/\/192.168.0.103:5000/readings/get_summary")
+    .then(res => (res.ok ? res : Promise.reject(res)))
+    .then(res => res.json())
 
   
   export default function Home() {
@@ -133,46 +132,18 @@ highchartsMap(Highcharts);
                     optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     
-                    // for country wise graphs
-                    lineDataCountrywise.labels = [...Array(data.counts["China"].length).keys()];
-                    lineDataCountrywise.datasets = [];
-                    console.log(data.counts);
-                    var countries = Object.keys(data.counts);
-                    countries.forEach((item, index) =>{
-                        lineDataCountrywise.datasets.push({
-                            label: item,
-                            legendText: item,
-                            fill: false,
-                            borderColor: colorsCountrywise[index],
-                            pointBackgroundColor: colorsCountrywise[index],
-                            pointRadius: 2,
-                            data: data.counts[item],
-                            spanGaps: false,
-                            lineTension: 0.4
-                        })
-                    });
+                  
+                    const metaContent = `Total Cases:${data.summary.total},Active Cases:${active},Recovered:${data.summary.recovered},Deaths:${data.summary.deaths}`
 
-                    lineDataCountrywiseInfectionRate.labels = [...Array(data.counts["China"].length).keys()];
-                    lineDataCountrywiseInfectionRate.datasets = [];
-                    console.log(data.counts);
-                    var countries = Object.keys(data.counts);
-                    countries.forEach((item, index) =>{
-                        lineDataCountrywiseInfectionRate.datasets.push({
-                            label: item,
-                            legendText: item,
-                            fill: false,
-                            borderColor: colorsCountrywise[index],
-                            pointBackgroundColor: colorsCountrywise[index],
-                            pointRadius: 2,
-                            data: data.infection_rate[item],
-                            spanGaps: false,
-                            lineTension: 0.4
-                        })
-                    });
                     
                     return ( 
-                        <Layout>
-                        <div className="content-w"><div className="content-i"><div className="content-box">
+                        <>
+                          <Helmet>
+                           <title>India Covid 19 Dashboard</title>
+                            <meta name="description" content={metaContent} />
+                            <meta name="theme-color" content="#008f68" />
+                          </Helmet>
+                        
                         {/* first one start */} 
                         <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
                             <h6 className="pb-4">
@@ -257,37 +228,7 @@ highchartsMap(Highcharts);
                                 <div className="el-chart-w">
                                   <Bar data={barChartData}
                                   height="200px"
-                                  options={{ maintainAspectRatio: true,legend: {
-                                    display: false
-                                  },scales: {
-                                    xAxes: [{
-                                      ticks: {
-                                          autoSkip:true,
-                                          maxRotation: 0,
-                                          minRotation: 0,
-                                          maxTicksLimit:4,
-                                          fontSize: '11',
-                                          fontColor: '#rgba(0,0,0,0.8)',
-                                          fontFamily: ["Inter", "Sans-serif"],
-                                      },
-                                      gridLines: {
-                                        color: 'rgba(0,0,0,0.05)',
-                                        zeroLineColor: 'rgba(0,0,0,0.05)'
-                                      }
-                                    }],
-                                    yAxes: [{
-                                      display: true,
-                                      ticks: {
-                                        beginAtZero: true,
-                                        autoSkip:true,
-                                        maxRotation: 0,
-                                        minRotation: 0,
-                                        maxTicksLimit:5,
-                                        fontFamily: ["Inter", "Sans-serif"],
-                                      }
-                                    }]
-                                  } 
-                                  }} />
+                                  options={optionBar} />
                                   <span> *Age data not available for {data.undefinedage} cases</span>
                                 </div>
                               </div>
@@ -345,8 +286,8 @@ highchartsMap(Highcharts);
                     </div>
                     
 
-                    </div></div></div></div>
-                    </Layout>
+                    </div>
+                    </>
         )}}
       </Async>
     )
