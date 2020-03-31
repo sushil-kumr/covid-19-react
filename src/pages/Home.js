@@ -26,7 +26,7 @@ highchartsMap(Highcharts);
 
 // const Layout = lazy(() => import('../component/Layout'));
   const loadUsers = () =>
-    fetch("https://cors-anywhere.herokuapp.com/http://curecovid19.in:8081/readings/get_summary")
+    fetch("https://curecovid19.in/readings/readings/get_summary")
     // fetch("http://192.168.1.157:5000/readings/get_summary")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
