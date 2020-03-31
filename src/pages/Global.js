@@ -161,12 +161,12 @@ export default function Global() {
                                 />
                             </div>
                             </div>
-<div class="alert alert-warning borderless">
+<div className="alert alert-warning borderless">
                         <p>
                           This numbers actually allows comparing how well the different countries are doing
                            in their corona countermeasures, regardless of the population size and density.
                         </p>
-                        <h6 class="alert-heading font-weight-bold">
+                        <h6 className="alert-heading font-weight-bold">
                             An infection rate of 1.0 means no new infections.
                         </h6>
                       </div>
@@ -185,7 +185,7 @@ export default function Global() {
                                 />
                             </div>
                             </div>
-                            <div class="alert alert-warning borderless">
+                            <div className="alert alert-warning borderless">
                                 <p>
                                 However, confirmed does not mean the same between different countries and even
                                  in the same country at different time points of the epidemic. This is due to the
@@ -212,7 +212,7 @@ export default function Global() {
                                 />
                             </div>
                             </div>
-                            <div class="alert alert-warning borderless">
+                            <div className="alert alert-warning borderless">
                             <p>
                               In contrast to the fatality rate, the mortality rate above is shown in dead per million inhabitants. This makes it independant of whether the confirmed count is estimated correctly. In most cases both will be correlated. However, the mortality rate is a better indicator of the influence of the pandepic on a countries society and economy - especially when the health-system is exhausted.
                             </p>

@@ -28,6 +28,7 @@ export default class CountryTabs extends Component {
                 <TabList className="nav nav-tabs smaller" style={{cursor:"pointer"}}>
                 <Link to="/" style={{textDecoration:"none"}}><Tab className="nav-item nav-link active">India</Tab></Link>
                 <Link to="/analytics" style={{textDecoration:"none"}}><Tab className="nav-item nav-link" >Analytics</Tab></Link>
+                <Link to="/world" style={{textDecoration:"none"}}><Tab className="nav-item nav-link" >World</Tab></Link>
                 </TabList>
                 </div></div></div>
 
@@ -36,9 +37,9 @@ export default class CountryTabs extends Component {
                 <TabPanel>
                     <Home/>
                 </TabPanel>
-                <TabPanel>
+                <TabPanel/>
                    
-                </TabPanel>
+                <TabPanel/>
             </Tabs>
      
           </div>

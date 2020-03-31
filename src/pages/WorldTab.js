@@ -5,7 +5,7 @@ import { Tab, Tabs, TabList,TabPanel } from 'react-tabs';
 
 import {Link} from 'react-router-dom'
 
-import Global from './Global'
+import GoogleMap from './MyGoogleMap'
 import Layout from '../component/Layout'
 
 import React, { Component } from 'react'
@@ -23,12 +23,12 @@ export default class GlobalTabs extends Component {
         return (
             <Layout>
             <div className="content-w"><div className="content-i"><div className="content-box pt-0">
-                <Tabs defaultIndex={1}>
+                <Tabs defaultIndex={2}>
                 <div className="element-wrapper pb-0"><div className="element-box-tp pt-0"><div className="os-tabs-w"></div><div className="os-tabs-controls">    
                 <TabList className="nav nav-tabs smaller" style={{cursor:"pointer"}}>
                 <Link to="/" style={{textDecoration:"none"}}><Tab className="nav-item nav-link">India</Tab></Link>
-                <Link to="/analytics" style={{textDecoration:"none"}}><Tab className="nav-item nav-link active" >Analytics</Tab></Link>
-                <Link to="/world" style={{textDecoration:"none"}}><Tab className="nav-item nav-link" >World</Tab></Link>
+                <Link to="/analytics" style={{textDecoration:"none"}}><Tab className="nav-item nav-link" >Analytics</Tab></Link>
+                <Link to="/world" style={{textDecoration:"none"}}><Tab className="nav-item nav-link active" >World</Tab></Link>
                 </TabList>
                 </div></div></div>
 
@@ -36,11 +36,10 @@ export default class GlobalTabs extends Component {
             
                 <TabPanel/>
                     
-                <TabPanel>
-                    <Global/>
-                </TabPanel>
-                
                 <TabPanel/>
+                <TabPanel>
+                    <GoogleMap/>
+                </TabPanel>
             </Tabs>
      
           </div>
