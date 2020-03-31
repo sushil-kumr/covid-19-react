@@ -288,7 +288,7 @@ export var lineDataTotal = {
       legendText: "Confirmed",
       fill: false,
       // fillColor: "rgba(151,187,205,0.1)",
-      backgroundColor: "#ed2939",
+      backgroundColor: "#ff7b7b",
       borderColor: "#e65252",
       // borderCapStyle: 'butt',
       // borderDash: [],
@@ -311,7 +311,7 @@ export var lineDataTotal = {
       label: "Recovered",
       legendText: "Recovered",
       fill: false,
-      backgroundColor: "#50c878",
+      backgroundColor: "#8cdf87",
       borderColor: "#24b314",
       // borderCapStyle: 'butt',
       // borderDash: [],
@@ -895,7 +895,15 @@ export const mapOptions = {
         min: 0,
         minColor: '#ffffff',
         maxColor: '#ff0000'  ,
-        tickColor:"#ffffff"
+        tickColor:"#ffffff",
+        stops: [
+            [0, '#ffffff'],
+            [0.25, '#ffbaba'],
+            [0.375, '#ff7b7b'],
+            [0.5, '#ff5252'],
+            [0.75, '#ff0000'],
+            [1, '#a70000']
+        ]
       },
     credits: {
       enabled: false
@@ -926,7 +934,7 @@ export const mapOptions = {
     datasets: [
       {
         label: 'No. of Cases',
-        backgroundColor: '#ff0000',
+        backgroundColor: '#ff7b7b',
         borderWidth: 1,
         hoverBackgroundColor: '#ff0000',
         hoverBorderColor: '#ff0000',
