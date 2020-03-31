@@ -16,7 +16,7 @@ export default function Global() {
 
     const loadUsers = () =>
     // fetch("http://192.168.1.157:5000/readings/countrywise")
-    fetch("http://curecovid19.in:8081/readings/countrywise")
+    fetch("https://curecovid19.in/readings/readings/countrywise")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
 
