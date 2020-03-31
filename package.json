@@ -5,10 +5,12 @@
   "dependencies": {
     "chart.js": "^2.9.3",
     "google-map-react": "^1.1.7",
+    "google-maps-react": "^2.0.2",
     "highcharts": "^8.0.4",
     "highcharts-react-official": "^3.0.0",
     "jquery": "^3.4.1",
     "jquery-react": "^1.0.0",
+    "node-js-marker-clusterer": "^1.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-async": "^10.0.0",

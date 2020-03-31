@@ -28,7 +28,7 @@ export default class GlobalTabs extends Component {
                 <TabList className="nav nav-tabs smaller" style={{cursor:"pointer"}}>
                 <Link to="/" style={{textDecoration:"none"}}><Tab className="nav-item nav-link">India</Tab></Link>
                 <Link to="/analytics" style={{textDecoration:"none"}}><Tab className="nav-item nav-link active" >Analytics</Tab></Link>
-                <Link to="/world" style={{textDecoration:"none"}}><Tab className="nav-item nav-link" >World</Tab></Link>
+                {/* <Link to="/world" style={{textDecoration:"none"}}><Tab className="nav-item nav-link" >World</Tab></Link> */}
                 </TabList>
                 </div></div></div>
 
@@ -40,7 +40,7 @@ export default class GlobalTabs extends Component {
                     <Global/>
                 </TabPanel>
                 
-                <TabPanel/>
+                {/* <TabPanel/> */}
             </Tabs>
      
           </div>

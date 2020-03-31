@@ -8,7 +8,7 @@ import WorldTab  from './pages/WorldTab'
 import Tabs  from './pages/GlobalTabs'
 import Help  from './pages/Help'
 import About  from './pages/About'
-
+import SampleMap from './pages/SampleMap'
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
     <Switch>
          <Route path="/" exact  component={Tab}/>
          <Route path="/analytics" exact component={Tabs}/>
-         <Route path="/world" exact  component={WorldTab}/>
+         {/* <Route path="/world" exact  component={WorldTab}/> */}
          <Route path="/help" exact  component={Help}/>
          <Route path="/about" exact  component={About}/>
          <Route path="*" component={NotFound}/>
