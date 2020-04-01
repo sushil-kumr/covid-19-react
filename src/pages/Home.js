@@ -27,7 +27,6 @@ highchartsMap(Highcharts);
 // const Layout = lazy(() => import('../component/Layout'));
   const loadUsers = () =>
     fetch("https://curecovid19.in/readings/readings/get_summary")
-    // fetch("http://192.168.1.157:5000/readings/get_summary")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
 
@@ -131,7 +130,7 @@ highchartsMap(Highcharts);
                     optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                   
                     const metaContent = `Total Cases:${data.summary.total},Active Cases:${active},Recovered:${data.summary.recovered},Deaths:${data.summary.deaths}`
-                    
+                    const num_days = data.num_days;
                     return ( 
                         <>
                           <Helmet>
@@ -143,7 +142,7 @@ highchartsMap(Highcharts);
                         {/* first one start */} 
                         <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
                             <h6 className="pb-4">
-                              <span className="font-weight-bold"> Dashboard for COVID-19 Outbreak in India </span> <br/> <span className="small font-weight-bold text-success"> Last Updated: {data.summary.last_updated_time}</span>
+                              <span className="font-weight-bold"> Dashboard for COVID-19 India <large className="font-weight-bold text-danger" style={{fontSize: "22px"}}> {num_days} </large> <small className="font-weight-bold text-danger"> days since first Outbreak</small></span> <br/><span className="small text-success"> Last Updated: {data.summary.last_updated_time}</span>
                             </h6>
                             <div className="element-content">
                             <div className="tablo-with-chart">
