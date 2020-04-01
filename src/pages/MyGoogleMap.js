@@ -9,37 +9,40 @@ import {
 } from "react-google-maps";
 
 import InfoWindowEx from "../component/InfoWindowEx";
-
+const demoFancyMapStyles = require("../js/mapStyles.json");
 
 const options = {
   strokeColor: "#ff0000",
   fillColor: '#ff0000'
 }
 
-
 const Map = withScriptjs(withGoogleMap(props => {
 
-  
-let [place,setPlace] = useState({});
+const [display, setDisplay] = useState('none');
+const [place, setPlace] = useState({});
 
-function onMarkerClick(data) {
-  console.log(data);
-  setPlace(data)
-  
+function onMarkerClick(data, b="block") {
+  setDisplay(b);
+  setPlace(data);
 };
 
   return (<>
 
-    <div>
-              <h3>{`Place/Country Name :${place.place}`}</h3>
-              <h6>Active Cases : {place.active}</h6>
-              <h6>Confirmed Cases : {place.confirmed}</h6>
-              <h6>Deaths Cases : {place.deaths}</h6>
-              <h6>Recovered Cases : {place.recovered}</h6>
+    <div style={{display: display, width: "100%"}}>
+              <br/>
+              <h6>{`Country/State: ${place.place}`}</h6>
+              <h6>Confirmed: {place.confirmed}</h6>
+              <h6>Deceased: {place.deaths}</h6>
     </div>
     <GoogleMap
-      defaultZoom={2}
+      defaultZoom={3}
       defaultCenter={props.center}
+      defaultOptions={{ styles: demoFancyMapStyles, 
+                                mapTypeControl: false,
+                                zoomControl: true,
+                                streetViewControl: false,
+                                draggingCursor: 'move' 
+                      }}
     >
       {props.places.map(place => {
         return (
@@ -50,7 +53,7 @@ function onMarkerClick(data) {
                 lat: parseFloat(place.lat),
                 lng: parseFloat(place.lon)
               }}
-              radius={place.confirmed*10}
+              radius={place.confirmed*7}
               options={options}
             >
           {/* <InfoWindow
@@ -77,7 +80,7 @@ export default class SampleMap extends Component {
   constructor(props){
     super(props)
     this.state ={
-      data:[]
+      data:[],
     }
   }
 
@@ -97,13 +100,12 @@ export default class SampleMap extends Component {
   render() {
     return (
     <Map
-    center={{ lat: 40.64, lng: -73.96 }}
-    zoom={2}
+    center={{ lat: 41.8719, lng: 12.5674 }}
     places={this.state.data}
     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnt9meLwKfGzZtUZuyGB1iPp346rph9YA"
     loadingElement={<div style={{ height: `100%` }} />}
-    containerElement={<div style={{ height: `800px` }} />}
-    mapElement={<div style={{ height: `100%` }} />}
+    containerElement={<div style={{ height: `700px` }} />}
+    mapElement={<div style={{ height: `85%` }} />}
   />
     )
   }
