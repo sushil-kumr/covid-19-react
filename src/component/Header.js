@@ -36,7 +36,7 @@ export default function Header() {
   return (<>
     <div className="menu-mobile menu-activated-on-click color-scheme-light">
            <div className="mm-logo-buttons-w">
-             <Link className="mm-logo" to="/" onClick={() => window.location.reload(false)}><img src="img/logos2.png"/><span></span></Link>
+             <Link className="mm-logo" to="/" onClick={() => window.location="/"}><img src="img/logos2.png"/><span></span></Link>
             <div className="mm-buttons">
               <div className="mobile-menu-trigger">                 
               <div onClick={toggleNav} className="fa fa-bars"></div>

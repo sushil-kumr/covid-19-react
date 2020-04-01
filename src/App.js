@@ -17,7 +17,7 @@ function App() {
     <Switch>
          <Route path="/" exact  component={Tab}/>
          <Route path="/analytics" exact component={Tabs}/>
-         {/* <Route path="/world" exact  component={WorldTab}/> */}
+         <Route path="/world" exact  component={WorldTab}/>
          <Route path="/help" exact  component={Help}/>
          <Route path="/about" exact  component={About}/>
          <Route path="*" component={NotFound}/>
