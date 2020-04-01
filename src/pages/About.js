@@ -37,7 +37,7 @@ export default function About() {
                                 <a href="https://www.who.int/">World Health Organization</a> (WHO) </li>
                                 <li id="ref-1"><a href="https://systems.jhu.edu/research/public-health/ncov/">Novel Coronavirus (COVID-19) Cases, provided by JHU CSSE</a> - Johns Hopkins University </li>
                                 <li id="ref-1"><a href="https://www.mohfw.gov.in/">Ministry of Health and Family Welfare | GOI RSS</a> - Government of India </li>
-                                <li id="ref-1"><a href="https://covid19india.org/">Covid19India.Org</a> - Updated Crowdsourced Information on Covid-19 in India</li>     
+                                <li id="ref-1"><a href="https://www.covid19india.org/">Covid19India.Org</a> - Updated Crowdsourced Information on Covid-19 in India</li>     
                                 </ul>
                         </div>
                           
