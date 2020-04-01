@@ -142,7 +142,7 @@ highchartsMap(Highcharts);
                         {/* first one start */} 
                         <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
                             <h6 className="pb-4">
-                              <span className="font-weight-bold"> Dashboard for COVID-19 Outbreak in India <large className="font-weight-bold text-danger" style={{fontSize: "2px"}}> {num_days} </large> <small className="font-weight-bold text-danger"> days since first Outbreak</small></span> <br/><span className="small text-success"> Last Updated: {data.summary.last_updated_time}</span>
+                              <span className="font-weight-bold"> Dashboard for COVID-19 Outbreak in India <large className="font-weight-bold text-danger" style={{fontSize: "22px"}}> {num_days} </large> <small className="font-weight-bold text-danger"> days since first Outbreak</small></span> <br/><span className="small text-success"> Last Updated: {data.summary.last_updated_time}</span>
                             </h6>
                             <div className="element-content">
                             <div className="tablo-with-chart">
