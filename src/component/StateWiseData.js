@@ -10,10 +10,10 @@ export default function StateWiseData(props) {
                     <span>{props.data.state}</span>
                     </td>
                     <td className="nowrap">
-                    <span className="text-primary font-weight-bold smaller">{props.data.delta_total === 0?"": `(+${props.data.delta_total})`} </span><span className="font-weight-bold">{confirm}</span>
+                    <span className="text-danger font-weight-bold smaller">{props.data.delta_total === 0?"": `(+${props.data.delta_total})`} </span><span className="font-weight-bold">{confirm}</span>
                     </td>
                     <td className="nowrap">
-                    <span className="text-danger font-weight-bold smaller">{props.data.delta_active === 0?"": `(+${props.data.delta_active})`} </span><span className="font-weight-bold">{active}  </span>
+                    <span className="text-primary font-weight-bold smaller">{props.data.delta_active === 0?"": `(+${props.data.delta_active})`} </span><span className="font-weight-bold">{active}  </span>
                     </td>
                     <td className="nowrap">
                     <span className="text-success font-weight-bold smaller">{props.data.delta_recovered === 0?"": `(+${props.data.delta_recovered})`} </span><span className="font-weight-bold">{props.data.recovered}</span>

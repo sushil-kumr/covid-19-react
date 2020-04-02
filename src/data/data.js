@@ -873,7 +873,7 @@ export const mapData = [
   ['mizoram', 0],
   ['tripura', 0],
   ['manipur', 0],
-  ['arunanchal pradesh', 0],
+  ['arunachal pradesh', 0],
   ['jharkhand', 0],
   ['goa', 0],
   ['delhi', 0],

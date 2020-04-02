@@ -25,7 +25,7 @@ export default function Help() {
                       
                       <div className="property-info-main">
                             <h6 className="pb-1">
-                                <i className="fa fa-phone text-danger"></i> <span className="font-weight-bold large text-danger">Emergency/ Helpline Numbers in India </span>
+                                <span className="font-weight-bold large text-danger">Emergency/ Helpline Numbers in India </span>
                             </h6>
                             
                             <div className="badge badge-primary">
@@ -110,20 +110,20 @@ export default function Help() {
                                 <div className="side-section-content">
                                 <div className="property-side-features">
                                   <div className="feature">
-                                    <span className="font-weight-bold" style={{textTransform: "capitalize"}}><i className="fa fa-phone"></i>National Toll Free Number</span>
+                                    <span className="font-weight-bold" style={{textTransform: "capitalize"}}>National Toll Free Number</span>
                                     <br/>
                                     <span className="font-weight-bold xlarge text-danger">1075</span>  
                                   </div>
                                   <br/>
                                   <div className="feature" style={{textTransform: "lowercase"}}>
-                                    <i className="fa fa-whatsapp"></i><span className="font-weight-bold" style={{textTransform: "capitalize"}}>Whatsapp Number</span>
+                                    <span className="font-weight-bold" style={{textTransform: "capitalize"}}>Whatsapp Number</span>
                                     <br/>
                                     <span className="font-weight-bold xlarge text-danger">9013151515</span>  
                                   </div>
                                     
                                   <br/>
                                   <div className="feature" style={{textTransform: "lowercase"}}>
-                                      <span className="font-weight-bold pb-2" style={{textTransform: "capitalize"}}><i className="fa fa-envelope"></i> Helpline Email ID</span>
+                                      <span className="font-weight-bold pb-2" style={{textTransform: "capitalize"}}> Helpline Email ID</span>
                                       <br/>
                                       <span className="font-weight-bold large text-danger pb-1">ncov2019@gov.in</span>
                                       <br/>
@@ -147,7 +147,7 @@ export default function Help() {
                                         <h6 className="pb-1">
                                             <span className="font-weight-bold large" style={{fontSize: "16px", color: "#444"}}>Telephonic Guidance</span>
                                         </h6>
-                                        <p className="" style={{fontSize: "14px"}}>These are the new numbers of the popular helpline Physician Volunteers for Telephonic Guidance on Covid-19 headed by Dr Tushar Shah, MD Physician, Mumbai.
+                                        <p className="" style={{fontSize: "14px"}}>These are the numbers of the popular helpline Physician Volunteers for Telephonic Guidance on Covid-19 headed by Dr Tushar Shah, MD Physician, Mumbai.
                                           Please use WhatsApp to message symptoms and questions before calling.
                                         </p>
 
@@ -157,7 +157,7 @@ export default function Help() {
                                         <hr/>
                                         <div className="row" style={{fontSize: "14px"}}>
                                         <div className="col-6">
-                                        <span className="font-weight-bold pb-2 text-danger" style={{textTransform: "capitalize"}}><i className="fa fa-envelope"></i> From 9 AM to 12 noon</span>
+                                        <span className="font-weight-bold pb-2 text-danger" style={{textTransform: "capitalize"}}>From 9 AM to 12 noon</span>
                                           <br/>
                                           <br/>
                                           <p>Dr R Gwalani 8779835257</p>
@@ -212,7 +212,7 @@ export default function Help() {
                                         </div>
                                         </div>
                                         <p style={{fontSize: "14px"}}>If you want advice on diet in these times, please call Janvi Chitalia, nutritionist on 9819642295.</p>
-                                        <p>Another excellent helpline, which works round the clock, is the one by Indian Medical Association. The numbers are +919999672238 & +919999672239..
+                                        <p>Another excellent helpline, which works round the clock, is the one by Indian Medical Association. The numbers are +919999672238 & +919999672239.
                                         </p>
                                         </div>
                                     </div>
