@@ -62,7 +62,7 @@ export default function About() {
                         <h5 className="form-header">
                           FAQ's
                         </h5>
-                        <div className="form-desc" style={{color: "#555"}}>
+                        <div>
                             
                             <p className="lead font-weight-bold">Q. Are you Official</p>
                             <p>A. No. </p>
