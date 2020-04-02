@@ -15,7 +15,8 @@ const demoFancyMapStyles = require("../js/mapStyles.json");
 
 const options = {
   strokeColor: "#ff0000",
-  fillColor: '#ff0000'
+  fillColor: '#ff0000',
+  strokeWeight: 0.5
 }
 
 const Map = withScriptjs(withGoogleMap(props => {
