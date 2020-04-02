@@ -133,7 +133,7 @@ export default class SampleMap extends Component {
                             </div>
                               
                               <span class="trending trending-down-basic large">
-                                <span>{parseFloat(data.global_summary.active/data.global_summary.confirmed).toFixed(2)}%</span>
+                                <span>{parseFloat(data.global_summary.active*100/data.global_summary.confirmed).toFixed(2)}%</span>
                               </span>
                               
                           
@@ -148,7 +148,7 @@ export default class SampleMap extends Component {
                               {(data.global_summary.recovered).toLocaleString("en-IN")}
                             </div>
                             <span class="trending trending-down-basic">
-                              <span>{parseFloat(data.global_summary.recovered/data.global_summary.confirmed).toFixed(2)}%</span>
+                              <span>{parseFloat(data.global_summary.recovered*100/data.global_summary.confirmed).toFixed(2)}%</span>
                             </span>
                           </a>
                         </div>
@@ -161,7 +161,7 @@ export default class SampleMap extends Component {
                               {(data.global_summary.deaths).toLocaleString("en-IN")}
                             </div>
                             <span class="trending trending-down-basic">
-                              <span>{parseFloat(data.global_summary.deaths/data.global_summary.confirmed).toFixed(2)}%</span>
+                              <span>{parseFloat(data.global_summary.deaths*100/data.global_summary.confirmed).toFixed(2)}%</span>
                             </span>
                           </a>
                         </div>
