@@ -64,7 +64,7 @@ function onMarkerClick(data, b="inline-block") {
                                 lat: parseFloat(place.lat),
                                 lng: parseFloat(place.lon)
                               }}
-                              radius={((place.confirmed*7)<=30000 && (place.confirmed*7)>1)?30000:place.confirmed*7}
+                              radius={((place.confirmed)<=3000 && (place.confirmed*7)>1)?place.confirmed*7*20:place.confirmed*7}
                               options={options}
                             >
                           </Circle>
