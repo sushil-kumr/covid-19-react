@@ -71,7 +71,7 @@ function onMarkerClick(data, b="inline-block") {
                               options={options}
                             >
                           </Circle>
-                          // </Fragment>
+                          </Fragment>
                         );
                       })}
                     </GoogleMap> 
