@@ -9,6 +9,12 @@ import Layout from '../component/Layout'
  
 export default function About() {
     return (<Layout>
+              <Helmet>
+                <title>About Covid-19</title>
+                <meta name="description" content="Inforamtion regarding the coivd 19 provided by all sources."  />
+                <meta name="theme-color" content="#008f68"   />
+
+              </Helmet>
               
              <div className="content-box">
               <div className="row">

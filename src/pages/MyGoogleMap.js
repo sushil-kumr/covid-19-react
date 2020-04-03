@@ -7,9 +7,11 @@ import {
   Circle,
   InfoWindow
 } from "react-google-maps";
+import {Helmet} from 'react-helmet'
 
 import Async from 'react-async';
 import Loader  from '../component/Loader'
+import ServerDown  from './ServerDown'
 
 const demoFancyMapStyles = require("../js/mapStyles.json");
 
@@ -48,16 +50,17 @@ function onMarkerClick(data, b="inline-block") {
                     <GoogleMap 
                       defaultZoom={3}
                       defaultCenter={props.center}
-                      defaultOptions={{ styles: demoFancyMapStyles, 
-                                                mapTypeControl: false,
-                                                zoomControl: true,
-                                                streetViewControl: false,
-                                                draggingCursor: 'move' 
-                                      }}
+                      defaultOptions={{ 
+                        styles: demoFancyMapStyles, 
+                        mapTypeControl: false,
+                        zoomControl: true,
+                        streetViewControl: false,
+                        draggingCursor: 'move' 
+                        }}
                     >
-                      {props.places.map(place => {
+                      {props.places.map((place,i) => {
                         return (
-                          <Fragment key={place.id}>
+                          <Fragment key={i}>
                             <Circle
                               onClick={()=>onMarkerClick(place)}
                               defaultCenter={{
@@ -68,12 +71,12 @@ function onMarkerClick(data, b="inline-block") {
                               options={options}
                             >
                           </Circle>
-                          </Fragment>
+                          // </Fragment>
                         );
                       })}
                     </GoogleMap> 
                   </div>
-      </div>
+        </div>
   </>);
 }))
 
@@ -103,66 +106,71 @@ export default class SampleMap extends Component {
       <Async promiseFn={loadUsers} >
       {({ data, err, isLoading }) => {
           if (isLoading) return (<Loader/>)
-          if (err) return `Something went wrong: ${err.message}`
+          if (err) return (<ServerDown/>)
           if (data) 
-            console.log(data.global_summary.confirmed);
+           // console.log(data.global_summary.confirmed);
+            // const metaContent = {`Total Cases:${(data.global_summary.confirmed).toLocaleString("en-IN")},Active Cases:${(data.global_summary.active).toLocaleString("en-IN")},Recovered:${(data.global_summary.recovered).toLocaleString("en-IN")},Deaths:${(data.global_summary.deaths).toLocaleString("en-IN")}`}
+              
           return(<>
-                  <div class="col-sm-12">
-                  <div class="element-wrapper">
-                
-                    <div class="element-content">
-                      <div class="row">
-                        <div class="col-sm-3 col-xxxl-3">
-                          <a class="element-box el-tablo" href="#">
-                            <div class="label">
+            <Helmet>
+            <title>World Covid Stats</title>
+    
+            <meta name="description" content={`Total Cases:${(data.global_summary.confirmed).toLocaleString("en-IN")},Active Cases:${(data.global_summary.active).toLocaleString("en-IN")},Recovered:${(data.global_summary.recovered).toLocaleString("en-IN")},Deaths:${(data.global_summary.deaths).toLocaleString("en-IN")}`}  data-react-helmet="true" />
+            <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
+          
+          </Helmet>
+                  <div className="col-sm-12">
+                  <div className="element-wrapper">
+                    <div className="element-content">
+                      <div className="row">
+                        <div className="col-sm-3 col-xxxl-3">
+                          <a className="element-box el-tablo" href="#">
+                            <div className="label">
                               Confirmed
                             </div>
-                            <div class="value text-danger font-weight-bold">
+                            <div className="value text-danger font-weight-bold">
                             {(data.global_summary.confirmed).toLocaleString("en-IN")}
                             </div>
-                            <span class="trending trending-down-basic large">
+                            <span className="trending trending-down-basic large">
                               <span></span>
                             </span>
                           </a>
                         </div>
-                        <div class="col-sm-3 col-xxxl-3">
-                          <a class="element-box el-tablo" href="#">
-                            <div class="label">
+                        <div className="col-sm-3 col-xxxl-3">
+                          <a className="element-box el-tablo" href="#">
+                            <div className="label">
                               Infected/ Active
                             </div>
-                            <div class="value text-primary font-weight-bold">
+                            <div className="value text-primary font-weight-bold">
                               {(data.global_summary.active).toLocaleString("en-IN")}
                             </div>
-                              
-                              <span class="trending trending-down-basic large">
+                              <span className="trending trending-down-basic large">
                                 <span>{parseFloat(data.global_summary.active*100/data.global_summary.confirmed).toFixed(2)}%</span>
                               </span>
-                              
-                          
                           </a>
                         </div>
-                        <div class="col-sm-3 col-xxxl-3">
-                          <a class="element-box el-tablo" href="#">
-                            <div class="label">
+                        <div className="col-sm-3 col-xxxl-3">
+                          <a className="element-box el-tablo" href="#">
+                            <div className="label">
                               Recovered
                             </div>
-                            <div class="value font-weight-bold text-success">
+                            <div className="value font-weight-bold text-success">
                               {(data.global_summary.recovered).toLocaleString("en-IN")}
                             </div>
-                            <span class="trending trending-down-basic">
+                            <span className="trending trending-down-basic">
                               <span>{parseFloat(data.global_summary.recovered*100/data.global_summary.confirmed).toFixed(2)}%</span>
                             </span>
                           </a>
                         </div>
-                        <div class="col-sm-3 col-xxxl-3">
-                          <a class="element-box el-tablo" href="#">
-                            <div class="label">
+                        <div className="col-sm-3 col-xxxl-3">
+                          <a className="element-box el-tablo" href="#">
+                            <div className="label">
                               Deaths
                             </div>
-                            <div class="value font-weight-bold text-secondary">
+                            <div className="value font-weight-bold text-secondary">
                               {(data.global_summary.deaths).toLocaleString("en-IN")}
                             </div>
-                            <span class="trending trending-down-basic">
+                            <span className="trending trending-down-basic">
                               <span>{parseFloat(data.global_summary.deaths*100/data.global_summary.confirmed).toFixed(2)}%</span>
                             </span>
                           </a>
@@ -172,8 +180,8 @@ export default class SampleMap extends Component {
                   </div>
                 </div>
                   
-                  <div class="element-wrapper">
-                  <div class="element-box-tp">
+                  <div className="element-wrapper">
+                  <div className="element-box-tp">
                   <Map
                     center={{ lat: 41.8719, lng: 12.5674 }}
                     places={data.data}

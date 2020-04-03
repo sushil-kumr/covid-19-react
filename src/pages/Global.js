@@ -4,6 +4,7 @@ import {Helmet} from 'react-helmet'
 import Loader  from '../component/Loader'
 
 import CountrywiseLine  from '../component/CountrywiseLine'
+import ServerDown  from './ServerDown'
 
 import {optionPropertiesCountrywise,optionPropertiesCountrywiseInfectionRate,
     lineDataCountrywiseInfectionRate, lineDataCountrywise, colorsCountrywise, 
@@ -24,7 +25,7 @@ export default function Global() {
         <Async promiseFn={loadUsers} >
                 {({ data, err, isLoading }) => {
                     if (isLoading) return (<Loader/>)
-                    if (err) return `Something went wrong: ${err.message}`
+                    if (err) return <ServerDown/>
                     if (data) 
                       // for country wise graphs
                       lineDataCountrywise.labels = [...Array(data.counts["China"].length).keys()];

@@ -16,6 +16,7 @@ import Loader  from '../component/Loader'
 import Card  from '../component/Card'
 import SimpleGraph  from '../component/SimpleGraph'
 import StateWiseData  from '../component/StateWiseData'
+import ServerDown  from './ServerDown'
 
 import {Doughnut,Bar} from 'react-chartjs-2';
 
@@ -38,7 +39,7 @@ highchartsMap(Highcharts);
           <Async promiseFn={loadUsers} >
                 {({ data, err, isLoading }) => {
                     if (isLoading) return (<Loader/>)
-                    if (err) return `Something went wrong: ${err.message}`
+                    if (err) return <ServerDown/>
                     if (data)
                     var  active = data.summary.total - data.summary.recovered - data.summary.deaths;
                   
@@ -143,8 +144,8 @@ highchartsMap(Highcharts);
                         <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
                             <h6 className="pb-4">
                               <span className="font-weight-bold"> Dashboard for COVID-19 India <br/>
-                              <large className="font-weight-bold text-danger" style={{fontSize: "20px"}}> {num_days} </large> 
-                              <small className="font-weight-bold text-danger"> days since first Outbreak</small>
+                              <p className="font-weight-bold text-danger" style={{fontSize: "20px"}}> {num_days} </p> 
+                              <p className="font-weight-bold text-danger"> days since first Outbreak</p>
                               </span> <br/>
                               <span className="small text-success"> Last Updated: {data.summary.last_updated_time}</span>
                             </h6>
