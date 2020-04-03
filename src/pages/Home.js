@@ -144,8 +144,8 @@ highchartsMap(Highcharts);
                         <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
                             <h6 className="pb-4">
                               <span className="font-weight-bold"> Dashboard for COVID-19 India <br/>
-                              <p className="font-weight-bold text-danger" style={{fontSize: "20px"}}> {num_days} days since first Outbreak</p>
-                              </span> <br/>
+                              <span className="font-weight-bold text-danger" style={{fontSize: "20px"}}> {num_days} </span> <span className="text-danger" style={{fontSize: "14px"}}>days since first Outbreak</span><br/>
+                              </span>
                               <span className="small text-success"> Last Updated: {data.summary.last_updated_time}</span>
                             </h6>
                             <div className="element-content">
