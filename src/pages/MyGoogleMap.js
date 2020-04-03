@@ -31,7 +31,7 @@ function onMarkerClick(data, b="inline-block") {
   // props.handleData(data,b);
 };
 
-  return (
+  return (<>
       <div className="row">
                   <div  style={{display: display, width: "100%",textAlign:"center"}}>
                     <br/>
@@ -41,6 +41,9 @@ function onMarkerClick(data, b="inline-block") {
                     <h6>Deceased: {place.deaths}</h6>
                     <h6>Recovered: {place.recovered}</h6>
                   </div>
+                  <br/>
+                </div>
+      <div className="row">
                   <div className="col-lg-12">
   
                     <GoogleMap 
@@ -62,7 +65,7 @@ function onMarkerClick(data, b="inline-block") {
                                 lat: parseFloat(place.lat),
                                 lng: parseFloat(place.lon)
                               }}
-                              radius={((place.confirmed*7)<=30000 && (place.confirmed*7)>100)?30000:place.confirmed*7}
+                              radius={((place.confirmed*7)<=30000 && (place.confirmed*7)>1)?30000:place.confirmed*7}
                               options={options}
                             >
                           </Circle>
@@ -72,7 +75,7 @@ function onMarkerClick(data, b="inline-block") {
                     </GoogleMap> 
                   </div>
       </div>
-  );
+  </>);
 }))
 
 export default class SampleMap extends Component {
@@ -105,7 +108,6 @@ export default class SampleMap extends Component {
           if (data) 
             console.log(data.global_summary.confirmed);
           return(<>
-                  <h3 style={{textAlign:"center"}}>Worldwide Covid-19</h3>
                   <div class="col-sm-12">
                   <div class="element-wrapper">
                 
@@ -170,19 +172,12 @@ export default class SampleMap extends Component {
                     </div>
                   </div>
                 </div>
-                  {/* <div style={{display:this.state.display, justifyContent:"center"}}>
-                  <h6>{`Country/State: ${this.state.values.place}`}</h6>
-                    <h6>Confirmed: {this.state.values.confirmed}</h6>
-                    <h6>Active: {this.state.values.confirmed-this.state.values.deaths-this.state.values.recovered}</h6>
-                    <h6>Deceased: {this.state.values.deaths}</h6>
-                    <h6>Recovered: {this.state.values.recovered}</h6>
-                  </div> */}
+                  
                   <div class="element-wrapper">
                   <div class="element-box-tp">
                   <Map
                     center={{ lat: 41.8719, lng: 12.5674 }}
                     places={data.data}
-                    // handleData={this.handleData}
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnt9meLwKfGzZtUZuyGB1iPp346rph9YA"
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `800px` }} />}
