@@ -37,9 +37,6 @@
     "stylers": [
       {
         "color": "#757575"
-      },
-      {
-        "visibility": "off"
       }
     ]
   },
@@ -80,14 +77,6 @@
   },
   {
     "featureType": "poi",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
     "elementType": "labels.text",
     "stylers": [
       {
@@ -101,6 +90,14 @@
     "stylers": [
       {
         "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "off"
       }
     ]
   },
@@ -128,14 +125,6 @@
     "stylers": [
       {
         "color": "#1b1b1b"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "stylers": [
-      {
-        "visibility": "off"
       }
     ]
   },
