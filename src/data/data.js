@@ -851,7 +851,7 @@ export const mapData = [
   ['nagaland', 0],
   ['bihar', 0],
   ['lakshadweep', 0],
-  ['andaman and nicobar', 0],
+  ['andaman and nicobar islands', 0],
   ['assam', 0],
   ['west bengal', 0],
   ['puducherry', 0],

@@ -10,6 +10,7 @@ import {
 
 import Async from 'react-async';
 import Loader  from '../component/Loader'
+import ServerDown  from './ServerDown'
 
 const demoFancyMapStyles = require("../js/mapStyles.json");
 
@@ -100,7 +101,7 @@ export default class SampleMap extends Component {
       <Async promiseFn={loadUsers} >
       {({ data, err, isLoading }) => {
           if (isLoading) return (<Loader/>)
-          if (err) return `Something went wrong: ${err.message}`
+          if (err) return (<ServerDown/>)
           if (data) 
             console.log(data.global_summary.confirmed);
           return(<>

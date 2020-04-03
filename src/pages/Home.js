@@ -16,6 +16,7 @@ import Loader  from '../component/Loader'
 import Card  from '../component/Card'
 import SimpleGraph  from '../component/SimpleGraph'
 import StateWiseData  from '../component/StateWiseData'
+import ServerDown  from './ServerDown'
 
 import {Doughnut,Bar} from 'react-chartjs-2';
 
@@ -38,7 +39,7 @@ highchartsMap(Highcharts);
           <Async promiseFn={loadUsers} >
                 {({ data, err, isLoading }) => {
                     if (isLoading) return (<Loader/>)
-                    if (err) return `Something went wrong: ${err.message}`
+                    if (err) return <ServerDown/>
                     if (data)
                     var  active = data.summary.total - data.summary.recovered - data.summary.deaths;
                   
