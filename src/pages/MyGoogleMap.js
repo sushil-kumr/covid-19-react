@@ -108,9 +108,6 @@ export default class SampleMap extends Component {
           if (isLoading) return (<Loader/>)
           if (err) return (<ServerDown/>)
           if (data) 
-           // console.log(data.global_summary.confirmed);
-            // const metaContent = {`Total Cases:${(data.global_summary.confirmed).toLocaleString("en-IN")},Active Cases:${(data.global_summary.active).toLocaleString("en-IN")},Recovered:${(data.global_summary.recovered).toLocaleString("en-IN")},Deaths:${(data.global_summary.deaths).toLocaleString("en-IN")}`}
-              
           return(<>
             <Helmet>
             <title>World Covid Stats</title>
