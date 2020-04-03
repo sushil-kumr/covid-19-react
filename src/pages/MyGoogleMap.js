@@ -61,7 +61,7 @@ function onMarkerClick(data, b="inline-block") {
                                 lat: parseFloat(place.lat),
                                 lng: parseFloat(place.lon)
                               }}
-                              radius={place.confirmed*7}
+                              radius={((place.confirmed*7)<=30000 && (place.confirmed*7)>100)?30000:place.confirmed*7}
                               options={options}
                             >
                           </Circle>
@@ -176,6 +176,8 @@ export default class SampleMap extends Component {
                     <h6>Deceased: {this.state.values.deaths}</h6>
                     <h6>Recovered: {this.state.values.recovered}</h6>
                   </div> */}
+                  <div class="element-wrapper">
+                  <div class="element-box-tp">
                   <Map
                     center={{ lat: 41.8719, lng: 12.5674 }}
                     places={data.data}
@@ -184,7 +186,9 @@ export default class SampleMap extends Component {
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `800px` }} />}
                     mapElement={<div style={{ height: `75%` }} />}
-                  />    
+                  />  
+                  </div>  
+                  </div>  
                 </>
           )
   }}
