@@ -285,7 +285,6 @@ export var lineDataTotal = {
     datasets: [
     {
       type: "line",
-      yAxisID: "bar-y-axis",
       label: "Total Cases",
       legendText: "Active",
       fill: false,
@@ -714,10 +713,14 @@ export const optionProperties = {
       {
         id: '2',
         type: 'linear',
+        display: true,
         position: 'right',
         ticks: {
           max: 1,
           min: 0
+        },
+          gridLines:{
+            display: false
           }
       }]
     }
