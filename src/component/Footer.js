@@ -6,7 +6,7 @@ export default function Footer() {
 
             <div className="invoice-info" >
             	<a href="https://t.me/joinchat/Lw0dpxlYNwXA9k7TKdhvKw" target="_blank">
-            	<button className="btn btn-primary" style={{width: "100%", marginBottom: "10px"}} onClick="">To Colaborate - Join Telegram</button>
+            	<button className="btn btn-primary" style={{width: "100%", marginBottom: "10px"}} onClick="">To Collaborate - Join Telegram</button>
                	</a>
                	<br/>
                	<a href="https://github.com/sushil-kumr/covid-19-react" target="_blank">

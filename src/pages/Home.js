@@ -77,6 +77,7 @@ highchartsMap(Highcharts);
                     const deathsValue1 = [];
                     const activeValue1 = [];
                     const recoveredValue1 = [];
+                    const cumulative_confirmed = [];
                     data.dashboard_graphs.forEach(element => {
                         totalValue.push(element.daily_total);
                         daysValue.push(element.day);
@@ -91,10 +92,16 @@ highchartsMap(Highcharts);
                         recoveredValue1.push(element.recovered);
                     });
 
+                    data.cumulative_confirmed.forEach(element =>{
+                        cumulative_confirmed.push(element.count);
+                    });
+
                     lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1.slice(-30);
-                    lineDataTotal.datasets[0].data = totalValue.slice(-30);
+                    lineDataTotal.datasets[1].data = totalValue.slice(-30);
                     // lineDataTotal.datasets[2].data = totalValue1.slice(-30);
-                    lineDataTotal.datasets[1].data = recoveredValue.slice(-30);
+                    lineDataTotal.datasets[2].data = recoveredValue.slice(-30);
+                    lineDataTotal.datasets[0].data = cumulative_confirmed.slice(-30);
+
                     const last_value = -20
                     const simpleTotal = Object.assign({}, lineDataTotal);
                     simpleTotal.datasets=othersTotal.datasets;
@@ -123,6 +130,8 @@ highchartsMap(Highcharts);
                     othersDeaths.datasets[0].borderColor = "#3e4b5b";
                     optionPropertiesTotal.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesTotal.scales.yAxes[0].ticks.min = -15;
+                    optionProperties.scales.yAxes[1].ticks.max = Math.round(Math.max(...cumulative_confirmed) + (Math.max(...cumulative_confirmed)*highscale));
+                    optionProperties.scales.yAxes[1].ticks.min = 0;
                     optionPropertiesDeaths.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesDeaths.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesRecovered.scales.yAxes[0].ticks.min = -15;
