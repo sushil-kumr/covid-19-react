@@ -71,7 +71,7 @@ export default function About() {
                         <div>
                             
                             <p className="lead font-weight-bold">Q. Are you Official</p>
-                            <p>A. No. </p>
+                            <p>A. No. <b style={{fontSize: "15px"}}>This is a Not-for-profit initiative by the alumni of </b> <b style={{backgroundColor: "#F5F5F5", fontSize: "16px", padding: "5px", borderRadius: "8px"}}>BITS Pilani</b> <b>and </b><b style={{backgroundColor: "#F5F5F5", fontSize: "16px", padding: "5px", borderRadius: "8px"}}>IIIT Hyderabad.</b></p>
                             
                             <p className="lead font-weight-bold">Q. Is your Data Reliable</p>
                             <p>A. Yes. All the data is being collected from highly revered and valid sources like WHO, JHU and MofHWGOI who update the data regularly for public awareness.</p>
