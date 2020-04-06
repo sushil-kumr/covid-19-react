@@ -832,9 +832,9 @@ export const piedata = {
         height:"800px"
       },
 	labels: [
+    'Unidentifed',
 		'Female',
-		'Male',
-		'Unidentifed'
+		'Male'
 	],
 	datasets: [{
 		data: [0, 0, 0],

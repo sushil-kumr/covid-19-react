@@ -13,9 +13,8 @@ export default function Footer() {
             	<button className="btn btn-dark" style={{width: "100%", marginBottom: "10px"}} onClick="">To Contribute - Join Github</button>
                 </a>
                 <br/>
-                <b style={{color: "#000", fontWeight: "700"}}> Stay Home Stay Safe | #IndiaFightsCorona</b> 
+                <b style={{color: "#000", fontWeight: "700"}}> Stay Home Stay Safe | #IndiaFightsCorona #TogetherWeCan</b> 
                 <br/> 
-                <b>Report Errors to vxdeveloper5@gmail.com</b>
             </div>
         </div>
     )
