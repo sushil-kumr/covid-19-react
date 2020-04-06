@@ -8,7 +8,12 @@ export const colorsCountrywise = [
   "rgb(237,41,57,0.4)", 
   "rgb(36,179,20,0.4)", 
   "rgb(248,215,0,0.4)", 
-  "rgb(102,3,60,0.4)"]
+  "rgb(102,3,60,0.4)", 
+  "rgb(139,69,19,1)", 
+  "rgb(0,255,0,1)", 
+  "rgb(128,0,128,1)", 
+  "rgb(255,0,0,1)", 
+  "rgb(0,0,0,1)"]
 
 export const lineDataCountrywise = {
     type: 'line',
@@ -284,6 +289,31 @@ export var lineDataTotal = {
     labels: ["1", "5", "10", "15", "20", "25", "30", "35"],
     datasets: [
     {
+      type: "line",
+      label: "Total Cases",
+      legendText: "Active",
+      fill: false,
+      backgroundColor: "#555",
+      borderColor: "#555",
+      // borderCapStyle: 'butt',
+      // borderDash: [],
+      // borderDashOffset: 0.0,
+      // borderJoinStyle: 'miter',
+      // pointBorderColor: "#fff",
+      pointBackgroundColor: "#268df9",
+      // pointBorderWidth: 2,
+      // pointHoverRadius: 5,
+      // pointHoverBackgroundColor: "#FC2055",
+      // pointHoverBorderColor: "#fff",
+      // pointHoverBorderWidth: 3,
+      pointRadius: 2,
+      // pointHitRadius: 5,
+      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      spanGaps: false,
+      lineTension: 0.4,
+      yAxisID: '2'
+    },
+    {
       label: "Confirmed",
       legendText: "Confirmed",
       fill: false,
@@ -305,7 +335,8 @@ export var lineDataTotal = {
       // pointHitRadius: 5,
       data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
-      lineTension: 0.4
+      lineTension: 0.4,
+      yAxisID: '1'
     },
     {
       label: "Recovered",
@@ -328,33 +359,9 @@ export var lineDataTotal = {
       // pointHitRadius: 5,
       data: [27, 20, 44, 24, 29, 22, 43, 52],
       spanGaps: false,
-      lineTension: 0.4
-    }
-    // {
-    //   type: "line",
-    //   yAxisID: "bar-y-axis",
-    //   label: "Total Cases",
-    //   legendText: "Active",
-    //   fill: false,
-    //   backgroundColor: "#000",
-    //   borderColor: "#000",
-    //   // borderCapStyle: 'butt',
-    //   // borderDash: [],
-    //   // borderDashOffset: 0.0,
-    //   // borderJoinStyle: 'miter',
-    //   // pointBorderColor: "#fff",
-    //   pointBackgroundColor: "#268df9",
-    //   // pointBorderWidth: 2,
-    //   // pointHoverRadius: 5,
-    //   // pointHoverBackgroundColor: "#FC2055",
-    //   // pointHoverBorderColor: "#fff",
-    //   // pointHoverBorderWidth: 3,
-    //   pointRadius: 2,
-    //   // pointHitRadius: 5,
-    //   data: [27, 20, 44, 24, 29, 22, 43, 52],
-    //   spanGaps: false,
-    //   lineTension: 0.4,
-    // }
+      lineTension: 0.4,
+      yAxisID: '1'
+    },
     // {
     //   label: "Deceased",
     //   legendText: "Deceased",
@@ -693,8 +700,10 @@ export const optionProperties = {
         }
       }],
       yAxes: [{
+        id: '1',
         stacked: true,
         display: true,
+        position: 'left',
         ticks: {
           beginAtZero: true,
           autoSkip:true,
@@ -704,17 +713,21 @@ export const optionProperties = {
           fontSize: '11',
           fontColor: '#000',
           fontFamily: ["Inter", "Sans-serif"],
-        }}]
-      // },
-      // {
-      //   id: "bar-y-axis",
-      //   stacked: true,
-      //   display: false, //optional
-      //   ticks: {
-      //     beginAtZero: true,
-      //   },
-      //   type: 'linear'
-      // }]
+        }
+      },
+      {
+        id: '2',
+        type: 'linear',
+        display: true,
+        position: 'right',
+        ticks: {
+          max: 1,
+          min: 0
+        },
+          gridLines:{
+            display: false
+          }
+      }]
     }
   }
   

@@ -27,9 +27,9 @@ export default function About() {
                             
                         </h5>
                         <div className="form-desc" style={{color: "#555"}}>
-                           <p className="lead"> We are facing a global crisis. The decisions our leaders will make over the coming weeks will shape our future. From a public health perspective, to combat an epidemic, officials must take a number of actions, such as: build awareness, set guidelines for health professionals, target infection clusters, limit population movements, and allocate scarce resources.
+                          <p className="lead"> We are facing a global crisis. The decisions our leaders will make over the coming weeks will shape our future. From a public health perspective, to combat an epidemic, officials must take a number of actions, such as: build awareness, set guidelines for health professionals, target infection clusters, limit population movements, and allocate scarce resources.
                         
-                           Our small contribution to people, at this hour, is to provide you with the most up-to-date information and data analysis about Covid-19. If information is missing please be patient - the data is likely updating and will be available shortly. </p>
+                          Our small contribution to people, at this hour, is to provide you with the most up-to-date information and data analysis about Covid-19. If information is missing please be patient - the data is likely updating and will be available shortly. </p>
                         </div>
                         <h5 className="form-header">
                           Sources
@@ -37,7 +37,7 @@ export default function About() {
                           
                         <div className="element-box-content">
                             
-                                 <div className="">
+                                <div className="">
                                 <ul>
                                 <li id="ref-1"><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports/">Novel Coronavirus (2019-nCoV) situation reports</a> -
                                 <a href="https://www.who.int/">World Health Organization</a> (WHO) </li>
@@ -71,7 +71,7 @@ export default function About() {
                         <div>
                             
                             <p className="lead font-weight-bold">Q. Are you Official</p>
-                            <p>A. No. </p>
+                            <p>A. No. <b style={{fontSize: "15px"}}>This is a Not-for-profit initiative by the alumni of </b> <b style={{backgroundColor: "#F5F5F5", fontSize: "16px", padding: "5px", borderRadius: "8px"}}>BITS Pilani</b> <b>and </b><b style={{backgroundColor: "#F5F5F5", fontSize: "16px", padding: "5px", borderRadius: "8px"}}>IIIT Hyderabad.</b></p>
                             
                             <p className="lead font-weight-bold">Q. Is your Data Reliable</p>
                             <p>A. Yes. All the data is being collected from highly revered and valid sources like WHO, JHU and MofHWGOI who update the data regularly for public awareness.</p>

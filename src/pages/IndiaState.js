@@ -17,8 +17,8 @@ import Async from 'react-async';
 export default function Global() {
 
     const loadUsers = () =>
-    // fetch("http://192.168.1.157:5000/readings/countrywise")
-    fetch("https://curecovid19.in/readings/readings/countrywise")
+    // fetch("http://192.168.1.157:5000/readings/readings/statewise")
+    fetch("https://www.curecovid19.in/readings/readings/statewise")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
 
@@ -28,13 +28,12 @@ export default function Global() {
                     if (isLoading) return (<Loader/>)
                     if (err) return <ServerDown/>
                     if (data) 
-                      // for country wise graphs
-                    var countries = ["India", "China", "Spain", "Italy", "US"];
-                    lineDataCountrywise.labels = [...Array(data.counts[`${countries[1]}`].length).keys()];
+
+                    var states = data.states;
+
+                    lineDataCountrywise.labels = [...Array(data.counts[`${states[1]}`].length).keys()];
                     lineDataCountrywise.datasets = [];
-                     // console.log(data.counts);
-                      // var countries = Object.keys(data.counts);
-                    countries.forEach((item, index) =>{
+                    states.forEach((item, index) =>{
                         lineDataCountrywise.datasets.push({
                             label: item,
                             legendText: item,
@@ -48,17 +47,15 @@ export default function Global() {
                         })
                     });
 
-                    lineDataCountrywiseInfectionRate.labels = [...Array(data.counts[`${countries[1]}`].length).keys()];
-                    lineDataCountrywiseMortalityRate.labels = [...Array(data.counts[`${countries[1]}`].length).keys()];
-                    lineDataCountrywiseFatalityRate.labels = [...Array(data.counts[`${countries[1]}`].length).keys()];
+                    lineDataCountrywiseInfectionRate.labels = [...Array(data.counts[`${states[1]}`].length).keys()];
+                    lineDataCountrywiseMortalityRate.labels = [...Array(data.counts[`${states[1]}`].length).keys()];
+                    lineDataCountrywiseFatalityRate.labels = [...Array(data.counts[`${states[1]}`].length).keys()];
                     lineDataCountrywiseInfectionRate.datasets = [];
                     lineDataCountrywiseMortalityRate.datasets = [];
                     lineDataCountrywiseFatalityRate.datasets = [];
-                     // console.log(data.counts);
                     var mortality_rate_max = 0;
-                      // var countries = Object.keys(data.counts);
 
-                    countries.forEach((item, index) =>{
+                    states.forEach((item, index) =>{
                         lineDataCountrywiseInfectionRate.datasets.push({
                             label: item,
                             legendText: item,
@@ -72,7 +69,7 @@ export default function Global() {
                         })
                     });
 
-                    countries.forEach((item, index) =>{
+                    states.forEach((item, index) =>{
                         lineDataCountrywiseMortalityRate.datasets.push({
                             label: item,
                             legendText: item,
@@ -87,11 +84,10 @@ export default function Global() {
                         var maxi = Math.max(...data.mortality_rate[item]);
                         if(maxi > mortality_rate_max){
                             mortality_rate_max = maxi;
-                            // optionPropertiesCountrywiseMortalityRate.scales.yAxes[0].ticks.max = maxi * 0.1;
                         } 
                     });
 
-                    countries.forEach((item, index) =>{
+                    states.forEach((item, index) =>{
                         lineDataCountrywiseFatalityRate.datasets.push({
                             label: item,
                             legendText: item,
@@ -108,9 +104,9 @@ export default function Global() {
                     return(
                         <>
                         <Helmet>
-                        <title>Analytics Between Countries</title>
+                            <title>Analytics Between Indian States</title>
 
-                            <meta name="description" content="Comparision between India, China, Itlay, USA and Spain"  data-react-helmet="true" />
+                            <meta name="description" content="Comparision between India states like MP, Delhi, Kerala, etc."  data-react-helmet="true" />
                             <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
                         
                         </Helmet>
@@ -118,28 +114,28 @@ export default function Global() {
                         <Content 
                             title="Thoughtprocess" 
                             desc={<p>For any kind of Data Analysis on Covid-19 we have first to bring the data points of
-                            different countries to the same origin. We cannot derive anything meaningful if
+                            different states to the same origin. We cannot derive anything meaningful if
                             we just plot the confirmed infections at their respective dates due to different 
-                            origins of outbreak. So we fixed the origins of all countries to Day 0, which in our
-                            case represents the day when each country has surpassed 500 cases.</p>}/>
+                            origins of outbreak. So we fixed the origins of all states to Day 0, which in our
+                            case represents the day when each state has surpassed 500 cases.</p>}/>
 
-                        <ContentGraph title="Countrywise Spread"
+                        <ContentGraph title="State-Wise Spread"
                             values={lineDataCountrywise} 
                             option={optionPropertiesCountrywise}
-                            desc={<p>This gives us an idea of how the virus has spread among different countries.
+                            desc={<p>This gives us an idea of how the virus has spread among different states.
                             But this is not the best indicator yet due to difference in populations and 
-                            population densities among the countries.</p>}/>
+                            population densities among the states.</p>}/>
 
-                        <ContentGraph title="Countrywise Infection Rate"
+                        <ContentGraph title="State-Wise Infection Rate"
                             values={lineDataCountrywiseInfectionRate} 
                             option={optionPropertiesCountrywiseInfectionRate}
-                            desc={<p>This numbers actually allows comparing how well the different countries are doing
-                            in their corona countermeasures, regardless of the population size and density.</p>}/>
+                            desc={<p>This numbers actually allows comparing how well the different states are doing
+                            in their corona counter measures, regardless of the population size and density.</p>}/>
 
-                        <ContentGraph title="Countrywise Fatality Rate"
+                        <ContentGraph title="State-Wise Fatality Rate"
                             values={lineDataCountrywiseFatalityRate} 
                             option={optionPropertiesCountrywiseFatalityRate}
-                            desc={<p>However, confirmed does not mean the same between different countries and even
+                            desc={<p>However, confirmed does not mean the same between different states and even
                                 in the same country at different time points of the epidemic. This is due to the
                                 sampling bias induced by the limited amount of corona test kits. With ongoing spread,
                                 we hit limits on test-kit and health-system capacities and the focus shifts to testing
@@ -150,10 +146,10 @@ export default function Global() {
                             <li> the health-system capacites being exhausted.  </li></p>}/>
                     
 
-                        <ContentGraph title="Countrywise Mortality Rate"
+                        <ContentGraph title="State-Wise Mortality Rate"
                             values={lineDataCountrywiseMortalityRate} 
                             option={optionPropertiesCountrywiseMortalityRate}
-                            desc={<p>In contrast to the fatality rate, the mortality rate above is shown in dead per million inhabitants. This makes it independant of whether the confirmed count is estimated correctly. In most cases both will be correlated. However, the mortality rate is a better indicator of the influence of the pandepic on a countries society and economy - especially when the health-system is exhausted.</p>}
+                            desc={<p>In contrast to the fatality rate, the mortality rate above is shown in dead per million inhabitants. This makes it independant of whether the confirmed count is estimated correctly. In most cases both will be correlated. However, the mortality rate is a better indicator of the influence of the pandepic on a states society and economy - especially when the health-system is exhausted.</p>}
                             />
                         </div>
                         </>

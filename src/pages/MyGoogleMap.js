@@ -10,10 +10,6 @@ import {
 import {Helmet} from 'react-helmet'
 import WorldCard  from '../component/WorldCard'
 
-import Async from 'react-async';
-import Loader  from '../component/Loader'
-import ServerDown  from './ServerDown'
-
 const demoFancyMapStyles = require("../js/mapStyles.json");
 
 const options = {
@@ -72,7 +68,7 @@ if(data.length===0){return (<></>)}else{
                                 lat: parseFloat(place.lat),
                                 lng: parseFloat(place.lon)
                               }}
-                              radius={((place.confirmed*7)<=30000 && (place.confirmed*7)>1)?30000:place.confirmed*7}
+                              radius={((place.confirmed)<=3000 && (place.confirmed*7)>1)?place.confirmed*7*20:place.confirmed*7}
                               options={options}
                             >
                           </Circle>
@@ -113,6 +109,7 @@ export default class SampleMap extends Component {
     // fetch("https://curecovid19.in/readings/readings/world_summary")
      fetch("http://192.168.0.107:5000/readings/world_summary")
     .then(res => res.json())
+
     .then(
       (result) => {
         console.log(result)
@@ -144,7 +141,7 @@ export default class SampleMap extends Component {
             <div className="element-wrapper">
               <div className="element-content">
                 <div className="row">
-                  
+                
                   <WorldCard name="Confirmed"  
                   styleName="text-danger" 
                   summary={(this.state.global_summary.confirmed).toLocaleString("en-IN")}

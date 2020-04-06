@@ -77,6 +77,7 @@ highchartsMap(Highcharts);
                     const deathsValue1 = [];
                     const activeValue1 = [];
                     const recoveredValue1 = [];
+                    const cumulative_confirmed = [];
                     data.dashboard_graphs.forEach(element => {
                         totalValue.push(element.daily_total);
                         daysValue.push(element.day);
@@ -91,10 +92,16 @@ highchartsMap(Highcharts);
                         recoveredValue1.push(element.recovered);
                     });
 
+                    data.cumulative_confirmed.forEach(element =>{
+                        cumulative_confirmed.push(element.count);
+                    });
+
                     lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1.slice(-30);
-                    lineDataTotal.datasets[0].data = totalValue.slice(-30);
+                    lineDataTotal.datasets[1].data = totalValue.slice(-30);
                     // lineDataTotal.datasets[2].data = totalValue1.slice(-30);
-                    lineDataTotal.datasets[1].data = recoveredValue.slice(-30);
+                    lineDataTotal.datasets[2].data = recoveredValue.slice(-30);
+                    lineDataTotal.datasets[0].data = cumulative_confirmed.slice(-30);
+
                     const last_value = -20
                     const simpleTotal = Object.assign({}, lineDataTotal);
                     simpleTotal.datasets=othersTotal.datasets;
@@ -123,6 +130,8 @@ highchartsMap(Highcharts);
                     othersDeaths.datasets[0].borderColor = "#3e4b5b";
                     optionPropertiesTotal.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesTotal.scales.yAxes[0].ticks.min = -15;
+                    optionProperties.scales.yAxes[1].ticks.max = Math.round(Math.max(...cumulative_confirmed) + (Math.max(...cumulative_confirmed)*highscale));
+                    optionProperties.scales.yAxes[1].ticks.min = 0;
                     optionPropertiesDeaths.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesDeaths.scales.yAxes[0].ticks.min = -15;
                     optionPropertiesRecovered.scales.yAxes[0].ticks.min = -15;
@@ -144,9 +153,8 @@ highchartsMap(Highcharts);
                         <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
                             <h6 className="pb-4">
                               <span className="font-weight-bold"> Dashboard for COVID-19 India <br/>
-                              <p className="font-weight-bold text-danger" style={{fontSize: "20px"}}> {num_days} </p> 
-                              <p className="font-weight-bold text-danger"> days since first Outbreak</p>
-                              </span> <br/>
+                              <span className="font-weight-bold text-danger" style={{fontSize: "20px"}}> {num_days} </span> <span className="text-danger" style={{fontSize: "14px"}}>days since first Outbreak</span><br/>
+                              </span>
                               <span className="small text-success"> Last Updated: {data.summary.last_updated_time}</span>
                             </h6>
                             <div className="element-content">
