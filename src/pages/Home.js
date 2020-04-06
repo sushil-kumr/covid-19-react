@@ -65,6 +65,7 @@ highchartsMap(Highcharts);
                       genderValue.push(0);
                     }
                     piedata.datasets[0].data = genderValue;
+                    piedata.labels = gernderLabel;
 
                     const totalValue = [];
                     const daysValue = [];
