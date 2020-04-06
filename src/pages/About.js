@@ -11,8 +11,8 @@ export default function About() {
     return (<Layout>
               <Helmet>
                 <title>About Covid-19</title>
-                <meta name="description" content="Inforamtion regarding the coivd 19 provided by all sources."  />
-                <meta name="theme-color" content="#008f68"   />
+                <meta name="description" content="Inforamtion regarding the coivd 19 provided by all sources."  data-react-helmet="true"  />
+                <meta name="theme-color" content="#008f68"   data-react-helmet="true"  />
 
               </Helmet>
               

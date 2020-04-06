@@ -4,11 +4,11 @@ import usAll from "../data/india";
 
 // export const colorsCountrywise = ["#ed2939", "#ffea00", "#268df9", "#24b314", "#0033a0", "#66033c"]
 export const colorsCountrywise = [ 
-                                  "rgb(41,153,237,1)",
-                                  "rgb(237,41,57,0.4)", 
-                                  "rgb(36,179,20,0.4)", 
-                                  "rgb(248,215,0,0.4)", 
-                                  "rgb(102,3,60,0.4)"]
+  "rgb(41,153,237,1)",
+  "rgb(237,41,57,0.4)", 
+  "rgb(36,179,20,0.4)", 
+  "rgb(248,215,0,0.4)", 
+  "rgb(102,3,60,0.4)"]
 
 export const lineDataCountrywise = {
     type: 'line',
