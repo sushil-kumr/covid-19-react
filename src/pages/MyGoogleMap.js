@@ -139,7 +139,7 @@ export default class SampleMap extends Component {
       <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
       </Helmet>
             <div className="col-sm-12" style={this.state.global_summary.confirmed===0?{display:"none"}:{display:"inline-block"}}>
-            <div className="element-wrapper">
+            <div className="element-wrapper pb-1">
               <div className="element-content">
                 <div className="row">
                 
@@ -167,37 +167,49 @@ export default class SampleMap extends Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-12 col-12" style={this.state.selectedData.place===undefined?{display:"none"}:{display:"inline-block"}} >
-          <br/>
-          <div className="element-wrapper">   
-            <div className="row">
-                <CountryCard name="Country/State"  
-                styleName="text-secondary" 
-                myClass="col-sm-6 col-xxxl-6"
-                summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.place).toLocaleString("en-IN")}
-                />
-            </div>  
-                  <div className="row">
-                  <CountryCard name="Confirmed"  
-                      styleName="text-danger" 
-                      summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.confirmed).toLocaleString("en-IN")}
-                      />
 
-                  <CountryCard name="Infected/ Active"  
-                  styleName="text-primary" 
-                  summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.confirmed-this.state.selectedData.deaths-this.state.selectedData.recovered).toLocaleString("en-IN")}
-                  />
-                  
-                  <CountryCard name="Recovered"  
-                  styleName="text-success" 
-                  summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.recovered).toLocaleString("en-IN")}
-                 />
-                
-                  <CountryCard name="Deaths"  
-                    styleName="text-secondary" 
-                    summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.deaths).toLocaleString("en-IN")}
-                  />
-                  </div></div>
+
+          <div style={this.state.selectedData.place===undefined?{display:"none"}:{display:"inline-block"}} >
+          <br/>
+          <div className="element-wrapper p-3">
+            <div className="element-box-tp">
+            <div className="el-tablo highlight">
+            <div className="label font-weight-bold smaller">
+            {this.state.selectedData.place}
+            </div>
+            </div>
+            <div className="balance-table pl-sm-2">
+            <table className="table table-lightborder table-bordered table-v-compact mb-0">
+            <tr>
+            <td>
+            <strong className="text-danger font-weight-bold">{(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.confirmed).toLocaleString("en-IN")}</strong>
+            <div className="balance-label smaller lighter text-nowrap">
+            CONFIRMED
+            </div>
+            </td>
+            <td>
+            <strong className="text-primary font-weight-bold">{(this.state.selectedData.active===undefined?0:this.state.selectedData.active).toLocaleString("en-IN")}</strong>
+            <div className="balance-label smaller lighter text-nowrap">
+            ACTIVE
+            </div>
+            </td>
+            <td>
+            <strong className="text-success font-weight-bold">{(this.state.selectedData.recovered===undefined?0:this.state.selectedData.recovered).toLocaleString("en-IN")}</strong>
+            <div className="balance-label smaller lighter text-nowrap">
+            RECOVERED
+            </div>
+            </td>
+            <td>
+            <strong className="text-secondary font-weight-bold">{(this.state.selectedData.deaths===undefined?0:this.state.selectedData.deaths).toLocaleString("en-IN")}</strong>
+            <div className="balance-label smaller lighter text-nowrap">
+            DEATHS
+            </div>
+            </td>
+            </tr>
+            </table>
+            </div>
+            </div>
+            </div>
           </div>
             <div className="element-wrapper">
             <div className="element-box-tp">
