@@ -53,6 +53,7 @@ export default function Header() {
            <NavLink to="/">Home</NavLink >             
            <NavLink to="/help">Helpline No.s</NavLink >
            <NavLink to="/about">About</NavLink >               
+           <NavLink to="/updates">Updates</NavLink >               
          </nav>
         </CSSTransition>
        </div>
@@ -70,16 +71,17 @@ export default function Header() {
         <div className="top-bar color-scheme-light">
        
         <ul>
-           <li>
-           <NavLink exact to="/" activeStyle={style} >Home</NavLink >
-               </li>
+              <li>
+                 <NavLink exact to="/" activeStyle={style} >Home</NavLink >
+              </li>
               <li>
                  <NavLink exact to="/help" activeStyle={style}>Helpline No.s</NavLink >
-
               </li>
               <li>
                  <NavLink exact to="/about" activeStyle={style}>About</NavLink >
-
+              </li>
+              <li>
+                 <NavLink exact to="/updates" activeStyle={style}>Updates</NavLink >
               </li>
             </ul> 
         </div>

@@ -10,6 +10,7 @@ import Help  from './pages/Help'
 import About  from './pages/About'
 import State  from './pages/IndiaAnalyticsTab'
 import SampleMap from './pages/SampleMap'
+import Updates from './pages/Updates'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/world" exact  component={WorldTab}/>
           <Route path="/help" exact  component={Help}/>
           <Route path="/about" exact  component={About}/>
+          <Route path="/updates" exact  component={Updates}/>
           <Route path="*" component={NotFound}/>
       </Switch>
       {/* </Suspense> */}
