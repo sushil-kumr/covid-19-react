@@ -6,7 +6,7 @@ import Layout from '../component/Layout'
 // import Navbar from '../component/NavBar'
 
 
- 
+
 export default function About() {
     return (<Layout>
               <Helmet>
@@ -16,7 +16,7 @@ export default function About() {
 
               </Helmet>
               
-             <div className="content-box">
+            <div className="content-box">
               <div className="row">
                   <div className="col-sm-6">
                 
@@ -120,7 +120,7 @@ export default function About() {
                             <p>A. Yes. The virus can very much spread in hot and humid climate.</p> 
                             
                         </div>
-                       
+                      
                       </div>
                     
                     </div>
