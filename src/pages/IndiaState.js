@@ -53,6 +53,12 @@ export default function Global() {
                     lineDataCountrywiseInfectionRate.datasets = [];
                     lineDataCountrywiseMortalityRate.datasets = [];
                     lineDataCountrywiseFatalityRate.datasets = [];
+
+                    optionPropertiesCountrywise.scales.xAxes[0].scaleLabel.labelString = "Days since 100 Confirmed cases";
+                    optionPropertiesCountrywiseInfectionRate.scales.xAxes[0].scaleLabel.labelString = "Days since 100 Confirmed cases";
+                    optionPropertiesCountrywiseFatalityRate.scales.xAxes[0].scaleLabel.labelString = "Days since 100 Confirmed cases";
+                    optionPropertiesCountrywiseMortalityRate.scales.xAxes[0].scaleLabel.labelString = "Days since 100 Confirmed cases";
+
                     var mortality_rate_max = 0;
 
                     states.forEach((item, index) =>{
