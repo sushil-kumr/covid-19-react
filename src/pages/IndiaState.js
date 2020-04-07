@@ -135,27 +135,26 @@ export default function Global() {
                         <ContentGraph title="State-Wise Infection Rate"
                             values={lineDataCountrywiseInfectionRate} 
                             option={optionPropertiesCountrywiseInfectionRate}
-                            desc={<p>This numbers actually allows comparing how well the different states are doing
-                            in their corona counter measures, regardless of the population size and density.</p>}/>
+                            desc={<><p>Infection rate gives us a measure of how well different states are doing in the fight against
+                             COVID-19 no matter its population and density.</p><h6 class="alert-heading font-weight-bold">
+                             An infection rate of 1.0 means healthcare stability and no new infections.</h6></>}/>
 
                         <ContentGraph title="State-Wise Fatality Rate"
                             values={lineDataCountrywiseFatalityRate} 
                             option={optionPropertiesCountrywiseFatalityRate}
-                            desc={<p>However, confirmed does not mean the same between different states and even
-                                in the same country at different time points of the epidemic. This is due to the
-                                sampling bias induced by the limited amount of corona test kits. With ongoing spread,
-                                we hit limits on test-kit and health-system capacities and the focus shifts to testing
-                                severe cases only. This in turn pushes the fatality rate. <br/><br/>
-                            
-                                A significant increase of the fatality rate indicates that
-                            <li> the confirmed count is being under-estimated.</li>
-                            <li> the health-system capacites being exhausted.  </li></p>}/>
+                            desc={<><p>Due to the sampling bias induced by restricted access to COVID-19 testing in
+                             different states, only looking at the confirmed cases don't give us the true picture.
+                              An increase of the fatality rate indicates that<li> the confirmed count is being
+                               under-estimated.</li><li> the health-system capacites being exhausted. 
+                               </li>This was the case in Italy</p></>}/>
                     
 
                         <ContentGraph title="State-Wise Mortality Rate"
                             values={lineDataCountrywiseMortalityRate} 
                             option={optionPropertiesCountrywiseMortalityRate}
-                            desc={<p>In contrast to the fatality rate, the mortality rate above is shown in dead per million inhabitants. This makes it independant of whether the confirmed count is estimated correctly. In most cases both will be correlated. However, the mortality rate is a better indicator of the influence of the pandepic on a states society and economy - especially when the health-system is exhausted.</p>}
+                            desc={<p>In contrast to the fatality rate, the mortality rate below is shown in dead
+                             per million inhabitants. The mortality rate is not dependent on confirmed or active
+                              number of cases and it gives us the true picture of the damage inflicted by the pandemic.</p>}
                             />
                         </div>
                         </>
