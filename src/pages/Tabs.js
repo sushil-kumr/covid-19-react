@@ -1,5 +1,3 @@
-// import React, { useState } from 'react'
-// import 'react-tabs/style/react-tabs.css';
 
 import { Tab, Tabs, TabList,TabPanel } from 'react-tabs';
 
@@ -13,7 +11,7 @@ import Layout from '../component/Layout'
 
 import React, { Component } from 'react'
 
-export default class GlobalTabs extends Component {
+export default class CovidTabs extends Component {
 
     constructor(props){
         super(props)

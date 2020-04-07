@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import NotFound  from'./pages/NotFound'
-import Tabs  from './pages/GlobalTabs'
+import Tabs  from './pages/Tabs'
 import Help  from './pages/Help'
 import About  from './pages/About'
 import SampleMap from './pages/SampleMap'
