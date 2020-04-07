@@ -117,7 +117,7 @@ export default function Global() {
                             different states to the same origin. We cannot derive anything meaningful if
                             we just plot the confirmed infections at their respective dates due to different 
                             origins of outbreak. So we fixed the origins of all states to Day 0, which in our
-                            case represents the day when each state has surpassed 500 cases.</p>}/>
+                            case represents the day when each state has surpassed 100 cases.</p>}/>
 
                         <ContentGraph title="State-Wise Spread"
                             values={lineDataCountrywise} 

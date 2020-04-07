@@ -9,6 +9,7 @@ import {
 } from "react-google-maps";
 import {Helmet} from 'react-helmet'
 import WorldCard  from '../component/WorldCard'
+import CountryCard  from '../component/CountryCard'
 
 const demoFancyMapStyles = require("../js/mapStyles.json");
 
@@ -50,10 +51,10 @@ if(data.length===0){return (<></>)}else{
                 <div className="row"  style={{display: display, width: "100%",textAlign:"center"}}>
                   <div className="col-lg-12">
                     <GoogleMap 
-                      defaultZoom={3}
-                      defaultCenter={props.center}
-                      defaultOptions={{ 
-                      styles: demoFancyMapStyles, 
+                        defaultZoom={3}
+                        defaultCenter={props.center}
+                        defaultOptions={{ 
+                        styles: demoFancyMapStyles, 
                         mapTypeControl: false,
                         zoomControl: true,
                         streetViewControl: false,
@@ -106,8 +107,8 @@ export default class SampleMap extends Component {
   }
 
   componentDidMount(){
-    // fetch("https://curecovid19.in/readings/readings/world_summary")
-     fetch("http://192.168.0.107:5000/readings/world_summary")
+    fetch("https://curecovid19.in/readings/readings/world_summary")
+     // fetch("http://192.168.0.107:5000/readings/world_summary")
     .then(res => res.json())
 
     .then(
@@ -165,40 +166,38 @@ export default class SampleMap extends Component {
                 </div>
               </div>
             </div>
-         
-  
-          {/* <div style={this.state.selectedData.place===undefined?{display:"none"}:{display:"inline-block"}} > */}
-          {/* <br/> */}
-          {/* <div className="element-wrapper">   
-          <div className="element-box">
+          </div>
+          <div className="col-sm-12 col-12" style={this.state.selectedData.place===undefined?{display:"none"}:{display:"inline-block"}} >
+          <br/>
+          <div className="element-wrapper">   
             <div className="row">
-                  <WorldCard name="Country/State"  
-                      styleName="text-secondary" 
-                      myClass="col-sm-12 col-xxxl-12"
-                      summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.place).toLocaleString("en-IN")}
-                      />
-                  </div>  
+                <CountryCard name="Country/State"  
+                styleName="text-secondary" 
+                myClass="col-sm-6 col-xxxl-6"
+                summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.place).toLocaleString("en-IN")}
+                />
+            </div>  
                   <div className="row">
-                  <WorldCard name="Confirmed"  
+                  <CountryCard name="Confirmed"  
                       styleName="text-danger" 
                       summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.confirmed).toLocaleString("en-IN")}
                       />
 
-                  <WorldCard name="Infected/ Active"  
+                  <CountryCard name="Infected/ Active"  
                   styleName="text-primary" 
                   summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.confirmed-this.state.selectedData.deaths-this.state.selectedData.recovered).toLocaleString("en-IN")}
                   />
                   
-                  <WorldCard name="Recovered"  
+                  <CountryCard name="Recovered"  
                   styleName="text-success" 
                   summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.recovered).toLocaleString("en-IN")}
                  />
                 
-                  <WorldCard name="Deaths"  
+                  <CountryCard name="Deaths"  
                     styleName="text-secondary" 
                     summary={(this.state.selectedData.confirmed===undefined?0:this.state.selectedData.deaths).toLocaleString("en-IN")}
                   />
-                  </div></div> </div> </div> */}
+                  </div></div>
           </div>
             <div className="element-wrapper">
             <div className="element-box-tp">
