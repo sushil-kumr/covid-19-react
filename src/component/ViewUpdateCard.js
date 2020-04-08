@@ -3,7 +3,7 @@ import { element } from 'prop-types'
 
 import React, { Component } from 'react'
 
-export default class UpdateCard extends Component {
+export default class ViewUpdateCard extends Component {
 
     constructor(props){
         super(props)
@@ -13,7 +13,7 @@ export default class UpdateCard extends Component {
         return (
             <div className="post-box">
             <div className="post-content">
-            <a href={this.props.data.link} target="_blank" style={{textDecoration: "none"}}>
+            {/* <a href={this.props.data.link} target="_blank" style={{textDecoration: "none"}}> */}
                 <b style={{fontSize: "12px", color: "#555"}}>{this.props.data.record_time}</b>
                 <h5 className="font-weight-bold">
                 {this.props.data.headline}
@@ -29,9 +29,10 @@ export default class UpdateCard extends Component {
                     </div>
                     )}
                 </div>
-                <div className="post-link"><span>LINK</span><i className="fa fa-chevron-right"></i></div>
+                <div style={{cursor:"pointer"}} className="post-link" onClick={()=>this.props.onDelete(this.props.data.id)}><span>Delete</span><i className="fa fa-trash"></i></div>
+                <div style={{cursor:"pointer"}} className="post-link"  onClick={()=>this.props.onUpdate(this.props.data)}><span>Edit</span><i className="fa fa-edit"></i></div>
                 </div>
-                </a>
+                {/* </a> */}
             </div>
             </div>
     )

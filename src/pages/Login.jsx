@@ -3,13 +3,16 @@ import {Helmet} from 'react-helmet'
 
 import Layout from '../component/Layout'
 
+import {connect} from 'react-redux'
 
-export default class Updates extends Component {
+
+class Login extends Component {
 
   constructor(props){
     super(props)
     this.state={
-      password :""
+      password :"",
+      error:""
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -30,11 +33,21 @@ export default class Updates extends Component {
       .then(data => {
             console.log(data);
             if(data["success"] == true){
+              this.props.changeLogin(true)
               this.props.history.push('/addupdate');
-            }});
+            }else{
+              this.setState({error:"Password Incorrect."});
+            }
+          });
 }
 
   render() {
+
+    if(this.props.login){
+      this.props.history.push('/addupdate')
+      return<></>
+    }
+    else{
 
     return (
         <Layout>
@@ -46,19 +59,20 @@ export default class Updates extends Component {
         </Helmet>
         
         <div className="content-w"><div className="content-i"><div className="content-box">
-          <div class="all-wrapper menu-side with-pattern">
-            <div class="auth-box-w">
-              <div class="logo-w" style={{paddingLeft: "0", paddingBottom: "30px"}}>
+          <div className="all-wrapper menu-side with-pattern">
+            <div className="auth-box-w">
+              <div className="logo-w" style={{paddingLeft: "0", paddingBottom: "30px"}}>
                 <a href="/"><img alt="" src="img/logos2.png" width="250px"/></a>
               </div>
               <form action="" method="POST">
-                <div class="form-group">
-                  <label for="">Code</label>
-                  <input class="form-control" placeholder="Enter your code" type="password" value={this.state.password} onChange={this.handleChange}/>
-                  <div class="pre-icon os-icon os-icon-fingerprint"></div>
+                <div className="form-group">
+                  <label htmlFor="">Code</label>
+                  <input className="form-control" placeholder="Enter your code" type="password" value={this.state.password} onChange={this.handleChange}/>
+                  <div className="pre-icon os-icon os-icon-fingerprint"></div>
                 </div>
-                <div class="buttons-w">
-                  <button class="btn btn-primary" onClick={this.handleSubmit}>Log me in</button>
+                <div>{this.state.error}</div>
+                <div className="buttons-w">
+                  <button className="btn btn-primary" onClick={this.handleSubmit}>Log me in</button>
                 </div>
               </form>
             </div>
@@ -67,5 +81,20 @@ export default class Updates extends Component {
         <br/><br/><br/><br/><br/><br/><br/><br/><br/>
         </Layout>
     )
+    }
 }
 }
+
+const mapStateToProps = (state)=>{
+  return{
+    login:state.login
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    changeLogin:(flag)=>{dispatch({type:"CHANGE_FLAG",payload:flag})}
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
