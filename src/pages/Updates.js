@@ -19,6 +19,8 @@ export default function Updates() {
   
 const [value, setValue] = useState();
 
+
+export default function Updates() {
     return (
       <Async promiseFn={loadUsers} >
                 {({ data, err, isLoading }) => {
@@ -58,7 +60,7 @@ const [value, setValue] = useState();
 
                                     <div className="element-box-tp">
                                       {data.updates.map(element=><UpdateCard data={element} key={element.id}/>)}
-                                      
+
                                       <a className="centered-load-more-link" href="https://t.me/covid19smeindia" target="_blank">
                                           <span style={{textDecoration: "underline"}}>For Updates on Telegram</span>
                                       </a>
