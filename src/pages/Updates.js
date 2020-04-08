@@ -18,8 +18,6 @@ export default class Updates extends Component {
     }
   }
 
-
-
   async componentDidMount(){
   
     const requestOptions = {
@@ -27,9 +25,8 @@ export default class Updates extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ category : this.state.category })
     };
-    const response = await fetch('http://192.168.0.107:5000/updates/get_updates', requestOptions);
+    const response = await fetch('https://curecovid19.in/readings/updates/get_updates', requestOptions);
     const data = await response.json();
-   // console.log(data);
     this.setState({ updateData: data });
   }
 
@@ -43,7 +40,7 @@ export default class Updates extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ category : this.state.category })
   };
-  fetch('http://192.168.0.107:5000/updates/get_updates', requestOptions)
+  fetch('https://curecovid19.in/readings/updates/get_updates', requestOptions)
       .then(response => response.json())
       .then(data => this.setState({ updateData: data }));
 }
@@ -94,8 +91,6 @@ export default class Updates extends Component {
                   </div>
                   </div></div></div>
               </Layout>
-              // )}}
-              // </Async>
     )
   }
 }
