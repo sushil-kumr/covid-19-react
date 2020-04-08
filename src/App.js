@@ -7,7 +7,7 @@ import Help  from './pages/Help'
 import About  from './pages/About'
 import SampleMap from './pages/SampleMap'
 import Updates from './pages/Updates'
-import Login from './pages/login'
+import Login from './pages/Login'
 import AddUpdate from './pages/AddUpdate'
 
 function App() {

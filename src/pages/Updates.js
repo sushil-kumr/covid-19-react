@@ -1,78 +1,102 @@
-import React, {useState} from 'react'
+
+import React, { Component } from 'react'
 import {Helmet} from 'react-helmet'
 
 import Layout from '../component/Layout'
-import ServerDown  from './ServerDown'
 import UpdateCard  from '../component/UpdateCard'
-import Async from 'react-async';
 
-import Loader  from '../component/Loader'
+export default class Updates extends Component {
 
-const loadUsers = () =>
-fetch("https://curecovid19.in/readings/updates/get_updates")
-.then(res => (res.ok ? res : Promise.reject(res)))
-.then(res => res.json())
+  constructor(props){
+    super(props)
+    this.state={
+      updateData:{
+        tags:[],
+        updates:[]
+      },
+      category :""
+    }
+  }
 
 
-export default function Updates() {
 
+  async componentDidMount(){
   
-const [value, setValue] = useState();
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category : this.state.category })
+    };
+    const response = await fetch('http://192.168.0.107:5000/updates/get_updates', requestOptions);
+    const data = await response.json();
+   // console.log(data);
+    this.setState({ updateData: data });
+  }
 
-
-export default function Updates() {
-    return (
-      <Async promiseFn={loadUsers} >
-                {({ data, err, isLoading }) => {
-                    if (isLoading) return (<Loader/>)
-                    if (err) return <ServerDown/>
-                    if (data)
-
-                    return(
-                        <Layout>
-
-                        <Helmet>
-                          <title>Updates | curecovid19</title>
-                          <meta name="description" content="News and Updates about COVID-19"  data-react-helmet="true" />
-                          <meta name="theme-color" content="#008f68"  data-react-helmet="true"/>
-                        </Helmet>
-
-                            <div className="content-w"><div className="content-i"><div className="content-box">
-                              <div className="row">
-                                <div className="col-12 col-xxl-12">
-                                  <div className="element-wrapper compact pt-4">
-                                    <div className="element-actions d-sm-block">
-                                    <form className="form-inline justify-content-sm-end">
-                                      <label className="smaller" htmlFor="">Categories</label>
-                                      <select className="form-control form-control-sm form-control-faded" onChange={(e) =>{ setValue(e.target.value)}}>
-                                        <option value="ALL">
-                                          ALL
-                                        </option>
-                                        {data.tags.map((element,i)=><option key={i} value={element}>
-                                          {element} 
-                                        </option>)}
-                                      </select>
-                                    </form>
-                                    </div>
-                                    <h6 className="element-header">
-                                      ALL
-                                    </h6>
-
-                                    <div className="element-box-tp">
-                                      {data.updates.map(element=><UpdateCard data={element} key={element.id}/>)}
-
-                                      <a className="centered-load-more-link" href="https://t.me/covid19smeindia" target="_blank">
-                                          <span style={{textDecoration: "underline"}}>For Updates on Telegram</span>
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-
-                              
-                            </div>
-                            </div></div></div>
-                        </Layout>
-                        )}}
-                        </Async>
-    )
+  handleSubmit=(e) =>{
+    e.preventDefault();
+    this.setState({
+      category:(e.target.value==="ALL"?"":e.target.value)
+    })
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category : this.state.category })
+  };
+  fetch('http://192.168.0.107:5000/updates/get_updates', requestOptions)
+      .then(response => response.json())
+      .then(data => this.setState({ updateData: data }));
 }
+
+  render() {
+
+          return(
+              <Layout>
+
+              <Helmet>
+                <title>Updates | curecovid19</title>
+                <meta name="description" content="News and Updates about COVID-19"  data-react-helmet="true" />
+                <meta name="theme-color" content="#008f68"  data-react-helmet="true"/>
+              </Helmet>
+
+                  <div className="content-w"><div className="content-i"><div className="content-box">
+                    <div className="row">
+                      <div className="col-12 col-xxl-12">
+                        <div className="element-wrapper compact pt-4">
+                          <div className="element-actions d-sm-block">
+                          <form className="form-inline justify-content-sm-end">
+                            <label className="smaller" htmlFor="">Categories</label>
+                            <select className="form-control form-control-sm form-control-faded" onChange={this.handleSubmit}>
+                              <option value="ALL">
+                                ALL
+                              </option>
+                              {this.state.updateData.tags.map((element,i)=><option key={i} value={element}>
+                                {element} 
+                              </option>)}
+                            </select>
+                          </form>
+                          </div>
+                          <h6 className="element-header">
+                            {this.state.category===""?"ALL":this.state.category}
+                          </h6>
+
+                          <div className="element-box-tp">
+                            {this.state.updateData.updates.map(element=><UpdateCard data={element} key={element.id}/>)}
+
+                            <a className="centered-load-more-link" href="https://t.me/covid19smeindia" target="_blank">
+                                <span style={{textDecoration: "underline"}}>For Updates on Telegram</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                    
+                  </div>
+                  </div></div></div>
+              </Layout>
+              // )}}
+              // </Async>
+    )
+  }
+}
+
