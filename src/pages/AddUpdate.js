@@ -33,7 +33,7 @@ export default class Updates extends Component {
   fetch('https://curecovid19.in/readings/updates/add_update', requestOptions)
       .then(response => response.json())
       .then(data => {
-        this.props.history.push('/addupdates');
+        this.props.history.push('/updates');
   })};
 
   render() {

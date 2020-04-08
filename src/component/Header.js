@@ -53,12 +53,12 @@ export default function Header() {
            <NavLink to="/">Home</NavLink >             
            <NavLink to="/help">Helpline No.s</NavLink >
            <NavLink to="/about">About</NavLink >               
-           <NavLink to="/updates">Updates</NavLink >               
+           <NavLink to="/updates">News & Updates</NavLink >               
          </nav>
         </CSSTransition>
        </div>
 
-    <div className="menu-w  color-scheme-light fixed-top color-style-default menu-position-top menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-bright menu-activated-on-hover menu-has-selected-link">
+    <div className="menu-w color-scheme-light fixed-top color-style-default menu-position-top menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-bright menu-activated-on-hover menu-has-selected-link">
        <div className="logo-w">
            <div className="logo-w menu-size">
                 <Link  to="/" className="logo" onClick={() => window.location="/"}>
@@ -72,7 +72,7 @@ export default function Header() {
        
         <ul>
               <li>
-                 <NavLink exact to="/" activeStyle={style} >Home</NavLink >
+                 <NavLink exact to="/" activeStyle={style}>Home</NavLink >
               </li>
               <li>
                  <NavLink exact to="/help" activeStyle={style}>Helpline No.s</NavLink >
@@ -81,7 +81,7 @@ export default function Header() {
                  <NavLink exact to="/about" activeStyle={style}>About</NavLink >
               </li>
               <li>
-                 <NavLink exact to="/updates" activeStyle={style}>Updates</NavLink >
+                 <NavLink exact to="/updates" activeStyle={style}>News & Updates</NavLink >
               </li>
             </ul> 
         </div>
