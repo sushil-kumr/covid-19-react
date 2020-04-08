@@ -3,13 +3,11 @@ import {
   withGoogleMap,
   GoogleMap,
   withScriptjs,
-  Marker,
   Circle,
   InfoWindow
 } from "react-google-maps";
 import {Helmet} from 'react-helmet'
 import WorldCard  from '../component/WorldCard'
-import CountryCard  from '../component/CountryCard'
 
 const demoFancyMapStyles = require("../js/mapStyles.json");
 
@@ -108,7 +106,6 @@ export default class SampleMap extends Component {
 
   componentDidMount(){
     fetch("https://curecovid19.in/readings/readings/world_summary")
-     // fetch("http://192.168.0.107:5000/readings/world_summary")
     .then(res => res.json())
 
     .then(
@@ -126,10 +123,6 @@ export default class SampleMap extends Component {
   }
 
   render(){
-
-// if(this.state.isLoading){
-//     return<></>
-// }else{
 
   return (
     <>
