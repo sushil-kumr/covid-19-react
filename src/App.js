@@ -7,6 +7,8 @@ import Help  from './pages/Help'
 import About  from './pages/About'
 import SampleMap from './pages/SampleMap'
 import Updates from './pages/Updates'
+import Login from './pages/login'
+import AddUpdate from './pages/AddUpdate'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/help" exact  component={Help}/>
           <Route path="/about" exact  component={About}/>
           <Route path="/updates" exact  component={Updates}/>
+          <Route path="/login" exact  component={Login}/>
+          <Route path="/addupdate" exact  component={AddUpdate}/>
           <Route path="*" component={NotFound}/>
       </Switch>
       {/* </Suspense> */}

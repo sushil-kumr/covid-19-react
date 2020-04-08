@@ -3,7 +3,7 @@ import {Helmet} from 'react-helmet'
 
 import Layout from '../component/Layout'
 
-export default function Help() {
+export default function Updates() {
     return (
         <Layout>
 
