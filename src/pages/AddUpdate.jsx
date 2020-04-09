@@ -63,7 +63,8 @@ class AddUpdates extends Component {
               } 
               newUpdates.push(newItem);
               this.setState({
-                success:"Data Added",
+                success:data.message,
+                error:"",
                 headline :"",
                 desc: "",
                 tags: "",
@@ -79,7 +80,8 @@ class AddUpdates extends Component {
             newUpdates[index].tags = this.state.tags
             newUpdates[index].body = this.state.desc
             this.setState({
-              success:"Data Updated",
+              success:data.message,
+              error:"",
               headline :"",
               desc: "",
               tags: "",
@@ -90,7 +92,7 @@ class AddUpdates extends Component {
           }
         }
         else
-          this.setState({error:"Error"})
+          this.setState({error:data.message,success:""})
         // this.props.history.push('/addupdates');
   })};
 
@@ -114,9 +116,12 @@ class AddUpdates extends Component {
       .then(response => response.json())
       .then(data => {
         if(data.success){
-          this.setState(prevState => ({updates:prevState.updates.filter(item => item.id !== id)}))}
+          this.setState(prevState => ({updates:prevState.updates.filter(item => item.id !== id),
+                                        error:"",
+                                        success:data.message}))}
         else
-          this.setState({error:"Error"})
+          this.setState({error:data.message,
+                          success:""})
       })
 
   }
@@ -190,8 +195,8 @@ class AddUpdates extends Component {
                   <button className="btn btn-primary"  onClick={this.handleSubmit}> Submit</button>
                   <button className="btn btn-primary"  onClick={this.handleclear}> Clear</button>
                 </div>
-                <div>{this.state.error}</div>
-                <div>{this.state.success}</div>
+                <div className="alert alert-danger" style={{display:(this.state.error===""?"none":"inline-block")}}>{this.state.error}</div>
+                <div className="alert alert-success" style={{display:(this.state.success===""?"none":"inline-block")}}>{this.state.success}</div>
               {/* </form> */}
             </div>
           </div>

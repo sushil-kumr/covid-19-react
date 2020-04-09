@@ -31,12 +31,12 @@ class Login extends Component {
   fetch('https://curecovid19.in/readings/updates/login', requestOptions)
       .then(response => response.json())
       .then(data => {
-            console.log(data);
-            if(data["success"] == true){
+            //console.log(data);
+            if(data.success === true){
               this.props.changeLogin(true)
               this.props.history.push('/addupdate');
             }else{
-              this.setState({error:"Password Incorrect."});
+              this.setState({error:data.message});
             }
           });
 }
@@ -70,7 +70,7 @@ class Login extends Component {
                   <input className="form-control" placeholder="Enter your code" type="password" value={this.state.password} onChange={this.handleChange}/>
                   <div className="pre-icon os-icon os-icon-fingerprint"></div>
                 </div>
-                <div>{this.state.error}</div>
+                <div className="alert alert-danger" style={{display:(this.state.error===""?"none":"inline-block")}}>{this.state.error}</div>
                 <div className="buttons-w">
                   <button className="btn btn-primary" onClick={this.handleSubmit}>Log me in</button>
                 </div>
