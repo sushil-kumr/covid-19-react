@@ -32,18 +32,20 @@ export default class Updates extends Component {
 
   handleSubmit=(e) =>{
     e.preventDefault();
+    console.log("value1:", e.target.value);
+    var a = e.target.value;
     this.setState({
-      category:(e.target.value==="ALL"?"":e.target.value)
-    })
+      category:(a==="ALL"?"":a)
+    }, () => {console.log("value2:", this.state.category);
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ category : this.state.category })
-  };
-  fetch('https://curecovid19.in/readings/updates/get_updates', requestOptions)
+    };
+    fetch('https://curecovid19.in/readings/updates/get_updates', requestOptions)
       .then(response => response.json())
-      .then(data => this.setState({ updateData: data }));
-}
+      .then(data => this.setState({ updateData: data }));});
+  }
 
   render() {
 
@@ -56,7 +58,7 @@ export default class Updates extends Component {
                 <meta name="theme-color" content="#008f68"  data-react-helmet="true"/>
               </Helmet>
 
-                  <div className="content-w"><div className="content-i"><div className="content-box">
+                  <div className="content-w"><div className="content-i"><div className="content-box pt-0">
                     <div className="row">
                       <div className="col-12 col-xxl-12">
                         <div className="element-wrapper compact pt-4">
