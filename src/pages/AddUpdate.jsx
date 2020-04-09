@@ -107,32 +107,42 @@ class AddUpdates extends Component {
   }
 
   handleDelete=(id)=>{
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id : id })
-    };
-    fetch('https://curecovid19.in/readings/updates/delete_update', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        if(data.success){
-          this.setState(prevState => ({updates:prevState.updates.filter(item => item.id !== id),
-                                        error:"",
-                                        success:data.message}))}
-        else
-          this.setState({error:data.message,
-                          success:""})
-      })
+    var r = window.confirm("Are you sure you want to delete Update?");
+    if (r == true) {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id : id })
+      };
+      fetch('https://curecovid19.in/readings/updates/delete_update', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          
+          window.scrollTo(0, 0);
+          if(data.success){
+            this.setState(prevState => ({updates:prevState.updates.filter(item => item.id !== id),
+                                          error:"",
+                                          success:data.message}))}
+          else
+            this.setState({error:data.message,
+                            success:""})
+        })
+    } 
+
+    
 
   }
 
   handleUpdate=(values)=>{
+    window.scrollTo(0, 0);
     this.setState({
       headline :values.headline,
       desc: values.body,
       tags: values.tags,
       link: values.link,
-      id:values.id
+      id:values.id,
+      error:"",
+      success:""
     })
   }
 
@@ -159,7 +169,7 @@ class AddUpdates extends Component {
             <h6 className="element-header">
               Details for Post
             </h6>
-            <div className="element-box">
+            <div className="element-box" id="top">
               {/* <form> */}
                 <div className="form-desc">
                   Please fill all the details and re-check before posting. 
@@ -190,14 +200,14 @@ class AddUpdates extends Component {
                     <input className="form-control" placeholder="Link to the article" type="text" name="link" value={this.state.link} onChange={(e)=> this.handleChange(e)}/>
                   </div>
                 </div>
+                <div className="alert alert-danger" style={{display:(this.state.error===""?"none":"inline-block")}}>{this.state.error}</div>
+                <div className="alert alert-success" style={{display:(this.state.success===""?"none":"inline-block")}}>{this.state.success}</div>
+              
           
                 <div className="form-buttons-w">
                   <button className="btn btn-primary"  onClick={this.handleSubmit}> Submit</button>
                   <button className="btn btn-primary"  onClick={this.handleclear}> Clear</button>
-                </div>
-                <div className="alert alert-danger" style={{display:(this.state.error===""?"none":"inline-block")}}>{this.state.error}</div>
-                <div className="alert alert-success" style={{display:(this.state.success===""?"none":"inline-block")}}>{this.state.success}</div>
-              {/* </form> */}
+                </div>{/* </form> */}
             </div>
           </div>
         </div>
