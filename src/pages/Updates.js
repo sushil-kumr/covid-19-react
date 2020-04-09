@@ -19,7 +19,7 @@ export default class Updates extends Component {
   }
 
   async componentDidMount(){
-  
+
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

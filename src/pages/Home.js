@@ -1,4 +1,4 @@
-import React  from 'react'
+import React, {useState, Component,Fragment} from "react";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -9,6 +9,16 @@ import {mapData,piedata,lineDataTotal,lineDataActive,lineDataDeaths
     ,optionProperties,optionPropertiesData,optionPropertiesDataActive,optionPropertiesDataRecovered
     ,optionPropertiesDeaths,optionPropertiesActive,optionPropertiesRecovered,optionPropertiesTotal
     ,mapOptions,barChartData,axis ,optionBar} from "../data/data";
+
+import {
+  withGoogleMap,
+  GoogleMap,
+  withScriptjs,
+  Marker,
+  Circle,
+  InfoWindow
+} from "react-google-maps";
+import HeatmapLayer from 'react-google-maps/lib/components/visualization/HeatmapLayer';
 
 import Async from 'react-async';
 
@@ -28,8 +38,48 @@ highchartsMap(Highcharts);
 // const Layout = lazy(() => import('../component/Layout'));
   const loadUsers = () =>
     fetch("https://curecovid19.in/readings/readings/get_summary")
+    // fetch("http://localhost:5000/readings/get_summary")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
+
+const demoFancyMapStyles = require("../js/mapStyles.json");
+
+const Map = withScriptjs(withGoogleMap(props => {
+
+const google=window.google;
+
+const filteredData = [];
+for (var i=0; i < props.places.length; i++) {
+  const point = props.places[i];
+  console.log(point);
+  const htmapPoint = {
+    location: new google.maps.LatLng(
+      point.lat,
+      point.lon
+    ), 
+    weight: point.total
+  };
+  filteredData.push(htmapPoint);
+}
+  return (<>
+        <GoogleMap 
+          defaultZoom={5}
+          defaultCenter={props.center}
+          defaultOptions={{ 
+            styles: demoFancyMapStyles, 
+            mapTypeControl: false,
+            zoomControl: true,
+            streetViewControl: false,
+            draggingCursor: 'move',
+            maxZoom: 6, // for max zoom
+            minZoom: 5, // for min zoom 
+            }}
+        >
+        <HeatmapLayer data={filteredData} options={{radius: 30, opacity: 0.5}}/>
+        </GoogleMap> 
+  </>);
+}))
+
 
   
   export default function Home() {
@@ -293,7 +343,23 @@ highchartsMap(Highcharts);
                     </div>
                     <div className="col-sm-1">
                     </div>
-                    
+                    <div className="col-sm-6">
+                        <div className="element-wrapper">
+                            <h6 className="element-header">
+                              Heatmap
+                            </h6>
+                            <div className="element-box-tp">
+                                <Map
+                                    center={{ lat: 20.5937, lng: 78.9629 }}
+                                    places={data.statewise}
+                                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnt9meLwKfGzZtUZuyGB1iPp346rph9YA&libraries=visualization"
+                                    loadingElement={<div style={{ height: `100%` }} />}
+                                    containerElement={<div style={{ height: `800px` }} />}
+                                    mapElement={<div style={{ height: `100%` }} />}
+                                  />
+                            </div>
+                        </div>
+                    </div>
 
                     </div>
                     </>
