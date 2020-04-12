@@ -10,6 +10,7 @@ import Updates from './pages/Updates'
 import Login from './pages/Login'
 import AddUpdate from './pages/AddUpdate'
 
+
 function App() {
   return (
     <Router>

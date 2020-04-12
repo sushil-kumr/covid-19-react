@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import Layout from '../component/Layout'
 import ViewUpdateCard  from '../component/ViewUpdateCard'
 
-class AddUpdates extends Component {
+class AddUpdates extends Component { 
 
   constructor(props){
     super(props)
@@ -147,11 +147,11 @@ class AddUpdates extends Component {
 
   render() {
 
-    // if(!this.props.login){
-    //   this.props.history.push('/login')
-    //   return<></>
-    // }
-    // else{
+    if(!this.props.login){
+      this.props.history.push('/login');
+      return <div></div>
+    }
+    else{
 
     return (
         <Layout>
@@ -220,7 +220,7 @@ class AddUpdates extends Component {
         </Layout>
     )}
   }
-// }
+}
 
 const mapStateToProps = (state)=>{
   return{
