@@ -179,7 +179,7 @@ highchartsMap(Highcharts);
                                                 values={simpleTotal} option={optionPropertiesTotal}
                                                 />
                                             <Card name="ACTIVE" styleName="text-primary" 
-                                                data={active} diff={data.active_diff}
+                                                data={active} diff={0}
                                                 values={simpleActive} option={optionPropertiesActive}
                                                 />
                                             <Card name="RECOVERED" styleName="text-success" 
@@ -260,7 +260,7 @@ highchartsMap(Highcharts);
                             <table className="table table-lightborder">
                               <thead>
                                 <tr>
-                                  <th className="text-left col-3">
+                                  <th className="text-left">
                                     State
                                   </th>
                                   <th>

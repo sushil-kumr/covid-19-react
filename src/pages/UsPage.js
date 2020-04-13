@@ -5,10 +5,11 @@ import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 import usAll from "../data/usa";
 
-import {mapOptions} from "../data/data";
+import {mapOptions, lineDataTotal, optionProperties} from "../data/data";
 
-import Card  from '../component/USACard'
+import USACard  from '../component/USACard'
 import StateWiseData  from '../component/StateWiseData'
+import SimpleGraph from "../component/SimpleGraph"
 
 import {Helmet} from 'react-helmet'
 
@@ -45,42 +46,64 @@ export default function UsPage() {
         }
       }, [fetched]);
 
-      const getAllData = async () => {
+    useEffect(() => {
+        lineDataTotal.datasets[0].data= daily.map((val) => val.confirmed);
+        lineDataTotal.datasets[0].data.reverse();
+        lineDataTotal.datasets[0].data = lineDataTotal.datasets[0].data.slice(-30);
+    }, [daily]);
+
+    useEffect(() => {
+        setMax(Math.max(dailyConfirm));
+        lineDataTotal.datasets[1].data = dailyConfirm.slice(-30);
+    }, [dailyConfirm]);
+
+    useEffect(() => {
+        setMax(Math.max(dailyConfirm));
+        lineDataTotal.datasets[2].data = dailyRecovered.slice(-30);
+    }, [dailyRecovered]);
+
+    useEffect(() => {
+        setMax(Math.max(dailyConfirm));
+        lineDataTotal.datasets[3].data = dailyDeaths.slice(-30);
+    }, [dailyDeaths]);
+
+    useEffect(() => {
+        lineDataTotal.labels = dailyDates.slice(-30);
+    }, [dailyDates])
+
+
+    const getAllData = async () => {
         var promises = urls.map(url => fetch(url).then(res => res.json()));
         await Promise.all(promises).then(results => {
             setCurrent(results[0].us_current)
             setDaily(results[1].us_daily)
             setCurrentState(results[2].us_statewise_current)
             setDailyState(results[3].us_statewise_daily)
-            const sliceValue= -40;
             
-
+            const sliceValue= -40;
             setDailyActive((results[1].us_daily).map(a => a.delta_active).reverse().slice(sliceValue));
-            setDailyConfirm((results[1].us_daily).map(a => a.delta_confirmed).reverse().slice(sliceValue), setMax(Math.max(dailyConfirm)));
+            setDailyConfirm((results[1].us_daily).map(a => a.delta_confirmed).reverse().slice(sliceValue));
             setDailyRecovered((results[1].us_daily).map(a => a.delta_recovered).reverse().slice(sliceValue));
             setDailyDeaths((results[1].us_daily).map(a => a.delta_deaths).reverse().slice(sliceValue));
-            setDailyDates((results[1].us_daily).map(a => a.date).reverse());
+            setDailyDates((results[1].us_daily).map(a => a.date).reverse().slice(sliceValue));
 
             const map = cloneDeep(mapOptions);
             map.series[0].mapData = usAll;
-
             const usaData = [];
 
             results[2].us_statewise_current.forEach(element => {
-                usaData.push({key:"us-"+(element.state).toLowerCase(),
-                                        value:element.confirmed,
-                                        active:element.active,
-                                        recovered:element.recovered,
-                                        deaths:element.deaths})
+                usaData.push({name:(element.state),
+                            value:element.confirmed,
+                            active:element.active,
+                            recovered:element.recovered,
+                            deaths:element.deaths})
             });
-
-            // console.log(usaData);
-
+            console.log(usaData);
             map.series[0].data = usaData;
-            map.series[0].joinBy =  ['hc-key', 'key']
+            map.series[0].joinBy =  ['name', 'name']
             map.tooltip =  {
                 formatter: function(){
-                    var s = '<b>' + (this.key).toUpperCase() + '</b><br/>';
+                    var s = '<p>' + (this.point.name).toUpperCase() + '</p><br/>';
                     s += 'CONFIRMED : <b>' + this.point.value + '</b><br/>';
                     s += 'ACTIVE : <b>' + this.point.active + '</b><br/>';
                     s += 'RECOVERED : <b>' + this.point.recovered + '</b><br/>';
@@ -88,15 +111,12 @@ export default function UsPage() {
                     return s;
                 },
             }
-
-            setMyMap(map);
-    
+            setMyMap(map);            
+            console.log(lineDataTotal);
             setFetched(true);
 
         });
     }
-
-    
                     return ( 
                         <>
                         {fetched && (  
@@ -107,8 +127,8 @@ export default function UsPage() {
                             <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
                         </Helmet>
                         
-                        
-                        <div className="row"><div className="col-sm-6"><div className="element-wrapper pb-1">
+                        <div className="row"><div className="col-sm-6">
+                        <div className="element-wrapper pb-1">
                             <h6 className="pb-4">
                             <span className="font-weight-bold"> Dashboard for COVID-19 USA <br/>
                               {/* <span className="font-weight-bold text-danger" style={{fontSize: "20px"}}>65 </span> <span className="text-danger" style={{fontSize: "14px"}}>days since first Outbreak</span><br/> */}
@@ -121,7 +141,7 @@ export default function UsPage() {
                                 <div className="col-sm-12 col-xxl-12">
                                     <div className="tablos">
                                     <div className="row mb-xl-4 mb-xxl-3">
-                                        <Card name="CONFIRMED"
+                                        <USACard name="CONFIRMED"
                                             styleName="text-danger" 
                                             data={current.confirmed}
                                             lastData={daily[0].confirmed}
@@ -130,41 +150,50 @@ export default function UsPage() {
                                             color={"red"}
                                             max={max}
                                             />
-                                        <Card name="ACTIVE"
+                                        <USACard name="ACTIVE"
                                             styleName="text-primary" 
                                             data={current.active}
                                             lastData={daily[0].active}
                                             daily={dailyActive}
                                             dates={dailyDates}
-                                            color={"blue"}
+                                            color={"#0275d8"}
                                             max={max}
                                             />
-                                        <Card name="RECOVERED"
+                                        <USACard name="RECOVERED"
                                             styleName="text-success" 
                                             data={current.recovered}
                                             lastData={daily[0].recovered}
                                             daily={dailyRecovered}
                                             dates={dailyDates}
-                                            color={"green"}
+                                            color={"#5cb85c"}
                                             max={max}
                                             />
-                                        <Card name="DECEASED"
+                                        <USACard name="DECEASED"
                                             styleName="text-secondary" 
                                             data={current.deaths}
                                             lastData={daily[0].deaths}
                                             daily={dailyDeaths}
                                             dates={dailyDates}
-                                            color={"black"}
+                                            color={"#292b2c"}
                                             max={max}
                                             />
                                     </div>
                                 </div>
                                 </div>
-                                
-                    </div> </div> </div></div>
-
+                                </div>
+                            </div>
+                            </div>
                         </div>
-                        <div className="col-sm-4">
+
+                        {/* Graphs */}
+                        <div className="element-wrapper pb-2">
+                            <div className="element-box">
+                              <SimpleGraph values={lineDataTotal} option={optionProperties} />
+                            </div>
+                        </div>
+                        </div>
+
+                        <div className="col-sm-6">
                             <div className="element-wrapper">
                                 <h6 className="element-header">
                                     Province Map View
@@ -183,45 +212,46 @@ export default function UsPage() {
                         
 
                         <div className="col-sm-5">
-                        <div className="element-wrapper">
-                        <h6 className="element-header">
-                            Province Breakup
-                        </h6>
-                        <div className="element-box-tp">
-                        <div className="table-responsive text-right">
-                            <table className="table table-lightborder">
-                            <thead>
-                                <tr>
-                                <th className="text-left">
-                                    State
-                                </th>
-                                <th>
-                                    CNFMD
-                                </th>    
-                                <th>
-                                    ACTV
-                                </th>
-                                <th>
-                                    RCVD
-                                </th>
-                                <th>
-                                    DCSD
-                                </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {sortBy(currentState,"confirmed",'desc').map((state,i)=><StateWiseData key={i} data={state}/>)}
-                            </tbody>
-                            </table>
+                            <div className="element-wrapper">
+                                <h6 className="element-header">
+                                    Province Breakup
+                                </h6>
+                                <div className="element-box-tp">
+                                <div className="table-responsive text-right">
+                                    <table className="table table-lightborder">
+                                    <thead>
+                                        <tr>
+                                        <th className="text-left">
+                                            State
+                                        </th>
+                                        <th>
+                                            CNFMD
+                                        </th>    
+                                        <th>
+                                            ACTV
+                                        </th>
+                                        <th>
+                                            RCVD
+                                        </th>
+                                        <th>
+                                            DCSD
+                                        </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {sortBy(currentState,"confirmed",'desc').map((state,i)=><StateWiseData key={i} data={state}/>)}
+                                    </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                            </div>
                         </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div className="col-sm-1">
-                    </div>
-                    
 
+                        <div className="col-sm-1">
+
+                        </div>
                     </div>
+
                     </React.Fragment>)}
                     </>
         )

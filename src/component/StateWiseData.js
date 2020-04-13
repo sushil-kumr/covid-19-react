@@ -26,7 +26,7 @@ export default function StateWiseData(props) {
                     <span className="text-danger font-weight-bold" style={{fontSize: "10px"}}>{props.data.delta_total === 0?``: `(+${props.data.delta_total})`} </span><span className="font-weight-bold" style={{fontSize: "14px"}}>{confirm}</span>
                     </td>
                     <td className="wrap">
-                    <span className="text-primary font-weight-bold" style={{fontSize: "10px"}}>{props.data.delta_active === 0?``: `(+${props.data.delta_active})`} </span><span className="font-weight-bold" style={{fontSize: "14px"}}>{active}</span>
+                    <span className="text-primary font-weight-bold" style={{fontSize: "10px"}}></span><span className="font-weight-bold" style={{fontSize: "14px"}}>{active}</span>
                     </td>
                     <td className="wrap">
                     <span className="text-success font-weight-bold" style={{fontSize: "10px"}}>{props.data.delta_recovered === 0?``: `(+${props.data.delta_recovered})`} </span><span className="font-weight-bold" style={{fontSize: "14px"}}>{props.data.recovered}</span>

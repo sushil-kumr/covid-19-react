@@ -13,7 +13,7 @@ export default function Card(props) {
                     {props.data}
                 </div>
                 <div className={`trending ${props.styleName} trending-down-basic`}>
-                    <b>+{props.diff} </b>
+                    <b>{props.diff? ('+' + props.diff):""}</b>
                 </div>
                 <div className="el-chart-w">
                     <Line data={props.values} options={props.option}/>

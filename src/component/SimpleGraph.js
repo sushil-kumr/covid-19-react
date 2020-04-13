@@ -9,7 +9,7 @@ export default function SimpleGraph(props) {
                 {props.data}
             </div>
             <div className="el-chart-w">
-                <Bar height="140%" width="190%" data={props.values} options={props.option}/>
+                <Bar height={140} width={190} data={props.values} options={props.option}/>
             </div>
         </div>
     )

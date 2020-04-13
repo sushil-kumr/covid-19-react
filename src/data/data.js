@@ -917,12 +917,11 @@ export const mapOptions = {
         maxColor: '#ff0000'  ,
         tickColor:"#ffffff",
         stops: [
-            [0, '#ffffff'],
-            [0.25, '#ffbaba'],
-            [0.375, '#ff7b7b'],
-            [0.5, '#ff5252'],
-            [0.75, '#ff0000'],
-            [1, '#a70000']
+            [0, '#FFEBEE'],
+            [0.25, '#E57373'],
+            [0.5, '#EF5350'],
+            [0.75, '#F44336'],
+            [1, '#E53935']
         ]
       },
     credits: {

@@ -26,7 +26,7 @@ export default function USACard(props) {
 
     
     return (
-        <div className="col-sm-3 col-4">
+        <div className="col-sm-3 col-6">
             <a className="element-box el-tablo centered trend-in-corner padded bold-label">
                 <div className="label" style={{fontWeight:"500", fontSize: "12px"}}>
                 {props.name}
