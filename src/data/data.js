@@ -955,10 +955,42 @@ export const mapOptions = {
         borderWidth: 1,
         hoverBackgroundColor: '#ff0000',
         hoverBorderColor: '#ff0000',
-        data: []
+        data: [],
+        spanGaps: false,
+        lineTension: 0.4,
       }
     ]
   }
+
+  export const optionUSA = {
+    legend: {
+      display: false
+    },
+    scales: {
+      xAxes: [{
+        display: false
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          min: 0
+        }
+      }]
+    }
+  }
+
+  export const lineDataUSA = {
+    labels: [],
+    datasets: [{
+      fill: false,
+      lineTension: 0.4,
+      borderColor: "#e65252",
+      pointRadius: 0,
+      data:[],
+      pointHitRadius: 0,
+      spanGaps: false
+    }]
+  };
 
 export default function data() {
     return (
