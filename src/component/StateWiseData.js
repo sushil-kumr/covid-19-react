@@ -2,8 +2,21 @@ import React from 'react'
 
 export default function StateWiseData(props) {
 
-    var confirm = props.data.total;
-    var active = confirm - props.data.deaths - props.data.recovered;
+    let confirm,active,recovered,deaths;
+
+    if(props.data.total!==undefined){
+         confirm = props.data.total;
+         active = confirm - props.data.deaths - props.data.recovered;
+        }else if(props.data.active!==undefined){
+            confirm = props.data.confirmed;
+            recovered = props.data.recovered;
+            props.data.delta_total=props.data.delta_active=props.data.delta_recovered=props.data.delta_deaths=0;
+        }
+        
+        deaths = props.data.deaths;
+        active = props.data.active;
+
+    // console.log(props.data)
   
         return(<tr style={confirm ? {} : { display: 'none' }}>
                     <td className="text-left">

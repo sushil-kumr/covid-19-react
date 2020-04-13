@@ -97,7 +97,7 @@ highchartsMap(Highcharts);
                         cumulative_confirmed.push(element.count);
                     });
 
-                    lineDataTotal.labels = lineDataDeaths.labels= lineDataRecovered.labels = lineDataActive.labels = daysValue1.slice(-30);
+                    lineDataTotal.labels = lineDataDeaths.labels = lineDataRecovered.labels = lineDataActive.labels = daysValue1.slice(-30);
                     lineDataTotal.datasets[1].data = totalValue.slice(-30);
                     // lineDataTotal.datasets[2].data = totalValue1.slice(-30);
                     lineDataTotal.datasets[2].data = recoveredValue.slice(-30);
