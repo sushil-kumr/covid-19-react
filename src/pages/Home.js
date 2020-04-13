@@ -152,80 +152,73 @@ highchartsMap(Highcharts);
                           </Helmet>
                         
                         {/* first one start */} 
-                        <div className="row"><div className="col-sm-5"><div className="element-wrapper pb-1">
-                            <h6 className="pb-4">
-                              <span className="font-weight-bold"> Dashboard for COVID-19 India <br/>
-                              <span className="font-weight-bold text-danger" style={{fontSize: "20px"}}> {num_days} </span> <span className="text-danger" style={{fontSize: "14px"}}>days since first Outbreak</span><br/>
-                              </span>
-                              <span className="small text-success"> Last Updated: {data.summary.last_updated_time}</span>
-                            </h6>
-                            <div className="element-content">
-                            <div className="tablo-with-chart">
+                        <div className="row">
+                            <div className="col-sm-5">
+                                <h6 className="pb-2">
+                                    <span className="font-weight-bold"> 
+                                        Dashboard for COVID-19 India 
+                                        <br/>
+                                        <span className="font-weight-bold text-danger" style={{fontSize: "16px"}}> 
+                                            {num_days} 
+                                        </span>
+                                        <span className="text-danger" style={{fontSize: "12px"}}> days since first outbreak
+                                        </span>
+                                        <br/>
+                                    </span>
+                                    <span className="text-success" style={{fontSize: "12px"}}>
+                                        Last Updated: {data.summary.last_updated_time}
+                                    </span>
+                                </h6>
+                                
+                                {/* Dashboard Tiles */} 
                                 <div className="row">
-                                <div className="col-sm-12 col-xxl-12">
-                                    <div className="tablos">
-                                    <div className="row mb-xl-4 mb-xxl-3">
+                                    <div className="col-sm-12 col-xxl-12">
+                                        <div className="row mb-xl-4 mb-xxl-3">
+                                            <Card name="CONFIRMED" styleName="text-danger" 
+                                                data={data.summary.total} diff={data.total_diff}
+                                                values={simpleTotal} option={optionPropertiesTotal}
+                                                />
+                                            <Card name="ACTIVE" styleName="text-primary" 
+                                                data={active} diff={data.active_diff}
+                                                values={simpleActive} option={optionPropertiesActive}
+                                                />
+                                            <Card name="RECOVERED" styleName="text-success" 
+                                                data={data.summary.recovered} diff={data.recovered_diff}
+                                                values={simpleRecovered} option={optionPropertiesRecovered}
+                                                />
+                                            <Card name="DECEASED" styleName="text-secondary" 
+                                                data={data.summary.deaths} diff={data.deaths_diff}
+                                                values={simpleDeaths} option={optionPropertiesDeaths}
+                                                />
+                                        </div>
+                                    </div>
+                                </div>
 
-                                        <Card name="CONFIRMED"
-                                            styleName="text-danger" 
-                                            data={data.summary.total}
-                                            diff={data.total_diff}
-                                            values={simpleTotal}
-                                            option={optionPropertiesTotal}
-                                            />
-                                        <Card name="ACTIVE"
-                                            styleName="text-primary" 
-                                            data={active}
-                                            diff={data.active_diff}
-                                            values={simpleActive}
-                                            option={optionPropertiesActive}
-                                            />
-                                        <Card name="RECOVERED"
-                                            styleName="text-success" 
-                                            data={data.summary.recovered}
-                                            diff={data.recovered_diff}
-                                            values={simpleRecovered}
-                                            option={optionPropertiesRecovered}
-                                            />
-                                        <Card name="DECEASED"
-                                            styleName="text-secondary" 
-                                            data={data.summary.deaths}
-                                            diff={data.deaths_diff}
-                                            values={simpleDeaths}
-                                            option={optionPropertiesDeaths}
+                                {/* Graphs */}
+                                <div className="element-wrapper pb-2">
+                                    <div className="element-box">
+                                      <SimpleGraph values={lineDataTotal} option={optionProperties} />
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <div className="col-sm-4">
+                                <div className="element-wrapper">
+                                    <h6 className="element-header">
+                                        Statewise Map View
+                                    </h6>
+                                    <div className="element-box pt-0">
+                                    <div data-highcharts-chart="0" style={{overflow: "hidden"}}>
+                                        <HighchartsReact
+                                            constructorType={"mapChart"}
+                                            highcharts={Highcharts}
+                                            options={mapOptions}
                                             />
                                     </div>
-                                  </div>
-                                </div>
-                                
-                      </div> </div> </div></div>
-
-                        <div className="element-wrapper pb-2">
-                            <div className="element-box">
-                              <SimpleGraph 
-                                values={lineDataTotal}
-                                option={optionProperties}
-                                />
-                            </div>
-                        </div>
-
-                        </div>
-                        <div className="col-sm-4">
-                            <div className="element-wrapper">
-                                <h6 className="element-header">
-                                    Statewise Map View
-                                </h6>
-                                <div className="element-box pt-0">
-                                <div data-highcharts-chart="0" style={{overflow: "hidden"}}>
-                                    <HighchartsReact
-                                        constructorType={"mapChart"}
-                                        highcharts={Highcharts}
-                                        options={mapOptions}
-                                        />
-                                </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                                         
 
 
@@ -267,7 +260,7 @@ highchartsMap(Highcharts);
                             <table className="table table-lightborder">
                               <thead>
                                 <tr>
-                                  <th className="text-left">
+                                  <th className="text-left col-3">
                                     State
                                   </th>
                                   <th>

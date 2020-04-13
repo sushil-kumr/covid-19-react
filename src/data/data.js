@@ -4,7 +4,7 @@ import usAll from "../data/india";
 
 // export const colorsCountrywise = ["#ed2939", "#ffea00", "#268df9", "#24b314", "#0033a0", "#66033c"]
 export const colorsCountrywise = [ 
-  "rgb(41,153,237,0.4)",
+  "rgb(41,153,237,0.8)",
   "rgb(237,41,57,0.4)", 
   "rgb(36,179,20,0.4)", 
   "rgb(248,215,0,0.6)", 
@@ -473,11 +473,12 @@ export var lineDataTotal = {
 
 // ------------------------------------------------------------------------------------
   export const othersTotal = {datasets: [{
-        
+          labels: ["1", "2"] ,
           fill: true,
           lineTension: 0.4,
           backgroundColor: "#ffffff",
           borderColor: "#e65252",
+          borderWidth: 3,
           borderCapStyle: 'butt',
           borderDash: [],
           borderDashOffset: 0.0,
@@ -496,11 +497,12 @@ export var lineDataTotal = {
   }]}
 
   export  const othersActive = {datasets: [{
-        
+    labels: ["1", "2"] ,
     fill: true,
     lineTension: 0.4,
     backgroundColor: "#ffffff",
     borderColor: "#e65252",
+    borderWidth: 3,
     borderCapStyle: 'butt',
     borderDash: [],
     borderDashOffset: 0.0,
@@ -519,12 +521,13 @@ export var lineDataTotal = {
 }]}
 
 export const othersRecovered = {datasets: [{
-        
+    labels: ["1", "2"] ,
     fill: true,
     lineTension: 0.4,
     backgroundColor: "#ffffff",
     borderColor: "#e65252",
     borderCapStyle: 'butt',
+    borderWidth: 3,
     borderDash: [],
     borderDashOffset: 0.0,
     borderJoinStyle: 'miter',
@@ -542,11 +545,12 @@ export const othersRecovered = {datasets: [{
 }]}
 
 export const othersDeaths = {datasets: [{
-        
+    labels: ["1", "2"],
     fill: true,
     lineTension: 0.4,
     backgroundColor: "#ffffff",
     borderColor: "#e65252",
+    borderWidth: 3,
     borderCapStyle: 'butt',
     borderDash: [],
     borderDashOffset: 0.0,
@@ -565,7 +569,7 @@ export const othersDeaths = {datasets: [{
 }]}
 
 export  const optionPropertiesTotal = {
-   
+      
       legend: {
         display: false
       },
@@ -673,7 +677,7 @@ export const optionPropertiesDeaths = {
 }
 
 export const optionProperties = {
-  maintainAspectRatio: true,
+    maintainAspectRatio: true,
     legend: {
       display: true,
       labels:{

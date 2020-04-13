@@ -140,6 +140,9 @@ export default function Global() {
                             per million inhabitants. The mortality rate is not dependent on confirmed or active
                             number of cases and it gives us the true picture of the damage inflicted by the pandemic.</p>}
                             />
+
+
+                        
                         </div>
                         </>
                     )
