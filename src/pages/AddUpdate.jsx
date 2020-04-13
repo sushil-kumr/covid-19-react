@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import Layout from '../component/Layout'
 import ViewUpdateCard  from '../component/ViewUpdateCard'
 
-class AddUpdates extends Component {
+class AddUpdates extends Component { 
 
   constructor(props){
     super(props)
@@ -93,7 +93,6 @@ class AddUpdates extends Component {
         }
         else
           this.setState({error:data.message,success:""})
-        // this.props.history.push('/addupdates');
   })};
 
   handleclear=()=>{
@@ -122,7 +121,7 @@ class AddUpdates extends Component {
           if(data.success){
             this.setState(prevState => ({updates:prevState.updates.filter(item => item.id !== id),
                                           error:"",
-                                          success:data.message}))}
+                                          success:data.message, headline :"", desc: "", tags: "", link: "", id:""}))}
           else
             this.setState({error:data.message,
                             success:""})
@@ -149,8 +148,8 @@ class AddUpdates extends Component {
   render() {
 
     if(!this.props.login){
-      this.props.history.push('/login')
-      return<></>
+      this.props.history.push('/login');
+      return <div></div>
     }
     else{
 

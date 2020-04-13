@@ -366,29 +366,29 @@ export var lineDataTotal = {
       lineTension: 0.4,
       yAxisID: '1'
     },
-    // {
-    //   label: "Deceased",
-    //   legendText: "Deceased",
-    //   fill: false,
-    //   backgroundColor: "#3e4b5b",
-    //   borderColor: "#3e4b5b",
-    //   // borderCapStyle: 'butt',
-    //   // borderDash: [],
-    //   // borderDashOffset: 0.0,
-    //   // borderJoinStyle: 'miter',
-    //   // pointBorderColor: "#fff",
-    //   pointBackgroundColor: "#3e4b5b",
-    //   // pointBorderWidth: 2,
-    //   // pointHoverRadius: 5,
-    //   // pointHoverBackgroundColor: "#FC2055",
-    //   // pointHoverBorderColor: "#fff",
-    //   // pointHoverBorderWidth: 2,
-    //   pointRadius: 2,
-    //   // pointHitRadius: 5,
-    //   data: [27, 20, 44, 24, 29, 22, 43, 52],
-    //   spanGaps: false,
-    //   lineTension: 0.4
-    // }
+    {
+      label: "Deceased",
+      legendText: "Deceased",
+      fill: false,
+      backgroundColor: "#777",
+      borderColor: "#777",
+      // borderCapStyle: 'butt',
+      // borderDash: [],
+      // borderDashOffset: 0.0,
+      // borderJoinStyle: 'miter',
+      // pointBorderColor: "#fff",
+      pointBackgroundColor: "#3e4b5b",
+      // pointBorderWidth: 2,
+      // pointHoverRadius: 5,
+      // pointHoverBackgroundColor: "#FC2055",
+      // pointHoverBorderColor: "#fff",
+      // pointHoverBorderWidth: 2,
+      pointRadius: 2,
+      // pointHitRadius: 5,
+      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      spanGaps: false,
+      lineTension: 0.4
+    }
     ]
   };
 
@@ -725,7 +725,6 @@ export const optionProperties = {
         display: true,
         position: 'right',
         ticks: {
-          max: 1,
           min: 0
         },
           gridLines:{

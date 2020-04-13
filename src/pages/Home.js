@@ -1,4 +1,4 @@
-import React  from 'react'
+import React, {Component} from "react";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -28,9 +28,9 @@ highchartsMap(Highcharts);
 // const Layout = lazy(() => import('../component/Layout'));
   const loadUsers = () =>
     fetch("https://curecovid19.in/readings/readings/get_summary")
+    // fetch("http://localhost:5000/readings/get_summary")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
-
   
   export default function Home() {
 
@@ -102,6 +102,7 @@ highchartsMap(Highcharts);
                     // lineDataTotal.datasets[2].data = totalValue1.slice(-30);
                     lineDataTotal.datasets[2].data = recoveredValue.slice(-30);
                     lineDataTotal.datasets[0].data = cumulative_confirmed.slice(-30);
+                    lineDataTotal.datasets[3].data = deathsValue.slice(-30);
 
                     const last_value = -20
                     const simpleTotal = Object.assign({}, lineDataTotal);
@@ -131,7 +132,7 @@ highchartsMap(Highcharts);
                     othersDeaths.datasets[0].borderColor = "#3e4b5b";
                     optionPropertiesTotal.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesTotal.scales.yAxes[0].ticks.min = -15;
-                    optionProperties.scales.yAxes[1].ticks.max = Math.round(Math.max(...cumulative_confirmed) + (Math.max(...cumulative_confirmed)*highscale));
+                    // optionProperties.scales.yAxes[1].ticks.max = Math.round(Math.max(...cumulative_confirmed) + (Math.max(...cumulative_confirmed)*highscale));
                     optionProperties.scales.yAxes[1].ticks.min = 0;
                     optionPropertiesDeaths.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
                     optionPropertiesDeaths.scales.yAxes[0].ticks.min = -15;
@@ -293,8 +294,6 @@ highchartsMap(Highcharts);
                     </div>
                     <div className="col-sm-1">
                     </div>
-                    
-
                     </div>
                     </>
         )}}

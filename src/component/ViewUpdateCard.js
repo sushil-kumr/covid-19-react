@@ -14,7 +14,21 @@ export default class ViewUpdateCard extends Component {
             <div className="post-box">
             <div className="post-content">
             {/* <a href={this.props.data.link} target="_blank" style={{textDecoration: "none"}}> */}
-                <b style={{fontSize: "12px", color: "#555"}}>{this.props.data.record_time}</b>
+                <div class="row mb-2">
+                    <div className="col-6">
+                        <b style={{fontSize: "12px", color: "#555"}}>{this.props.data.record_time}</b>
+                    </div>
+                    <div className="col-4">
+                        {/* <i className="fa fa-eye" style={{opacity: "0.9"}}> 234</i>*/}
+                    </div>
+                    <div className="col-2">
+                        <span>
+                        <i className="fa fa-edit" onClick={()=>this.props.onUpdate(this.props.data)} style={{paddingRight: "20%", cursor: "pointer"}}></i>
+                        <i className="fa fa-trash" onClick={()=>this.props.onDelete(this.props.data.id)} style={{paddingRight: "0%", cursor: "pointer"}}></i>
+                        </span>
+                    </div>
+
+                </div>
                 <h5 className="font-weight-bold">
                 {this.props.data.headline}
                 </h5>
@@ -29,8 +43,6 @@ export default class ViewUpdateCard extends Component {
                     </div>
                     )}
                 </div>
-                <div style={{cursor:"pointer"}} className="post-link" onClick={()=>this.props.onDelete(this.props.data.id)}><span>Delete</span><i className="fa fa-trash"></i></div>
-                <div style={{cursor:"pointer"}} className="post-link"  onClick={()=>this.props.onUpdate(this.props.data)}><span>Edit</span><i className="fa fa-edit"></i></div>
                 </div>
                 {/* </a> */}
             </div>
