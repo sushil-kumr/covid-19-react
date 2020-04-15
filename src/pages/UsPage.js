@@ -3,7 +3,7 @@ import React ,{useState,useEffect} from 'react'
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
-import usAll from "../data/usa";
+import usAll from "../data/usaWithT";
 
 import {mapOptions, lineDataTotal, optionProperties} from "../data/data";
 
@@ -12,6 +12,7 @@ import StateWiseData  from '../component/StateWiseData'
 import SimpleGraph from "../component/SimpleGraph"
 
 import {Helmet} from 'react-helmet'
+import Loader  from '../component/Loader'
 
 import sortBy from "lodash/orderBy";
 import cloneDeep from 'lodash/cloneDeep';
@@ -91,6 +92,15 @@ export default function UsPage() {
             map.series[0].mapData = usAll;
             const usaData = [];
 
+            
+            usaData.push({name:("Saint Thomas")})
+            usaData.push({name:("Saint John")})
+            usaData.push({name:("Saint Croix")})
+            usaData.push({name:("Saipan")})
+            usaData.push({name:("Eastern")})
+            usaData.push({name:("Western")})
+            usaData.push({name:("Rota")})
+
             results[2].us_statewise_current.forEach(element => {
                 usaData.push({name:(element.state),
                             value:element.confirmed,
@@ -98,16 +108,17 @@ export default function UsPage() {
                             recovered:element.recovered,
                             deaths:element.deaths})
             });
-            console.log(usaData);
+            
+          //  console.log(usaData);
             map.series[0].data = usaData;
             map.series[0].joinBy =  ['name', 'name']
             map.tooltip =  {
                 formatter: function(){
                     var s = '<p>' + (this.point.name).toUpperCase() + '</p><br/>';
-                    s += 'CONFIRMED : <b>' + this.point.value + '</b><br/>';
-                    s += 'ACTIVE : <b>' + this.point.active + '</b><br/>';
-                    s += 'RECOVERED : <b>' + this.point.recovered + '</b><br/>';
-                    s += 'DECEASED : <b>' + this.point.deaths+'</b>';
+                    s += 'CONFIRMED : <b>' + (this.point.value===undefined?"NA":this.point.value) + '</b><br/>';
+                    s += 'ACTIVE : <b>' + (this.point.active===undefined?"NA":this.point.active) + '</b><br/>';
+                    s += 'RECOVERED : <b>' + (this.point.recovered===undefined?"NA":this.point.recovered) + '</b><br/>';
+                    s += 'DECEASED : <b>' + (this.point.deaths===undefined?"NA":this.point.deaths)+'</b>';
                     return s;
                 },
             }
@@ -119,6 +130,7 @@ export default function UsPage() {
     }
                     return ( 
                         <>
+                        {!fetched && ( <Loader/> )}
                         {fetched && (  
                         <React.Fragment>
                         <Helmet>

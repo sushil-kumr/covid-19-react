@@ -17,10 +17,9 @@ function App() {
         {/* <Suspense fallback={<Loader/>}> */}
       <Switch>
           <Route path="/" exact component={() => (<Tabs tabValue={0} />)}/>
-          <Route path="/india" exact component={() => (<Tabs tabValue={1} />)}/>
-          <Route path="/usa" exact component={() => (<Tabs tabValue={2} />)}/>
-          <Route path="/world" exact  component={() => (<Tabs tabValue={3} />)}/>
-          <Route path="/analytics" exact component={() => (<Tabs tabValue={4} />)}/>
+          <Route path="/usa" exact component={() => (<Tabs tabValue={1} />)}/>
+          <Route path="/world" exact  component={() => (<Tabs tabValue={2} />)}/>
+          <Route path="/analytics" exact component={() => (<Tabs tabValue={3} />)}/>
           <Route path="/help" exact  component={Help}/>
           <Route path="/about" exact  component={About}/>
           <Route path="/updates" exact  component={Updates}/>
