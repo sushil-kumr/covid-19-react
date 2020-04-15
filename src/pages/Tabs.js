@@ -3,11 +3,10 @@ import { Tab, Tabs, TabList,TabPanel } from 'react-tabs';
 
 import {Link} from 'react-router-dom'
 
-import Global from './Global'
 import Home from './Home'
 import USA from './UsPage'
 import GoogleMap from './MyGoogleMap'
-import IndiaState from './IndiaState'
+import Analytics from './CombineAnalytics'
 import Layout from '../component/Layout'
 
 import React, { Component } from 'react'
@@ -18,10 +17,9 @@ export default class CovidTabs extends Component {
         super(props)
         this.state={
             tabs:[{title:"India",link:"/",comp:Home},
-            {title:"States Analytics",link:"/india",comp:IndiaState},
             {title:"USA",link:"/usa",comp:USA},
             {title:"World",link:"/world",comp:GoogleMap},
-            {title:"Analytics",link:"/analytics",comp:Global}]
+            {title:"Analytics",link:"/analytics",comp:Analytics}]
         }
     }
 

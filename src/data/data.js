@@ -942,7 +942,7 @@ export const mapOptions = {
         },
         mapData: usAll,
         borderColor: "#A0A0A0",
-        nullColor: "rgba(200, 200, 200, 0.3)",
+        nullColor: "#ffffff",
         showInLegend: false
       }
     ]

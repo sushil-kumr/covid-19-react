@@ -14,6 +14,8 @@ import {optionPropertiesCountrywise,optionPropertiesCountrywiseInfectionRate,
 
 import Async from 'react-async';
 
+
+
 export default function Global() {
 
     const loadUsers = () =>
