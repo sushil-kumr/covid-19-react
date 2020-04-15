@@ -39,7 +39,7 @@ export default function Header() {
              <Link className="mm-logo" to="/" onClick={() => window.location="/"}><img src="img/logos2.png"/><span></span></Link>
             <div className="mm-buttons">
               <div className="mobile-menu-trigger">                 
-              <div onClick={toggleNav} className="fa fa-bars"></div>
+              <div onClick={toggleNav} className="fa fa-bars"><svg height="30" width="12" className="blinking"><circle cx="5" cy="5" r="4" fill="red" /></svg></div>
               </div>
              </div>
            </div>
@@ -53,7 +53,7 @@ export default function Header() {
            <NavLink to="/">Home</NavLink >             
            <NavLink to="/help">Helpline No.s</NavLink >
            <NavLink to="/about">About</NavLink >               
-           <NavLink to="/updates">News & Updates</NavLink >               
+           <NavLink to="/updates">News & Updates <svg height="20" width="50" className="blinking"><circle cx="5" cy="5" r="4" fill="red" /></svg></NavLink >               
          </nav>
         </CSSTransition>
        </div>
@@ -81,7 +81,7 @@ export default function Header() {
                  <NavLink exact to="/about" activeStyle={style}>About</NavLink >
               </li>
               <li>
-                 <NavLink exact to="/updates" activeStyle={style}>News & Updates</NavLink >
+                 <NavLink exact to="/updates" activeStyle={style}>News & Updates <svg height="20" width="50"><circle cx="3" cy="5" r="3" fill="red" /></svg></NavLink >
               </li>
             </ul> 
         </div>

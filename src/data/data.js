@@ -844,7 +844,7 @@ export const piedata = {
         height:"800px"
       },
 	labels: [
-    'Unidentifed',
+    'Not Available',
 		'Female',
 		'Male'
 	],
@@ -918,8 +918,8 @@ export const mapOptions = {
         tickColor:"#ffffff",
         stops: [
             [0, '#FFEBEE'],
-            [0.25, '#E57373'],
-            [0.5, '#EF5350'],
+            [0.25, '#F1948A'],
+            [0.5, '#E74C3C'],
             [0.75, '#F44336'],
             [1, '#E53935']
         ]

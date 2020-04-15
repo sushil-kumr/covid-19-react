@@ -17,6 +17,7 @@ import Card  from '../component/Card'
 import SimpleGraph  from '../component/SimpleGraph'
 import StateWiseData  from '../component/StateWiseData'
 import ServerDown  from './ServerDown'
+import UpdateCard  from '../component/UpdateCard'
 
 import {Doughnut,Bar} from 'react-chartjs-2';
 
@@ -28,7 +29,7 @@ highchartsMap(Highcharts);
 // const Layout = lazy(() => import('../component/Layout'));
   const loadUsers = () =>
     fetch("https://curecovid19.in/readings/readings/get_summary")
-    // fetch("http://localhost:5000/readings/get_summary")
+    // fetch("http://192.168.1.157:5000/readings/get_summary")
     .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
   
@@ -203,7 +204,61 @@ highchartsMap(Highcharts);
 
                             </div>
                             
-                            <div className="col-sm-4">
+                            <div className="col-sm-7">
+                                <div className="element-wrapper">
+                                    <h6 className="element-header">
+                                        <svg height="50" width="12" className="blinking"><circle cx="5" cy="24" r="5" fill="red" /></svg> Updates 
+                                    </h6>
+                                    <div className="element-box-tp">
+                                        {data.articles.map(element=><UpdateCard data={element} key={element.id}/>)}
+                                    </div>
+                                    <br/>
+                                    <div className="row">
+                                        <div className="col-sm-4 col-2">
+                                        </div>
+                                        <button className="btn btn-md btn-primary" onClick={()=> window.location="/updates"}>Click to view more Updates</button>
+                                        </div>
+                                    <br/>
+                                </div>
+                            </div>
+
+                        <div className="col-sm-5">
+                        <div className="element-wrapper">
+                        <h6 className="element-header">
+                          Statewise Breakup
+                        </h6>
+                        <div className="element-box-tp">
+                          <div className="table-responsive text-right">
+                            <table className="table table-lightborder">
+                              <thead>
+                                <tr>
+                                  <th className="text-left">
+                                    State
+                                  </th>
+                                  <th>
+                                    CNFMD
+                                  </th>    
+                                  <th>
+                                    ACTV
+                                  </th>
+                                  <th>
+                                    RCVD
+                                  </th>
+                                  <th>
+                                    DCSD
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  {data.statewise.map(state=><StateWiseData key={state.id} data={state}/>)}
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div className="col-sm-4">
                                 <div className="element-wrapper">
                                     <h6 className="element-header">
                                         Statewise Map View
@@ -249,45 +304,8 @@ highchartsMap(Highcharts);
                             </div>
                           </div>
                             </div>
+                    </div>
 
-                        <div className="col-sm-5">
-                        <div className="element-wrapper">
-                        <h6 className="element-header">
-                          Statewise Breakup
-                        </h6>
-                        <div className="element-box-tp">
-                          <div className="table-responsive text-right">
-                            <table className="table table-lightborder">
-                              <thead>
-                                <tr>
-                                  <th className="text-left">
-                                    State
-                                  </th>
-                                  <th>
-                                    CNFMD
-                                  </th>    
-                                  <th>
-                                    ACTV
-                                  </th>
-                                  <th>
-                                    RCVD
-                                  </th>
-                                  <th>
-                                    DCSD
-                                  </th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                  {data.statewise.map(state=><StateWiseData key={state.id} data={state}/>)}
-                            </tbody>
-                            </table>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div className="col-sm-1">
-                    </div>
-                    </div>
                     </>
         )}}
       </Async>
