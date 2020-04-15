@@ -5,7 +5,6 @@ import Loader  from '../component/Loader'
 
 import Content  from '../component/Content'
 import ContentGraph  from '../component/ContentGraph'
-import ServerDown  from './ServerDown'
 
 import cloneDeep from 'lodash/cloneDeep';
 
