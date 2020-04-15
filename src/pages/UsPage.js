@@ -139,7 +139,7 @@ export default function UsPage() {
                             <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
                         </Helmet>
                         
-                        <div className="row"><div className="col-sm-6">
+                        <div className="row"><div className="col-sm-5">
                         <div className="element-wrapper pb-1">
                             <h6 className="pb-4">
                             <span className="font-weight-bold"> Dashboard for COVID-19 USA <br/>
@@ -205,12 +205,12 @@ export default function UsPage() {
                         </div>
                         </div>
 
-                        <div className="col-sm-6">
+                        <div className="col-sm-7">
                             <div className="element-wrapper">
                                 <h6 className="element-header">
                                     Province Map View
                                 </h6>
-                                <div className="element-box pt-0">
+                                <div className="element-box pt-0 mt-0">
                                 <div data-highcharts-chart="0" style={{overflow: "hidden"}}>
                                     <HighchartsReact
                                         constructorType={"mapChart"}

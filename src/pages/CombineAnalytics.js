@@ -28,7 +28,8 @@ export default function CombineAnalytics() {
     const [mortalityWorldLine, setWorldMortality] = useState({}); 
     const [fatalityWorldLine, setWorldFatality] = useState({}); 
 
-   
+   let optionPropertiesStatewise = cloneDeep(optionPropertiesCountrywise)
+   optionPropertiesStatewise.scales.xAxes[0].scaleLabel.labelString = "Days since 100 Confirmed cases"
 
     useEffect(() => {
         if (fetched === false) {
@@ -200,21 +201,21 @@ export default function CombineAnalytics() {
 
             <ContentGraph title="State-Wise Spread"
                 values={spreadLine} 
-                option={optionPropertiesCountrywise}
+                option={optionPropertiesStatewise}
                 desc={<p>This gives us an idea of how the virus has spread among different states.
                 But this is not the best indicator yet due to difference in populations and 
                 population densities among the states.</p>}/>
 
             <ContentGraph title="State-Wise Infection Rate"
                 values={infectedLine} 
-                option={cloneDeep(optionPropertiesCountrywise)}
+                option={cloneDeep(optionPropertiesStatewise)}
                 desc={<><p>Infection rate gives us a measure of how well different states are doing in the fight against
                 COVID-19 no matter its population and density.</p><h6 className="alert-heading font-weight-bold">
                 An infection rate of 1.0 means healthcare stability and no new infections.</h6></>}/>
 
             <ContentGraph title="State-Wise Fatality Rate"
                 values={fatalityLine} 
-                option={cloneDeep(optionPropertiesCountrywise)}
+                option={cloneDeep(optionPropertiesStatewise)}
                 desc={<><p>Due to the sampling bias induced by restricted access to COVID-19 testing in
                 different states, only looking at the confirmed cases don't give us the true picture.
                 An increase of the fatality rate indicates that<li> the confirmed count is being
@@ -224,7 +225,7 @@ export default function CombineAnalytics() {
 
             <ContentGraph title="State-Wise Mortality Rate"
                 values={mortalityLine} 
-                option={cloneDeep(optionPropertiesCountrywise)}
+                option={cloneDeep(optionPropertiesStatewise)}
                 desc={<p>In contrast to the fatality rate, the mortality rate below is shown in dead
                 per million inhabitants. The mortality rate is not dependent on confirmed or active
                 number of cases and it gives us the true picture of the damage inflicted by the pandemic.</p>}
@@ -233,6 +234,7 @@ export default function CombineAnalytics() {
 
 
             <div className="row">
+            <br/>
             <Content 
                 title="Thoughtprocess" 
                 desc={<p>For any kind of Data Analysis on Covid-19 we have first to bring the data points of
