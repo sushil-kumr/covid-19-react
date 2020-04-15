@@ -235,7 +235,8 @@ export const optionPropertiesCountrywiseInfectionRate = {
   }
 
 export const optionPropertiesCountrywise = {
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
+  aspectRatio: 5,
     legend: {
       display: true,
       labels:{

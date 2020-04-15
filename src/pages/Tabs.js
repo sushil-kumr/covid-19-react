@@ -27,7 +27,7 @@ export default class CovidTabs extends Component {
         const ActiveComponents = this.state.tabs[this.props.tabValue].comp;
         return (
             <Layout>
-            <div className="content-w"><div className="content-i"><div className="content-box pt-0">
+            <div className="content-w"><div className="content-i"><div className="content-box pt-1">
                 <Tabs defaultIndex={this.props.tabValue}>
                 <div className="element-wrapper pb-0"><div className="element-box-tp pt-0"><div className="os-tabs-w"></div><div className="os-tabs-controls">    
                 <TabList className="nav nav-tabs smaller" style={{cursor:"pointer"}}>
