@@ -678,7 +678,7 @@ export const optionPropertiesDeaths = {
 }
 
 export const optionProperties = {
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     legend: {
       display: true,
       labels:{

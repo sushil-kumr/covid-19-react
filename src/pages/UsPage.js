@@ -54,17 +54,15 @@ export default function UsPage() {
     }, [daily]);
 
     useEffect(() => {
-        setMax(Math.max(dailyConfirm));
+        setMax(Math.max(...dailyConfirm));
         lineDataTotal.datasets[1].data = dailyConfirm.slice(-30);
     }, [dailyConfirm]);
 
     useEffect(() => {
-        setMax(Math.max(dailyConfirm));
         lineDataTotal.datasets[2].data = dailyRecovered.slice(-30);
     }, [dailyRecovered]);
 
     useEffect(() => {
-        setMax(Math.max(dailyConfirm));
         lineDataTotal.datasets[3].data = dailyDeaths.slice(-30);
     }, [dailyDeaths]);
 

@@ -21,8 +21,8 @@ export default function USACard(props) {
     simpleTotal.datasets[0].borderColor = props.color
     simpleTotal.labels = props.dates; 
     optionUSA.scales.yAxes[0].ticks.min = (-0.01*props.lastData);
-    // optionUSA.scales.yAxes[0].ticks.max = props.max;
-    //console.log(props.max);
+    optionUSA.scales.yAxes[0].ticks.max = props.max;
+    console.log(props.max);
 
     
     return (
