@@ -147,7 +147,7 @@ highchartsMap(Highcharts);
                     return ( 
                         <>
                           <Helmet>
-                           <title>India Covid 19 Dashboard</title>
+                          <title>India Covid 19 Dashboard</title>
                             <meta name="description" content={metaContent}  data-react-helmet="true" />
                             <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
                           </Helmet>

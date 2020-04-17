@@ -40,6 +40,12 @@ export default function UsPage() {
     const [myMap, setMyMap] = useState([]); 
     const [fetched, setFetched] = useState(false);
 
+    const [countryFlag,setCountryFlag] = useState(0);
+    const [confirmFlag,setConfirmFlag] = useState(0);
+    const [activeFlag,setActiveFlag] = useState(0);
+    const [recoveredFlag,setRecoveredFlag] = useState(0);
+    const [deathFlag,setDeathFlag] = useState(0);
+
 
     useEffect(() => {
         if (fetched === false) {
@@ -78,7 +84,7 @@ export default function UsPage() {
         await Promise.all(promises).then(results => {
             setCurrent(results[0].us_current)
             setDaily(results[1].us_daily)
-            setCurrentState(results[2].us_statewise_current)
+            setCurrentState(sortBy(results[2].us_statewise_current,"confirmed",'desc'))
             setDailyState(results[3].us_statewise_daily)
             
             const sliceValue= -40;
@@ -128,6 +134,44 @@ export default function UsPage() {
 
         });
     }
+
+    function  orderData(e) {
+
+        setCountryFlag(0);
+        setConfirmFlag(0);
+        setActiveFlag(0);
+        setRecoveredFlag(0);
+        setDeathFlag(0);
+
+        switch(e.target.id){
+            case "state":
+                setCountryFlag(setFlag(countryFlag,"state"));
+            break;
+            case "active":
+                setActiveFlag(setFlag(activeFlag,"active"));
+            break;
+            case "confirmed":
+                setConfirmFlag(setFlag(confirmFlag,"confirmed"));
+            break;
+            case "deaths":
+                setDeathFlag(setFlag(deathFlag,"deaths"));
+            break;
+            default:
+                setRecoveredFlag(setFlag(recoveredFlag,"recovered")); 
+        }
+    }
+
+    function setFlag(flag,data){
+        if(flag===0 || flag==2){
+            setCurrentState(sortBy(currentState,data,'desc'))
+            return 1;
+        }else{
+            setCurrentState(sortBy(currentState,data,'asc'))
+            return 2;
+        }
+    }
+
+
                     return ( 
                         <>
                         {!fetched && ( <Loader/> )}
@@ -231,27 +275,27 @@ export default function UsPage() {
                                 <div className="element-box-tp">
                                 <div className="table-responsive text-right">
                                     <table className="table table-lightborder">
-                                    <thead>
+                                    <thead style={{cursor: "pointer"}}>
                                         <tr>
-                                        <th className="text-left">
-                                            State
+                                        <th className="text-left" id="state" onClick={orderData} >
+                                            Province  <i class={`fa fa-${countryFlag===0?"sort":countryFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>
-                                        <th>
-                                            CNFMD
+                                        <th id="confirmed" onClick={orderData}>
+                                            CNFMD <i class={`fa fa-${confirmFlag===0?"sort":confirmFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>    
-                                        <th>
-                                            ACTV
+                                        <th id="active" onClick={orderData}>
+                                            ACTV <i class={`fa fa-${activeFlag===0?"sort":activeFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>
-                                        <th>
-                                            RCVD
+                                        <th id="recovered" onClick={orderData}>
+                                            RCVD <i class={`fa fa-${recoveredFlag===0?"sort":recoveredFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>
-                                        <th>
-                                            DCSD
+                                        <th id="deaths" onClick={orderData}>
+                                            DCSD <i class={`fa fa-${deathFlag===0?"sort":deathFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {sortBy(currentState,"confirmed",'desc').map((state,i)=><StateWiseData key={i} data={state}/>)}
+                                        {currentState.map((state,i)=><StateWiseData key={i} data={state}/>)}
                                     </tbody>
                                     </table>
                                 </div>

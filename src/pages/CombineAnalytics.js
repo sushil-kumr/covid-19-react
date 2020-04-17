@@ -10,8 +10,6 @@ import cloneDeep from 'lodash/cloneDeep';
 
 import {optionPropertiesCountrywise, lineDataCountrywise, colorsCountrywise} from '../data/data'
 
-import Async from 'react-async';
-
 const urls=["https://www.curecovid19.in/readings/readings/statewise",
             "https://curecovid19.in/readings/readings/countrywise"
             ]
