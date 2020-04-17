@@ -9,7 +9,7 @@ export default function CountrywiseLine(props) {
                     {props.data}
                 </div>
             <div className="el-chart-w">
-                <Line height="500%" width="100%" data={props.values}
+                <Line height="400%" width="100%" data={props.values}
                     options={props.option}
                 />
             </div>

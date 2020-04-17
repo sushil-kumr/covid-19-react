@@ -176,19 +176,19 @@ highchartsMap(Highcharts);
                                     <div className="col-sm-12 col-xxl-12">
                                         <div className="row mb-xl-4 mb-xxl-3">
                                             <Card name="CONFIRMED" styleName="text-danger" 
-                                                data={data.summary.total} diff={data.total_diff}
+                                                data={data.summary.total.toLocaleString("en-IN")} diff={data.total_diff}
                                                 values={simpleTotal} option={optionPropertiesTotal}
                                                 />
                                             <Card name="ACTIVE" styleName="text-primary" 
-                                                data={active} diff={0}
+                                                data={active.toLocaleString("en-IN")} diff={0}
                                                 values={simpleActive} option={optionPropertiesActive}
                                                 />
                                             <Card name="RECOVERED" styleName="text-success" 
-                                                data={data.summary.recovered} diff={data.recovered_diff}
+                                                data={data.summary.recovered.toLocaleString("en-IN")} diff={data.recovered_diff}
                                                 values={simpleRecovered} option={optionPropertiesRecovered}
                                                 />
                                             <Card name="DECEASED" styleName="text-secondary" 
-                                                data={data.summary.deaths} diff={data.deaths_diff}
+                                                data={data.summary.deaths.toLocaleString("en-IN")} diff={data.deaths_diff}
                                                 values={simpleDeaths} option={optionPropertiesDeaths}
                                                 />
                                         </div>

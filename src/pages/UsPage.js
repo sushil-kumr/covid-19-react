@@ -60,17 +60,15 @@ export default function UsPage() {
     }, [daily]);
 
     useEffect(() => {
-        setMax(Math.max(dailyConfirm));
+        setMax(Math.max(...dailyConfirm));
         lineDataTotal.datasets[1].data = dailyConfirm.slice(-30);
     }, [dailyConfirm]);
 
     useEffect(() => {
-        setMax(Math.max(dailyConfirm));
         lineDataTotal.datasets[2].data = dailyRecovered.slice(-30);
     }, [dailyRecovered]);
 
     useEffect(() => {
-        setMax(Math.max(dailyConfirm));
         lineDataTotal.datasets[3].data = dailyDeaths.slice(-30);
     }, [dailyDeaths]);
 
@@ -178,7 +176,7 @@ export default function UsPage() {
                         {fetched && (  
                         <React.Fragment>
                         <Helmet>
-                        <title>India Covid 19 Dashboard</title>
+                        <title>US Covid 19 Dashboard</title>
                             {/* <meta name="description" content={metaContent}  data-react-helmet="true" /> */}
                             <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
                         </Helmet>

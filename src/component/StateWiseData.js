@@ -23,16 +23,16 @@ export default function StateWiseData(props) {
                     <span style={{fontSize: "14px"}}>{props.data.state}</span>
                     </td>
                     <td className="no-wrap">
-                    <span className="text-danger font-weight-bold" style={{fontSize: "10px"}}>{props.data.delta_total === 0?``: `(+${props.data.delta_total})`} </span><span className="font-weight-bold" style={{fontSize: "14px"}}>{confirm}</span>
+                    <span className="text-danger font-weight-bold" style={{fontSize: "10px"}}>{props.data.delta_total === 0?``: `(+${props.data.delta_total.toLocaleString("en-IN")})`} </span><span className="font-weight-bold" style={{fontSize: "14px"}}>{confirm.toLocaleString("en-IN")}</span>
                     </td>
                     <td className="no-wrap">
-                    <span className="text-primary font-weight-bold" style={{fontSize: "10px"}}></span><span className="font-weight-bold" style={{fontSize: "14px"}}>{active}</span>
+                    <span className="text-primary font-weight-bold" style={{fontSize: "10px"}}></span><span className="font-weight-bold" style={{fontSize: "14px"}}>{active.toLocaleString("en-IN")}</span>
                     </td>
                     <td className="no-wrap">
-                    <span className="text-success font-weight-bold" style={{fontSize: "10px"}}>{props.data.delta_recovered === 0?``: `(+${props.data.delta_recovered})`} </span><span className="font-weight-bold" style={{fontSize: "14px"}}>{props.data.recovered}</span>
+                    <span className="text-success font-weight-bold" style={{fontSize: "10px"}}>{props.data.delta_recovered === 0?``: `(+${props.data.delta_recovered.toLocaleString("en-IN")})`} </span><span className="font-weight-bold" style={{fontSize: "14px"}}>{props.data.recovered.toLocaleString("en-IN")}</span>
                     </td>
                     <td className="no-wrap">
-                    <span className="font-weight-bold" style={{fontSize: "10px"}}> {props.data.delta_deaths === 0?``: `(+${props.data.delta_deaths})`} </span> <span className="font-weight-bold" style={{fontSize: "14px"}}>{props.data.deaths}</span>
+                    <span className="font-weight-bold" style={{fontSize: "10px"}}> {props.data.delta_deaths === 0?``: `(+${props.data.delta_deaths.toLocaleString("en-IN")})`} </span> <span className="font-weight-bold" style={{fontSize: "14px"}}>{props.data.deaths.toLocaleString("en-IN")}</span>
                     </td>
                 </tr>
                 )

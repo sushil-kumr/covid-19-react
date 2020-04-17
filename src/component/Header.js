@@ -53,7 +53,7 @@ export default function Header() {
            <NavLink to="/">Home</NavLink >             
            <NavLink to="/help">Helpline No.s</NavLink >
            <NavLink to="/about">About</NavLink >               
-           <NavLink to="/updates">News & Updates <svg height="20" width="50" className="blinking"><circle cx="5" cy="5" r="4" fill="red" /></svg></NavLink >               
+           <NavLink to="/updates">News & Updates <svg height="20" width="10" className="blinking"><circle cx="5" cy="5" r="4" fill="red" /></svg></NavLink >               
          </nav>
         </CSSTransition>
        </div>
@@ -81,7 +81,7 @@ export default function Header() {
                  <NavLink exact to="/about" activeStyle={style}>About</NavLink >
               </li>
               <li>
-                 <NavLink exact to="/updates" activeStyle={style}>News & Updates <svg height="20" width="50"><circle cx="3" cy="5" r="3" fill="red" /></svg></NavLink >
+                 <NavLink exact to="/updates" activeStyle={style}>News & Updates <svg height="20" width="10"><circle cx="3" cy="5" r="3" fill="red" /></svg></NavLink >
               </li>
             </ul> 
         </div>
