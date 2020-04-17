@@ -1,14 +1,21 @@
-import React, {Component} from "react";
+import React, {useState,useEffect} from "react";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 
-import {mapData,piedata,lineDataTotal,lineDataActive,lineDataDeaths
-    ,lineDataRecovered,othersActive,othersDeaths,othersRecovered,othersTotal
-    ,optionProperties,optionPropertiesData,optionPropertiesDataActive,optionPropertiesDataRecovered
-    ,optionPropertiesDeaths,optionPropertiesActive,optionPropertiesRecovered,optionPropertiesTotal
-    ,mapOptions,barChartData,axis ,optionBar} from "../data/data";
+import indiaAll from "../data/india";
+
+import {mapData
+    ,piedata
+    ,lineDataTotal
+    ,lineData
+    ,othersTotal
+    ,optionProperties
+    ,optionPropertiesTotal
+    ,mapOptions
+    ,barChartData 
+    ,optionBar} from "../data/data";
 
 import Async from 'react-async';
 
@@ -22,54 +29,81 @@ import UpdateCard  from '../component/UpdateCard'
 import {Doughnut,Bar} from 'react-chartjs-2';
 
 import {Helmet} from 'react-helmet'
+import sortBy from "lodash/orderBy";
+import cloneDeep from 'lodash/cloneDeep';
 
 highchartsMap(Highcharts);
-
-
-// const Layout = lazy(() => import('../component/Layout'));
-  const loadUsers = () =>
-    fetch("https://curecovid19.in/readings/readings/get_summary")
-    // fetch("http://192.168.1.157:5000/readings/get_summary")
-    .then(res => (res.ok ? res : Promise.reject(res)))
-    .then(res => res.json())
   
   export default function Home() {
 
-      return (
-          
-          <Async promiseFn={loadUsers} >
-                {({ data, err, isLoading }) => {
-                    if (isLoading) return (<Loader/>)
-                    if (err) return <ServerDown/>
-                    if (data)
-                    var  active = data.summary.total - data.summary.recovered - data.summary.deaths;
-                  
-                    data.statewise.forEach(element => {
-                        mapData.forEach((field,i) => {
-                            if(element.state.toLowerCase()=== field[0]){
-                                mapData[i][1]=element.total;
-                            }
-                        });
-                    });
+    const [states,setStates] = useState([]);
+    const [articles,setArticles] = useState([]);
+    const [myMap, setMyMap] = useState([]); 
+    const [data, setData] = useState({});  
+    const [graph, setGraph] = useState({});  
+    const [metaContent, setMetaContent] = useState({});  
 
-                    barChartData.labels = Object.keys(data.age);
-                    barChartData.datasets[0].data = Object.values(data.age);
+    const [countryFlag,setCountryFlag] = useState(0);
+    const [confirmFlag,setConfirmFlag] = useState(0);
+    const [activeFlag,setActiveFlag] = useState(0);
+    const [recoveredFlag,setRecoveredFlag] = useState(0);
+    const [deathFlag,setDeathFlag] = useState(0);
 
-                    const genderValue=[];
-                    const gernderLabel=[];
-                    data.gender.forEach(element=>{
-                        genderValue.push(element.count);
-                        gernderLabel.push(element.gender)
-                    })
-                    if(data.gender.length === 2)
-                    { 
-                      genderValue.push(0);
-                    }
-                    piedata.datasets[0].data = genderValue;
-                    piedata.labels = gernderLabel;
+    const [fetched,setFetched] = useState(false);
+
+    useEffect(() => {
+        if (fetched === false) {
+          loadUsers();
+        }
+      }, [fetched]);
+
+      const loadUsers = async() =>
+        await fetch("https://curecovid19.in/readings/readings/get_summary")
+        // fetch("http://192.168.1.157:5000/readings/get_summary")
+        .then(res => res.json()
+        .then(data =>{ 
+          setArticles(data.articles);
+          console.log(data)
+
+          data.statewise.forEach(element => {
+              mapData.forEach((field,i) => {
+                  if(element.state.toLowerCase()=== field[0]){
+                      mapData[i][1]=element.total;
+                  }
+              });
+          });
+
+
+          const map = cloneDeep(mapOptions);
+            map.series[0].mapData = indiaAll;
+            const indiaData = [];
+
+            data.statewise.forEach(element => {
+                indiaData.push({name:(element.state),
+                            value:element.total,
+                            active:element.active,
+                            recovered:element.recovered,
+                            deaths:element.deaths})
+            });
+            
+          //  console.log(indiaData);
+            map.series[0].data = indiaData;
+            map.series[0].joinBy =  ['name', 'name']
+            map.tooltip =  {
+                formatter: function(){
+                    var s = '<p><b>' + (this.point.name).toUpperCase() + '</b></p><br/>';
+                    s += 'CONFIRMED : <b>' + (this.point.value===undefined?"NA":this.point.value) + '</b><br/>';
+                    s += 'ACTIVE : <b>' + (this.point.active===undefined?"NA":this.point.active) + '</b><br/>';
+                    s += 'RECOVERED : <b>' + (this.point.recovered===undefined?"NA":this.point.recovered) + '</b><br/>';
+                    s += 'DECEASED : <b>' + (this.point.deaths===undefined?"NA":this.point.deaths)+'</b>';
+                    return s;
+                },
+            }
+            setMyMap(map);  
+            setStates(data.statewise);
+            setData(data);
 
                     const totalValue = [];
-                    const daysValue = [];
                     const deathsValue = [];
                     const activeValue = [];
                     const recoveredValue = [];
@@ -80,9 +114,18 @@ highchartsMap(Highcharts);
                     const activeValue1 = [];
                     const recoveredValue1 = [];
                     const cumulative_confirmed = [];
+
+
+                    const last_value = -20
+                    lineData.datasets=othersTotal.datasets;
+                    lineData.labels = (data.dashboard_graphs).map(a => a.day).reverse().slice(last_value) 
+                    const simpleTotal = cloneDeep(lineData);
+                    const simpleDeaths = cloneDeep(lineData);
+                    const simpleActive = cloneDeep(lineData);
+                    const simpleRecovered = cloneDeep(lineData);
+
                     data.dashboard_graphs.forEach(element => {
                         totalValue.push(element.daily_total);
-                        daysValue.push(element.day);
                         deathsValue.push(element.daily_deaths);
                         activeValue.push(element.daily_active);
                         recoveredValue.push(element.daily_recovered);
@@ -94,58 +137,101 @@ highchartsMap(Highcharts);
                         recoveredValue1.push(element.recovered);
                     });
 
-                    data.cumulative_confirmed.forEach(element =>{
-                        cumulative_confirmed.push(element.count);
-                    });
+          
+            simpleTotal.datasets[0].data = totalValue.slice(last_value);
+            simpleTotal.datasets[0].borderColor = "red"
+            
+            simpleDeaths.datasets[0].data = deathsValue.slice(last_value);
+            simpleDeaths.datasets[0].borderColor = "#292b2c"
+            
+            simpleActive.datasets[0].data = activeValue.slice(last_value);
+            simpleActive.datasets[0].borderColor = "#0275d8"
+            
+            simpleRecovered.datasets[0].data = recoveredValue.slice(last_value);
+            simpleRecovered.datasets[0].borderColor = "#5cb85c"
 
-                    lineDataTotal.labels = lineDataDeaths.labels = lineDataRecovered.labels = lineDataActive.labels = daysValue1.slice(-30);
-                    lineDataTotal.datasets[1].data = totalValue.slice(-30);
-                    // lineDataTotal.datasets[2].data = totalValue1.slice(-30);
-                    lineDataTotal.datasets[2].data = recoveredValue.slice(-30);
-                    lineDataTotal.datasets[0].data = cumulative_confirmed.slice(-30);
-                    lineDataTotal.datasets[3].data = deathsValue.slice(-30);
+            optionPropertiesTotal.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*0.04));
+            optionPropertiesTotal.scales.yAxes[0].ticks.min = -15;
 
-                    const last_value = -20
-                    const simpleTotal = Object.assign({}, lineDataTotal);
-                    simpleTotal.datasets=othersTotal.datasets;
-                    simpleTotal.datasets[0].data = totalValue.slice(last_value);
-                    simpleTotal.labels = daysValue.slice(last_value);
+            lineDataTotal.labels  = daysValue1.slice(-30);
+            lineDataTotal.datasets[1].data = totalValue.slice(-30);
+            lineDataTotal.datasets[2].data = recoveredValue.slice(-30);
+            lineDataTotal.datasets[0].data = (data.cumulative_confirmed).map(a => a.count).slice(-30)
+            lineDataTotal.datasets[3].data = deathsValue.slice(-30);
 
-                    const simpleDeaths = Object.assign({}, lineDataDeaths);
-                    simpleDeaths.datasets=othersDeaths.datasets;
-                    simpleDeaths.datasets[0].data = deathsValue.slice(last_value);
-                    simpleDeaths.labels = daysValue.slice(last_value);
+            barChartData.labels = Object.keys(data.age);
+            barChartData.datasets[0].data = Object.values(data.age);
 
-                    const simpleActive = Object.assign({}, lineDataActive);
-                    simpleActive.datasets=othersActive.datasets;
-                    simpleActive.datasets[0].data = activeValue.slice(last_value);
-                    simpleActive.labels = daysValue.slice(last_value);
+            const genderValue=[];
+            const gernderLabel=[];
+            data.gender.forEach(element=>{
+                genderValue.push(element.count);
+                gernderLabel.push(element.gender)
+            })
+            if(data.gender.length === 2)
+            { 
+              genderValue.push(0);
+            }
+            piedata.datasets[0].data = genderValue;
+            piedata.labels = gernderLabel;
 
-                    const simpleRecovered = Object.assign({}, lineDataRecovered);
-                    simpleRecovered.datasets=othersRecovered.datasets;
-                    simpleRecovered.datasets[0].data = recoveredValue.slice(last_value);
-                    simpleRecovered.labels = daysValue.slice(last_value);
-                    
-                    const highscale = 0.04;
-                    othersTotal.datasets[0].borderColor = "#e65252";
-                    othersActive.datasets[0].borderColor = "#268df9";
-                    othersRecovered.datasets[0].borderColor = "#24b314";
-                    othersDeaths.datasets[0].borderColor = "#3e4b5b";
-                    optionPropertiesTotal.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                    optionPropertiesTotal.scales.yAxes[0].ticks.min = -15;
-                    // optionProperties.scales.yAxes[1].ticks.max = Math.round(Math.max(...cumulative_confirmed) + (Math.max(...cumulative_confirmed)*highscale));
-                    optionProperties.scales.yAxes[1].ticks.min = 0;
-                    optionPropertiesDeaths.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                    optionPropertiesDeaths.scales.yAxes[0].ticks.min = -15;
-                    optionPropertiesRecovered.scales.yAxes[0].ticks.min = -15;
-                    optionPropertiesActive.scales.yAxes[0].ticks.min = -15;
-                    optionPropertiesActive.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                    optionPropertiesRecovered.scales.yAxes[0].ticks.max = Math.round(Math.max(...totalValue) + (Math.max(...totalValue)*highscale));
-                  
-                    const metaContent = `Total Cases:${data.summary.total},Active Cases:${active},Recovered:${data.summary.recovered},Deaths:${data.summary.deaths}`
-                    const num_days = data.num_days;
+            setGraph({"total":simpleTotal,
+                      "active":simpleActive,
+                      "recovered":simpleRecovered,
+                      "deaths":simpleDeaths})
+
+          setMetaContent(`Total Cases:${data.summary.total},Active Cases:${data.summary.active},Recovered:${data.summary.recovered},Deaths:${data.summary.deaths}`)
+
+          setFetched(true);
+
+        })
+       
+      )
+
+    function  orderData(e) {
+
+      setCountryFlag(0);
+      setConfirmFlag(0);
+      setActiveFlag(0);
+      setRecoveredFlag(0);
+      setDeathFlag(0);
+      const id = e.target.id;
+      switch(id){
+          case "state":
+              setCountryFlag(setFlag(countryFlag,id));
+          break;
+          case "active":
+              setActiveFlag(setFlag(activeFlag,id));
+          break;
+          case "total":
+              setConfirmFlag(setFlag(confirmFlag,id));
+          break;
+          case "deaths":
+              setDeathFlag(setFlag(deathFlag,id));
+          break;
+          default:
+              setRecoveredFlag(setFlag(recoveredFlag,id)); 
+      }
+
+      // console.log(e.target.id)
+  }
+
+  function setFlag(flag,data){
+      if(flag===0 || flag==2){
+          setStates(sortBy(states,data,'desc'))
+          return 1;
+      }else{
+        setStates(sortBy(states,data,'asc'))
+          return 2;
+      }
+  }
+
+
                     return ( 
                         <>
+                          {!fetched && ( <Loader/> )}
+                          {fetched && (  
+                          <React.Fragment>
                           <Helmet>
                           <title>India Covid 19 Dashboard</title>
                             <meta name="description" content={metaContent}  data-react-helmet="true" />
@@ -160,7 +246,7 @@ highchartsMap(Highcharts);
                                         Dashboard for COVID-19 India 
                                         <br/>
                                         <span className="font-weight-bold text-danger" style={{fontSize: "16px"}}> 
-                                            {num_days} 
+                                            {data.num_days} 
                                         </span>
                                         <span className="text-danger" style={{fontSize: "12px"}}> days since first outbreak
                                         </span>
@@ -177,19 +263,19 @@ highchartsMap(Highcharts);
                                         <div className="row mb-xl-4 mb-xxl-3">
                                             <Card name="CONFIRMED" styleName="text-danger" 
                                                 data={data.summary.total.toLocaleString("en-IN")} diff={data.total_diff}
-                                                values={simpleTotal} option={optionPropertiesTotal}
+                                                values={graph.total} option={optionPropertiesTotal}
                                                 />
                                             <Card name="ACTIVE" styleName="text-primary" 
-                                                data={active.toLocaleString("en-IN")} diff={0}
-                                                values={simpleActive} option={optionPropertiesActive}
+                                                data={data.summary.active.toLocaleString("en-IN")} diff={0}
+                                                values={graph.active} option={optionPropertiesTotal}
                                                 />
                                             <Card name="RECOVERED" styleName="text-success" 
                                                 data={data.summary.recovered.toLocaleString("en-IN")} diff={data.recovered_diff}
-                                                values={simpleRecovered} option={optionPropertiesRecovered}
+                                                values={graph.recovered} option={optionPropertiesTotal}
                                                 />
                                             <Card name="DECEASED" styleName="text-secondary" 
                                                 data={data.summary.deaths.toLocaleString("en-IN")} diff={data.deaths_diff}
-                                                values={simpleDeaths} option={optionPropertiesDeaths}
+                                                values={graph.deaths} option={optionPropertiesTotal}
                                                 />
                                         </div>
                                     </div>
@@ -210,7 +296,7 @@ highchartsMap(Highcharts);
                                         <svg height="50" width="12" className="blinking"><circle cx="5" cy="24" r="5" fill="red" /></svg> Updates 
                                     </h6>
                                     <div className="element-box-tp">
-                                        {data.articles.map(element=><UpdateCard data={element} key={element.id}/>)}
+                                        {articles.map(element=><UpdateCard data={element} key={element.id}/>)}
                                     </div>
                                     <br/>
                                     <div className="row">
@@ -231,26 +317,26 @@ highchartsMap(Highcharts);
                           <div className="table-responsive text-right">
                             <table className="table table-lightborder">
                               <thead>
-                                <tr>
-                                  <th className="text-left">
-                                    State
-                                  </th>
-                                  <th>
-                                    CNFMD
-                                  </th>    
-                                  <th>
-                                    ACTV
-                                  </th>
-                                  <th>
-                                    RCVD
-                                  </th>
-                                  <th>
-                                    DCSD
-                                  </th>
-                                </tr>
+                              <tr>
+                                <th className="text-left" id="state" onClick={orderData} >
+                                    State  <i class={`fa fa-${countryFlag===0?"sort":countryFlag===1?"sort-up":"sort-down"}`} ></i>
+                                </th>
+                                <th id="total" onClick={orderData}>
+                                    CNFMD <i class={`fa fa-${confirmFlag===0?"sort":confirmFlag===1?"sort-up":"sort-down"}`} ></i>
+                                </th>    
+                                <th id="active" onClick={orderData}>
+                                    ACTV <i class={`fa fa-${activeFlag===0?"sort":activeFlag===1?"sort-up":"sort-down"}`} ></i>
+                                </th>
+                                <th id="recovered" onClick={orderData}>
+                                    RCVD <i class={`fa fa-${recoveredFlag===0?"sort":recoveredFlag===1?"sort-up":"sort-down"}`} ></i>
+                                </th>
+                                <th id="deaths" onClick={orderData}>
+                                    DCSD <i class={`fa fa-${deathFlag===0?"sort":deathFlag===1?"sort-up":"sort-down"}`} ></i>
+                                </th>
+                              </tr>
                               </thead>
                               <tbody>
-                                  {data.statewise.map(state=><StateWiseData key={state.id} data={state}/>)}
+                                  {states.map(state=><StateWiseData key={state.id} data={state}/>)}
                             </tbody>
                             </table>
                         </div>
@@ -268,7 +354,7 @@ highchartsMap(Highcharts);
                                         <HighchartsReact
                                             constructorType={"mapChart"}
                                             highcharts={Highcharts}
-                                            options={mapOptions}
+                                            options={myMap}
                                             />
                                     </div>
                                     </div>
@@ -305,10 +391,8 @@ highchartsMap(Highcharts);
                           </div>
                             </div>
                     </div>
-
+                    </React.Fragment>)}
                     </>
-        )}}
-      </Async>
     )
 }
 

@@ -24,7 +24,8 @@ export default function CombineAnalytics() {
     const [spreadWorldLine, setWorldSpread] = useState({}); 
     const [infectedWorldLine, setWorldInfected] = useState({}); 
     const [mortalityWorldLine, setWorldMortality] = useState({}); 
-    const [fatalityWorldLine, setWorldFatality] = useState({}); 
+    const [fatalityWorldLine, setWorldFatality] = useState({});
+    const [option, setOptions] = useState({});  
 
    let optionPropertiesStatewise = cloneDeep(optionPropertiesCountrywise)
    optionPropertiesStatewise.scales.xAxes[0].scaleLabel.labelString = "Days since 100 Confirmed cases"
@@ -171,6 +172,17 @@ export default function CombineAnalytics() {
             setWorldMortality(mortalityWorldLine);
             setWorldFatality(fatalityWorldLine)
 
+            const optionInfected = cloneDeep(optionPropertiesCountrywise);
+            const optionMortality= cloneDeep(optionPropertiesCountrywise);
+            const optionFatality = cloneDeep(optionPropertiesCountrywise);
+            optionInfected.scales.yAxes[0].scaleLabel.labelString = "Confirmed (today / yesterday)"
+            optionMortality.scales.yAxes[0].scaleLabel.labelString = "deaths per million"
+            optionFatality.scales.yAxes[0].scaleLabel.labelString = "deaths / confirmed [%]"
+
+            setOptions({infected:optionInfected,
+                        fatality:optionFatality,
+                        mortality:optionMortality});
+
             setFetched(true);
 
 
@@ -206,14 +218,14 @@ export default function CombineAnalytics() {
 
             <ContentGraph title="State-Wise Infection Rate"
                 values={infectedLine} 
-                option={cloneDeep(optionPropertiesStatewise)}
+                option={option.infected}
                 desc={<><p>Infection rate gives us a measure of how well different states are doing in the fight against
                 COVID-19 no matter its population and density.</p><h6 className="alert-heading font-weight-bold">
                 An infection rate of 1.0 means healthcare stability and no new infections.</h6></>}/>
 
             <ContentGraph title="State-Wise Fatality Rate"
                 values={fatalityLine} 
-                option={cloneDeep(optionPropertiesStatewise)}
+                option={option.fatality}
                 desc={<><p>Due to the sampling bias induced by restricted access to COVID-19 testing in
                 different states, only looking at the confirmed cases don't give us the true picture.
                 An increase of the fatality rate indicates that<li> the confirmed count is being
@@ -223,7 +235,7 @@ export default function CombineAnalytics() {
 
             <ContentGraph title="State-Wise Mortality Rate"
                 values={mortalityLine} 
-                option={cloneDeep(optionPropertiesStatewise)}
+                option={option.mortality}
                 desc={<p>In contrast to the fatality rate, the mortality rate below is shown in dead
                 per million inhabitants. The mortality rate is not dependent on confirmed or active
                 number of cases and it gives us the true picture of the damage inflicted by the pandemic.</p>}
@@ -250,14 +262,14 @@ export default function CombineAnalytics() {
 
             <ContentGraph title="Countrywise Infection Rate"
                 values={infectedWorldLine} 
-                option={cloneDeep(optionPropertiesCountrywise)}
+                option={option.infected}
                 desc={<><p>Infection rate gives us a measure of how well different countries are doing in the fight against
                 COVID-19 no matter its population and density.</p><h6 className="alert-heading font-weight-bold">
                 An infection rate of 1.0 means healthcare stability and no new infections.</h6></>}/>
 
             <ContentGraph title="Countrywise Fatality Rate"
                 values={fatalityWorldLine} 
-                option={cloneDeep(optionPropertiesCountrywise)}
+                option={option.fatality}
                 desc={<><p>Due to the sampling bias induced by restricted access to COVID-19 testing in
                 different countries, only looking at the confirmed cases don't give us the true picture.
                 An increase of the fatality rate indicates that<li> the confirmed count is being
@@ -267,7 +279,7 @@ export default function CombineAnalytics() {
 
             <ContentGraph title="Countrywise Mortality Rate"
                 values={mortalityWorldLine} 
-                option={cloneDeep(optionPropertiesCountrywise)}
+                option={option.mortality}
                 desc={<p>In contrast to the fatality rate, the mortality rate below is shown in dead
                 per million inhabitants. The mortality rate is not dependent on confirmed or active
                 number of cases and it gives us the true picture of the damage inflicted by the pandemic.</p>}

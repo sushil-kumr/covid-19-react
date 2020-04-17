@@ -127,7 +127,7 @@ export default function UsPage() {
                 },
             }
             setMyMap(map);            
-            console.log(lineDataTotal);
+          //  console.log(lineDataTotal);
             setFetched(true);
 
         });
@@ -141,21 +141,22 @@ export default function UsPage() {
         setRecoveredFlag(0);
         setDeathFlag(0);
 
-        switch(e.target.id){
+        const id = e.target.id;
+        switch(id){
             case "state":
-                setCountryFlag(setFlag(countryFlag,"state"));
+                setCountryFlag(setFlag(countryFlag,id));
             break;
             case "active":
-                setActiveFlag(setFlag(activeFlag,"active"));
+                setActiveFlag(setFlag(activeFlag,id));
             break;
             case "confirmed":
-                setConfirmFlag(setFlag(confirmFlag,"confirmed"));
+                setConfirmFlag(setFlag(confirmFlag,id));
             break;
             case "deaths":
-                setDeathFlag(setFlag(deathFlag,"deaths"));
+                setDeathFlag(setFlag(deathFlag,id));
             break;
             default:
-                setRecoveredFlag(setFlag(recoveredFlag,"recovered")); 
+                setRecoveredFlag(setFlag(recoveredFlag,id)); 
         }
     }
 

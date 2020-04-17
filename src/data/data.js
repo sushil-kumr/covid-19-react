@@ -2,7 +2,6 @@ import React from 'react'
 
 import usAll from "../data/india";
 
-// export const colorsCountrywise = ["#ed2939", "#ffea00", "#268df9", "#24b314", "#0033a0", "#66033c"]
 export const colorsCountrywise = [ 
   "rgb(41,153,237,0.8)",
   "rgb(237,41,57,0.4)", 
@@ -163,7 +162,7 @@ export const optionPropertiesCountrywiseInfectionRate = {
       mode: 'x'
     },
     bezierCurve : true,
-    scales: {
+    scales: {  
       xAxes: [{
         scaleLabel: {
           display: true,
@@ -313,7 +312,7 @@ export var lineDataTotal = {
       // pointHoverBorderWidth: 3,
       pointRadius: 2,
       // pointHitRadius: 5,
-      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      data: [],
       spanGaps: false,
       lineTension: 0.4,
       yAxisID: '2'
@@ -419,27 +418,15 @@ export var lineDataTotal = {
     }]
   };
 
-  export const lineDataActive = {
+  export const lineData = {
     labels: [],
     datasets: [{
       label: "Active",
       fill: false,
-      // backgroundColor: "#268df9",
       borderColor: "#268df9",
-      // borderCapStyle: 'butt',
-      // borderDash: [],
-      // borderDashOffset: 0.0,
-      // borderJoinStyle: 'miter',
-      // pointBorderColor: "#fff",
       pointBackgroundColor: "#268df9",
-      // pointBorderWidth: 2,
-      // pointHoverRadius: 5,
-      // pointHoverBackgroundColor: "#FC2055",
-      // pointHoverBorderColor: "#fff",
-      // pointHoverBorderWidth: 3,
       pointRadius: 2,
-      // pointHitRadius: 5,
-      data: [27, 20, 44, 24, 29, 22, 43, 52],
+      data: [],
       spanGaps: false,
       lineTension: 0.4
     }]
