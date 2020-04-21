@@ -18,8 +18,8 @@ export default class HomeUpdateCard extends Component {
                     {this.props.data.headline}
                 </p>
                 <div className="post-foot">
-                <div className="post-tags col-8">
-                    <b style={{fontSize: "12px", color: "#555", marginRight: "2%"}}>{this.props.data.record_time}</b>
+                <div className="post-tags col-10">
+                    <b style={{fontSize: "12px", color: "#555", marginRight: "1%"}}>{this.props.data.record_time}</b>
                     
                     <div className="badge badge-primary" style={{margin: "4px"}}>
                         {this.props.data.tags.split(',').slice(-1)["length"]? this.props.data.tags.split(',').slice(-1)[0] : "news"}
