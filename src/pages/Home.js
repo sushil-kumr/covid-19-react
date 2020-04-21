@@ -21,7 +21,8 @@ import Card  from '../component/Card'
 import SimpleGraph  from '../component/SimpleGraph'
 import StateWiseData  from '../component/StateWiseData'
 import MapState from '../component/MapState'
-import UpdateCard  from '../component/UpdateCard'
+
+import HomeUpdateCard  from '../component/HomeUpdateCard'
 
 import {Doughnut,Bar} from 'react-chartjs-2';
 
@@ -90,14 +91,14 @@ highchartsMap(Highcharts);
             map.tooltip =  {
                 formatter: function(){
                   setPoint(this.point)
-                    var s = null;
                     // s += 'CONFIRMED : <b>' + (this.point.value===undefined?"NA":this.point.value.toLocaleString("en-IN")) + '</b><br/>';
                     // s += 'ACTIVE : <b>' + (this.point.active===undefined?"NA":this.point.active.toLocaleString("en-IN")) + '</b><br/>';
                     // s += 'RECOVERED : <b>' + (this.point.recovered===undefined?"NA":this.point.recovered.toLocaleString("en-IN")) + '</b><br/>';
                     // s += 'DECEASED : <b>' + (this.point.deaths===undefined?"NA":this.point.deaths.toLocaleString("en-IN"))+'</b>';
-                    return s;
+                    return false;
                 },
             }
+            //map.tooltip.enabled = false;
             setMyMap(map);  
             setStates(data.statewise);
             setData(data);
@@ -295,13 +296,13 @@ highchartsMap(Highcharts);
                                         <svg height="50" width="12" className="blinking"><circle cx="5" cy="24" r="5" fill="red" /></svg> Updates 
                                     </h6>
                                     <div className="element-box-tp">
-                                        {articles.map(element=><UpdateCard data={element} key={element.id}/>)}
+                                        {articles.map(element=><HomeUpdateCard data={element} key={element.id}/>)}
                                     </div>
                                     <br/>
                                     <div className="row">
                                         <div className="col-sm-4 col-2">
                                         </div>
-                                        <button className="btn btn-md btn-primary" onClick={()=> window.location="/updates"}>Click to view more Updates</button>
+                                        <button className="btn btn-md btn-primary" onClick={()=> window.location="/updates"}>View More</button>
                                         </div>
                                     <br/>
                                 </div>

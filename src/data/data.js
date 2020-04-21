@@ -878,6 +878,7 @@ export const mapOptions = {
     mapNavigation: {
       enabled: false
     },
+    tooltip: { enabled: false },
     series: [
       {
         // Use the gb-all map with no data as a basemap

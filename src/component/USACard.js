@@ -22,7 +22,7 @@ export default function USACard(props) {
     simpleTotal.labels = props.dates; 
     optionUSA.scales.yAxes[0].ticks.min = (-0.01*props.lastData);
 
-    optionUSA.scales.yAxes[0].ticks.max = props.max;
+    optionUSA.scales.yAxes[0].ticks.max = 1.2*props.max;
    // console.log(props.max);
 
     

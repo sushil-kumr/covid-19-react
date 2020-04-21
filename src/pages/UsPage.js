@@ -122,12 +122,7 @@ export default function UsPage() {
             map.tooltip =  {
                 formatter: function(){
                     setPoint(this.point)
-                    var s = '<p>' + (this.point.name).toUpperCase() + '</p><br/>';
-                    s += 'CONFIRMED : <b>' + (this.point.value===undefined?"NA":this.point.value.toLocaleString("en")) + '</b><br/>';
-                    s += 'ACTIVE : <b>' + (this.point.active===undefined?"NA":this.point.active.toLocaleString("en")) + '</b><br/>';
-                    s += 'RECOVERED : <b>' + (this.point.recovered===undefined?"NA":this.point.recovered.toLocaleString("en")) + '</b><br/>';
-                    s += 'DECEASED : <b>' + (this.point.deaths===undefined?"NA":this.point.deaths.toLocaleString("en"))+'</b>';
-                    return s;
+                    return false;
                 },
             }
             setMyMap(map);            
