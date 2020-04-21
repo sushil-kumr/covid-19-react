@@ -82,8 +82,8 @@ export default class Updates extends Component {
                           <div className="element-box-tp">
                             {this.state.updateData.updates.map(element=><UpdateCard data={element} key={element.id}/>)}
 
-                            <a className="centered-load-more-link" href="https://t.me/covid19smeindia" target="_blank">
-                                <span style={{textDecoration: "underline"}}>For Updates on Telegram</span>
+                            <a className="centered-load-more-link" href="https://medium.com/utilize/relief-programs-for-indian-businesses-impacted-by-covid-19-da8874dcadeb" target="_blank">
+                                <span style={{textDecoration: "underline"}}>Business or MSME updates</span>
                             </a>
                           </div>
                         </div>

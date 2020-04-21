@@ -24,7 +24,7 @@ import Card  from '../component/Card'
 import SimpleGraph  from '../component/SimpleGraph'
 import StateWiseData  from '../component/StateWiseData'
 import ServerDown  from './ServerDown'
-import UpdateCard  from '../component/UpdateCard'
+import HomeUpdateCard  from '../component/HomeUpdateCard'
 
 import {Doughnut,Bar} from 'react-chartjs-2';
 
@@ -296,13 +296,13 @@ highchartsMap(Highcharts);
                                         <svg height="50" width="12" className="blinking"><circle cx="5" cy="24" r="5" fill="red" /></svg> Updates 
                                     </h6>
                                     <div className="element-box-tp">
-                                        {articles.map(element=><UpdateCard data={element} key={element.id}/>)}
+                                        {articles.map(element=><HomeUpdateCard data={element} key={element.id}/>)}
                                     </div>
                                     <br/>
                                     <div className="row">
                                         <div className="col-sm-4 col-2">
                                         </div>
-                                        <button className="btn btn-md btn-primary" onClick={()=> window.location="/updates"}>Click to view more Updates</button>
+                                        <button className="btn btn-md btn-primary" onClick={()=> window.location="/updates"}>View More</button>
                                         </div>
                                     <br/>
                                 </div>
