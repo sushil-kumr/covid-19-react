@@ -25,6 +25,7 @@ function App() {
           <Route path="/updates" exact  component={Updates}/>
           <Route path="/login" exact  component={Login}/>
           <Route path="/addupdate" exact  component={AddUpdate}/>
+          <Route path="/share" exact  component={SampleMap}/>
           <Route path="*" component={NotFound}/>
       </Switch>
       {/* </Suspense> */}

@@ -851,49 +851,9 @@ export const piedata = {
 	}]
 };
 
-
-export const mapData = [
-  ['madhya pradesh', 0],
-  ['uttar pradesh', 0],
-  ['karnataka', 0],
-  ['nagaland', 0],
-  ['bihar', 0],
-  ['lakshadweep', 0],
-  ['andaman and nicobar islands', 0],
-  ['assam', 0],
-  ['west bengal', 0],
-  ['puducherry', 0],
-  ['daman and diu', 0],
-  ['gujarat', 0],
-  ['rajasthan', 0],
-  ['dadara and nagar havelli', 0],
-  ['chhattisgarh', 0],
-  ['tamil nadu', 0],
-  ['chandigarh', 0],
-  ['punjab', 0],
-  ['haryana', 0],
-  ['andhra pradesh', 0],
-  ['maharashtra', 0],
-  ['himachal pradesh', 0],
-  ['meghalaya', 0],
-  ['kerala', 0],
-  ['telangana', 0],
-  ['mizoram', 0],
-  ['tripura', 0],
-  ['manipur', 0],
-  ['arunachal pradesh', 0],
-  ['jharkhand', 0],
-  ['goa', 0],
-  ['delhi', 0],
-  ['odisha', 0],
-  ['jammu and kashmir', 0],
-  ['sikkim', 0],
-  ['uttarakhand', 0]
-];
-
 export const mapOptions = {
     chart: {
-      map: "countries/ie/ie-all",
+      map: "",
       height:"600px"
     },
     title: {
@@ -921,7 +881,7 @@ export const mapOptions = {
     series: [
       {
         // Use the gb-all map with no data as a basemap
-        data: mapData,
+        data: null,
         name: "Total Cases",
         states: {
             hover: {

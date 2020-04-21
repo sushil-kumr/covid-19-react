@@ -6,8 +6,7 @@ import highchartsMap from "highcharts/modules/map";
 
 import indiaAll from "../data/india";
 
-import {mapData
-    ,piedata
+import {piedata
     ,lineDataTotal
     ,lineData
     ,othersTotal
@@ -17,13 +16,11 @@ import {mapData
     ,barChartData 
     ,optionBar} from "../data/data";
 
-import Async from 'react-async';
-
 import Loader  from '../component/Loader'
 import Card  from '../component/Card'
 import SimpleGraph  from '../component/SimpleGraph'
 import StateWiseData  from '../component/StateWiseData'
-import ServerDown  from './ServerDown'
+import MapState from '../component/MapState'
 import UpdateCard  from '../component/UpdateCard'
 
 import {Doughnut,Bar} from 'react-chartjs-2';
@@ -39,7 +36,8 @@ highchartsMap(Highcharts);
     const [states,setStates] = useState([]);
     const [articles,setArticles] = useState([]);
     const [myMap, setMyMap] = useState([]); 
-    const [data, setData] = useState({});  
+    const [data, setData] = useState({});   
+    const [point, setPoint] = useState({});  
     const [graph, setGraph] = useState({});  
     const [metaContent, setMetaContent] = useState({});  
 
@@ -48,6 +46,12 @@ highchartsMap(Highcharts);
     const [activeFlag,setActiveFlag] = useState(0);
     const [recoveredFlag,setRecoveredFlag] = useState(0);
     const [deathFlag,setDeathFlag] = useState(0);
+    
+    const [flag,setFlag] = useState({state:0,
+                                    confirm:0,
+                                    active:0,
+                                    deaths:0,
+                                    recovered:0});
 
     const [fetched,setFetched] = useState(false);
 
@@ -63,19 +67,8 @@ highchartsMap(Highcharts);
         .then(res => res.json()
         .then(data =>{ 
           setArticles(data.articles);
-          console.log(data)
-
-          data.statewise.forEach(element => {
-              mapData.forEach((field,i) => {
-                  if(element.state.toLowerCase()=== field[0]){
-                      mapData[i][1]=element.total;
-                  }
-              });
-          });
-
 
           const map = cloneDeep(mapOptions);
-            map.series[0].mapData = indiaAll;
             const indiaData = [];
 
             data.statewise.forEach(element => {
@@ -85,17 +78,23 @@ highchartsMap(Highcharts);
                             recovered:element.recovered,
                             deaths:element.deaths})
             });
+
+            setPoint({name:indiaData[0].name,
+              value:indiaData[0].value,
+              active:indiaData[0].active,
+              deaths:indiaData[0].deaths,
+              recovered:indiaData[0].recovered})
             
-          //  console.log(indiaData);
             map.series[0].data = indiaData;
             map.series[0].joinBy =  ['name', 'name']
             map.tooltip =  {
                 formatter: function(){
-                    var s = '<p><b>' + (this.point.name).toUpperCase() + '</b></p><br/>';
-                    s += 'CONFIRMED : <b>' + (this.point.value===undefined?"NA":this.point.value) + '</b><br/>';
-                    s += 'ACTIVE : <b>' + (this.point.active===undefined?"NA":this.point.active) + '</b><br/>';
-                    s += 'RECOVERED : <b>' + (this.point.recovered===undefined?"NA":this.point.recovered) + '</b><br/>';
-                    s += 'DECEASED : <b>' + (this.point.deaths===undefined?"NA":this.point.deaths)+'</b>';
+                  setPoint(this.point)
+                    var s = null;
+                    // s += 'CONFIRMED : <b>' + (this.point.value===undefined?"NA":this.point.value.toLocaleString("en-IN")) + '</b><br/>';
+                    // s += 'ACTIVE : <b>' + (this.point.active===undefined?"NA":this.point.active.toLocaleString("en-IN")) + '</b><br/>';
+                    // s += 'RECOVERED : <b>' + (this.point.recovered===undefined?"NA":this.point.recovered.toLocaleString("en-IN")) + '</b><br/>';
+                    // s += 'DECEASED : <b>' + (this.point.deaths===undefined?"NA":this.point.deaths.toLocaleString("en-IN"))+'</b>';
                     return s;
                 },
             }
@@ -198,25 +197,25 @@ highchartsMap(Highcharts);
       const id = e.target.id;
       switch(id){
           case "state":
-              setCountryFlag(setFlag(countryFlag,id));
+              setCountryFlag(setFlagData(countryFlag,id));
           break;
           case "active":
-              setActiveFlag(setFlag(activeFlag,id));
+              setActiveFlag(setFlagData(activeFlag,id));
           break;
           case "total":
-              setConfirmFlag(setFlag(confirmFlag,id));
+              setConfirmFlag(setFlagData(confirmFlag,id));
           break;
           case "deaths":
-              setDeathFlag(setFlag(deathFlag,id));
+              setDeathFlag(setFlagData(deathFlag,id));
           break;
           default:
-              setRecoveredFlag(setFlag(recoveredFlag,id)); 
+              setRecoveredFlag(setFlagData(recoveredFlag,id)); 
       }
 
       // console.log(e.target.id)
   }
 
-  function setFlag(flag,data){
+  function setFlagData(flag,data){
       if(flag===0 || flag==2){
           setStates(sortBy(states,data,'desc'))
           return 1;
@@ -316,27 +315,27 @@ highchartsMap(Highcharts);
                         <div className="element-box-tp">
                           <div className="table-responsive text-right">
                             <table className="table table-lightborder">
-                              <thead>
+                              <thead style={{cursor: "pointer"}}>
                               <tr>
                                 <th className="text-left" id="state" onClick={orderData} >
-                                    State  <i class={`fa fa-${countryFlag===0?"sort":countryFlag===1?"sort-up":"sort-down"}`} ></i>
+                                    State  <i className={`fa fa-${countryFlag===0?"sort":countryFlag===1?"sort-up":"sort-down"}`} ></i>
                                 </th>
                                 <th id="total" onClick={orderData}>
-                                    CNFMD <i class={`fa fa-${confirmFlag===0?"sort":confirmFlag===1?"sort-up":"sort-down"}`} ></i>
+                                    CNFMD <i className={`fa fa-${confirmFlag===0?"sort":confirmFlag===1?"sort-up":"sort-down"}`} ></i>
                                 </th>    
                                 <th id="active" onClick={orderData}>
-                                    ACTV <i class={`fa fa-${activeFlag===0?"sort":activeFlag===1?"sort-up":"sort-down"}`} ></i>
+                                    ACTV <i className={`fa fa-${activeFlag===0?"sort":activeFlag===1?"sort-up":"sort-down"}`} ></i>
                                 </th>
                                 <th id="recovered" onClick={orderData}>
-                                    RCVD <i class={`fa fa-${recoveredFlag===0?"sort":recoveredFlag===1?"sort-up":"sort-down"}`} ></i>
+                                    RCVD <i className={`fa fa-${recoveredFlag===0?"sort":recoveredFlag===1?"sort-up":"sort-down"}`} ></i>
                                 </th>
                                 <th id="deaths" onClick={orderData}>
-                                    DCSD <i class={`fa fa-${deathFlag===0?"sort":deathFlag===1?"sort-up":"sort-down"}`} ></i>
+                                    DCSD <i className={`fa fa-${deathFlag===0?"sort":deathFlag===1?"sort-up":"sort-down"}`} ></i>
                                 </th>
                               </tr>
                               </thead>
                               <tbody>
-                                  {states.map(state=><StateWiseData key={state.id} data={state}/>)}
+                                  {states.map(state=><StateWiseData key={state.id} data={state} indiaFlag={true}/>)}
                             </tbody>
                             </table>
                         </div>
@@ -349,6 +348,9 @@ highchartsMap(Highcharts);
                                     <h6 className="element-header">
                                         Statewise Map View
                                     </h6>
+
+                                    <MapState data={point} indiaFlag={true}/>
+
                                     <div className="element-box pt-0">
                                     <div data-highcharts-chart="0" style={{overflow: "hidden"}}>
                                         <HighchartsReact

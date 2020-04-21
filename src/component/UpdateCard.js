@@ -14,7 +14,7 @@ export default class UpdateCard extends Component {
             <div className="post-box">
             <div className="post-content">
             <a href={this.props.data.link} target="_blank" style={{textDecoration: "none"}}>
-                <div class="row mb-2">
+                <div className="row mb-2">
                     <div className="col-12">
                         <b style={{fontSize: "12px", color: "#555", marginRight: "2%"}}>{this.props.data.record_time}</b>
                         {/* <span style={{fontSize: "12px", color: "#555"}}>
