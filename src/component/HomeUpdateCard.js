@@ -20,11 +20,11 @@ export default class HomeUpdateCard extends Component {
                 <div className="post-foot">
                 <div className="post-tags col-8">
                     <b style={{fontSize: "12px", color: "#555", marginRight: "2%"}}>{this.props.data.record_time}</b>
-                    {this.props.data.tags.split(',').map((element,i)=>
-                    <div className="badge badge-primary" key={i} style={{margin: "4px"}}>
-                        {element}
+                    
+                    <div className="badge badge-primary" style={{margin: "4px"}}>
+                        {this.props.data.tags.split(',').slice(-1)["length"]? this.props.data.tags.split(',').slice(-1)[0] : "news"}
                     </div>
-                    )}  
+                    
                 </div>
 
                 <div className="post-link"> <span> LINK</span><i className="fa fa-chevron-right"></i></div>
