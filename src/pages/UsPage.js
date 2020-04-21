@@ -10,12 +10,14 @@ import {mapOptions, lineDataTotal, optionProperties} from "../data/data";
 import USACard  from '../component/USACard'
 import StateWiseData  from '../component/StateWiseData'
 import SimpleGraph from "../component/SimpleGraph"
+import MapState from '../component/MapState'
 
 import {Helmet} from 'react-helmet'
 import Loader  from '../component/Loader'
 
 import sortBy from "lodash/orderBy";
 import cloneDeep from 'lodash/cloneDeep';
+
 
 highchartsMap(Highcharts);
 
@@ -45,6 +47,7 @@ export default function UsPage() {
     const [activeFlag,setActiveFlag] = useState(0);
     const [recoveredFlag,setRecoveredFlag] = useState(0);
     const [deathFlag,setDeathFlag] = useState(0);
+    const [point,setPoint] = useState({name:""})
 
 
     useEffect(() => {
@@ -118,16 +121,19 @@ export default function UsPage() {
             map.series[0].joinBy =  ['name', 'name']
             map.tooltip =  {
                 formatter: function(){
-                    var s = '<p>' + (this.point.name).toUpperCase() + '</p><br/>';
-                    s += 'CONFIRMED : <b>' + (this.point.value===undefined?"NA":this.point.value) + '</b><br/>';
-                    s += 'ACTIVE : <b>' + (this.point.active===undefined?"NA":this.point.active) + '</b><br/>';
-                    s += 'RECOVERED : <b>' + (this.point.recovered===undefined?"NA":this.point.recovered) + '</b><br/>';
-                    s += 'DECEASED : <b>' + (this.point.deaths===undefined?"NA":this.point.deaths)+'</b>';
-                    return s;
+                    setPoint(this.point)
+                    return false;
                 },
             }
             setMyMap(map);            
           //  console.log(lineDataTotal);
+
+            setPoint({name:usaData[usaData.length-1].name,
+                    value:usaData[usaData.length-1].value,
+                    active:usaData[usaData.length-1].active,
+                    deaths:usaData[usaData.length-1].deaths,
+                    recovered:usaData[usaData.length-1].recovered})
+
             setFetched(true);
 
         });
@@ -253,6 +259,9 @@ export default function UsPage() {
                                 <h6 className="element-header">
                                     Province Map View
                                 </h6>
+                                
+                                <MapState data={point} indiaFlag={false}/>
+
                                 <div className="element-box pt-0 mt-0">
                                 <div data-highcharts-chart="0" style={{overflow: "hidden"}}>
                                     <HighchartsReact
@@ -277,33 +286,29 @@ export default function UsPage() {
                                     <thead style={{cursor: "pointer"}}>
                                         <tr>
                                         <th className="text-left" id="state" onClick={orderData} >
-                                            Province  <i class={`fa fa-${countryFlag===0?"sort":countryFlag===1?"sort-up":"sort-down"}`} ></i>
+                                            Province  <i className={`fa fa-${countryFlag===0?"sort":countryFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>
                                         <th id="confirmed" onClick={orderData}>
-                                            CNFMD <i class={`fa fa-${confirmFlag===0?"sort":confirmFlag===1?"sort-up":"sort-down"}`} ></i>
+                                            CNFMD <i className={`fa fa-${confirmFlag===0?"sort":confirmFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>    
                                         <th id="active" onClick={orderData}>
-                                            ACTV <i class={`fa fa-${activeFlag===0?"sort":activeFlag===1?"sort-up":"sort-down"}`} ></i>
+                                            ACTV <i className={`fa fa-${activeFlag===0?"sort":activeFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>
                                         <th id="recovered" onClick={orderData}>
-                                            RCVD <i class={`fa fa-${recoveredFlag===0?"sort":recoveredFlag===1?"sort-up":"sort-down"}`} ></i>
+                                            RCVD <i className={`fa fa-${recoveredFlag===0?"sort":recoveredFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>
                                         <th id="deaths" onClick={orderData}>
-                                            DCSD <i class={`fa fa-${deathFlag===0?"sort":deathFlag===1?"sort-up":"sort-down"}`} ></i>
+                                            DCSD <i className={`fa fa-${deathFlag===0?"sort":deathFlag===1?"sort-up":"sort-down"}`} ></i>
                                         </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {currentState.map((state,i)=><StateWiseData key={i} data={state}/>)}
+                                        {currentState.map((state,i)=><StateWiseData key={i} data={state} indiaFlag={false}/>)}
                                     </tbody>
                                     </table>
                                 </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="col-sm-1">
-
                         </div>
                     </div>
 
