@@ -10,8 +10,29 @@ import Updates from './pages/Updates'
 import Login from './pages/Login'
 import AddUpdate from './pages/AddUpdate'
 
+// Initialize Firebase
+import * as firebase from 'firebase/app';
+import 'firebase/analytics';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBRI8rqW0bgU_0btOffDib2_CHj9x12DOA",
+  authDomain: "covid-39b72.firebaseapp.com",
+  databaseURL: "https://covid-39b72.firebaseio.com",
+  projectId: "covid-39b72",
+  storageBucket: "covid-39b72.appspot.com",
+  messagingSenderId: "42215066759",
+  appId: "1:42215066759:web:06744818a94c7d7f5afc22",
+  measurementId: "G-DN2L23PLYQ"
+};
+
+
 
 function App() {
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
   return (
     <Router>
         {/* <Suspense fallback={<Loader/>}> */}
@@ -25,7 +46,7 @@ function App() {
           <Route path="/updates" exact  component={Updates}/>
           <Route path="/login" exact  component={Login}/>
           <Route path="/addupdate" exact  component={AddUpdate}/>
-          <Route path="/share" exact  component={SampleMap}/>
+          {/* <Route path="/share" exact  component={SampleMap}/> */}
           <Route path="*" component={NotFound}/>
       </Switch>
       {/* </Suspense> */}

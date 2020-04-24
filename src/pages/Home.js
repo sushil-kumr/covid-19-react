@@ -4,8 +4,6 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import highchartsMap from "highcharts/modules/map";
 
-import indiaAll from "../data/india";
-
 import {piedata
     ,lineDataTotal
     ,lineData
@@ -41,18 +39,16 @@ highchartsMap(Highcharts);
     const [point, setPoint] = useState({});  
     const [graph, setGraph] = useState({});  
     const [metaContent, setMetaContent] = useState({});  
+    
+    const [stateFlag, setStateFlag] = useState(false);
+    const [stateGraph,setStateGraph] = useState([]);
+    const [state,setState] = useState("");
 
     const [countryFlag,setCountryFlag] = useState(0);
     const [confirmFlag,setConfirmFlag] = useState(0);
     const [activeFlag,setActiveFlag] = useState(0);
     const [recoveredFlag,setRecoveredFlag] = useState(0);
     const [deathFlag,setDeathFlag] = useState(0);
-    
-    const [flag,setFlag] = useState({state:0,
-                                    confirm:0,
-                                    active:0,
-                                    deaths:0,
-                                    recovered:0});
 
     const [fetched,setFetched] = useState(false);
 
@@ -226,6 +222,59 @@ highchartsMap(Highcharts);
       }
   }
 
+  function onData(e){
+    
+    // console.log(e.target.id)
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ state : e.target.id })
+    };
+    fetch('https://www.curecovid19.in/readings/readings/get_statewise_daily', requestOptions)
+      .then(response => response.json())
+      .then(res => {
+        if(res.success){
+
+          const newData = (res.data).reverse();
+          const stateLineGraph = cloneDeep(lineDataTotal);
+          console.log(res);
+
+
+          let total = newData[0].confirmed;
+          newData.forEach((element,i) => {
+
+            if(i!=0){
+              total = total + element.confirmed;
+            }
+
+            stateLineGraph.datasets[0].data.push(total);
+            stateLineGraph.datasets[1].data.push(element.confirmed);
+            stateLineGraph.datasets[2].data.push(element.deaths);
+            stateLineGraph.datasets[3].data.push(element.recovered);
+          
+          });
+          
+          // stateLineGraph.datasets[0].data= newData.map((val) => val.confirmed);
+          stateLineGraph.datasets[0].data = stateLineGraph.datasets[0].data.slice(-30);
+
+          
+          stateLineGraph.datasets[1].data.slice(-30);;
+          stateLineGraph.datasets[2].data.slice(-30);
+          stateLineGraph.datasets[3].data.slice(-30);
+
+          
+          stateLineGraph.labels = (newData.map((val) => val.date)).slice(-30);;
+
+          setStateGraph(stateLineGraph);
+          setState(res.state)
+          setStateFlag(true)
+
+        }else{
+
+        }  
+      })
+
+}
 
                     return ( 
                         <>
@@ -336,13 +385,28 @@ highchartsMap(Highcharts);
                               </tr>
                               </thead>
                               <tbody>
-                                  {states.map(state=><StateWiseData key={state.id} data={state} indiaFlag={true}/>)}
+                                  {states.map(state=><StateWiseData onClick={orderData} key={state.id} data={state} indiaFlag={true} onData={onData}/>)}
                             </tbody>
                             </table>
                         </div>
                         </div>
                     </div>
                     </div>
+
+                    
+
+                    { stateFlag && (
+                        <div className="col-sm-7">
+                            <div className="element-wrapper">
+                                <h6 className="element-header">
+                                    {state}
+                                </h6>
+                                <div className="element-box-tp">
+                                <SimpleGraph values={stateGraph} option={optionProperties} />
+                                </div>
+                        </div>
+                        </div>
+                        )}
                     
                     <div className="col-sm-4">
                                 <div className="element-wrapper">
@@ -392,7 +456,9 @@ highchartsMap(Highcharts);
                               </div>
                             </div>
                           </div>
-                            </div>
+                          </div>
+
+
                     </div>
                     </React.Fragment>)}
                     </>
