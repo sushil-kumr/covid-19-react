@@ -41,6 +41,9 @@ export default function UsPage() {
     const [max, setMax] = useState([]); 
     const [myMap, setMyMap] = useState([]); 
     const [fetched, setFetched] = useState(false);
+    const [stateGraph, setStateGraph] = useState(false);
+    const [graph,setGraph] = useState([]);
+    const [state,setState] = useState("");
 
     const [countryFlag,setCountryFlag] = useState(0);
     const [confirmFlag,setConfirmFlag] = useState(0);
@@ -176,6 +179,31 @@ export default function UsPage() {
         }
     }
 
+    function onData(e){
+        
+        // const newData = (dailyState.filter(a => a.state===e.target.id)).reverse()
+        // const stateLineGraph = cloneDeep(lineDataTotal);
+        // // console.log(newData);
+        
+        // stateLineGraph.datasets[0].data= newData.map((val) => val.confirmed);
+        // stateLineGraph.datasets[0].data = stateLineGraph.datasets[0].data.slice(-30);
+
+        
+        // stateLineGraph.datasets[1].data = (newData.map((val) => val.confirmed)).slice(-30);;
+        // stateLineGraph.datasets[2].data = (newData.map((val) => val.deaths)).slice(-30);
+        // stateLineGraph.datasets[3].data = (newData.map((val) => val.recovered)).slice(-30);
+
+        
+        // stateLineGraph.labels = (newData.map((val) => val.date)).slice(-30);;
+
+        // setGraph(stateLineGraph);
+        // setState(e.target.id)
+        // setStateGraph(true)
+        
+        //console.log(newData)
+
+    }
+
 
                     return ( 
                         <>
@@ -188,7 +216,8 @@ export default function UsPage() {
                             <meta name="theme-color" content="#008f68"  data-react-helmet="true" />
                         </Helmet>
                         
-                        <div className="row"><div className="col-sm-5">
+                        <div className="row">
+                        <div className="col-sm-5">
                         <div className="element-wrapper pb-1">
                             <h6 className="pb-4">
                             <span className="font-weight-bold"> Dashboard for COVID-19 USA <br/>
@@ -249,7 +278,7 @@ export default function UsPage() {
                         {/* Graphs */}
                         <div className="element-wrapper pb-2">
                             <div className="element-box">
-                              <SimpleGraph values={lineDataTotal} option={optionProperties} />
+                            <SimpleGraph values={lineDataTotal} option={optionProperties} />
                             </div>
                         </div>
                         </div>
@@ -274,7 +303,7 @@ export default function UsPage() {
                             </div>
                         </div>
                         
-
+                        {/* <div className="row"> */}
                         <div className="col-sm-5">
                             <div className="element-wrapper">
                                 <h6 className="element-header">
@@ -303,13 +332,26 @@ export default function UsPage() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {currentState.map((state,i)=><StateWiseData key={i} data={state} indiaFlag={false}/>)}
+                                        {currentState.map((state,i)=><StateWiseData key={i} data={state} indiaFlag={false} onData={onData}/>)}
                                     </tbody>
                                     </table>
                                 </div>
                                 </div>
                             </div>
                         </div>
+                        { stateGraph && (
+                        <div className="col-sm-5">
+                            <div className="element-wrapper">
+                                <h6 className="element-header">
+                                    {state}
+                                </h6>
+                                <div className="element-box-tp">
+                                <SimpleGraph values={graph} option={optionProperties} />
+                                </div>
+                        </div>
+                        </div>
+                        )}
+                        {/* </div> */}
                     </div>
 
                     </React.Fragment>)}

@@ -19,8 +19,8 @@ export default function StateWiseData(props) {
     // console.log(props.data)
   
         return(<tr style={confirm ? {} : { display: 'none' }}>
-                    <td className="text-left">
-                    <span style={{fontSize: "14px"}}>{props.data.state}</span>
+                    <td className="text-left"  >
+                    <span style={{fontSize: "14px",cursor:"pointer",textDecoration: "underline"}} id={props.data.state} onClick={props.onData}>{props.data.state}</span>
                     </td>
                     <td className="no-wrap">
                     <span className="text-danger font-weight-bold" style={{fontSize: "10px"}}>{props.data.delta_total === 0?``: `(+${props.data.delta_total.toLocaleString(props.indiaFlag?"en-IN":"en")})`} </span><span className="font-weight-bold" style={{fontSize: "14px"}}>{confirm.toLocaleString(props.indiaFlag?"en-IN":"en")}</span>
