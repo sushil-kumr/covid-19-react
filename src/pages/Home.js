@@ -39,7 +39,8 @@ const urls=["https://curecovid19.in/readings/readings/get_summary",
     const [states,setStates] = useState([]);
     const [articles,setArticles] = useState([]);
     const [myMap, setMyMap] = useState([]); 
-    const [data, setData] = useState({});   
+    const [data, setData] = useState({});
+    const [stateData, setStateData] = useState({});      
     const [point, setPoint] = useState({});  
     const [graph, setGraph] = useState({});  
     const [metaContent, setMetaContent] = useState({});  
@@ -66,11 +67,12 @@ const urls=["https://curecovid19.in/readings/readings/get_summary",
         var promises = urls.map(url => fetch(url).then(res => res.json()));
         await Promise.all(promises).then(results => {
             loadUsers(results[0]);
-            loadStateData(results[1]);
+            loadStateData(results[1],0);
+            setStateData(results[1])
         })}
 
-      const loadStateData = (res) =>{
-        const newData = (res.data).reverse();
+      const loadStateData = (res,val) =>{
+        const newData = cloneDeep(res.data).reverse();
         const stateLineGraph = cloneDeep(lineDataTotal);
         // console.log(res);
 
@@ -94,15 +96,16 @@ const urls=["https://curecovid19.in/readings/readings/get_summary",
         });
         
         // stateLineGraph.datasets[0].data= newData.map((val) => val.confirmed);
-        stateLineGraph.datasets[0].data = stateLineGraph.datasets[0].data.slice(-30);
+        stateLineGraph.datasets[0].data = stateLineGraph.datasets[0].data.slice(val);
 
         
-        stateLineGraph.datasets[1].data  = stateLineGraph.datasets[1].data.slice(-30);
-        stateLineGraph.datasets[2].data = stateLineGraph.datasets[2].data.slice(-30);
-        stateLineGraph.datasets[3].data = stateLineGraph.datasets[3].data.slice(-30);
+        stateLineGraph.datasets[1].data  = stateLineGraph.datasets[1].data.slice(val);
+        stateLineGraph.datasets[2].data = stateLineGraph.datasets[2].data.slice(val);
+        stateLineGraph.datasets[3].data = stateLineGraph.datasets[3].data.slice(val);
 
         
-        stateLineGraph.labels = (newData.map((val) => val.date)).slice(-30);;
+        stateLineGraph.labels = (newData.map((val) => val.date.split(" ").slice(0,2))).slice(val);
+        // stateLineGraph.labels = stateLineGraph.labels.map
 
         setStateGraph(stateLineGraph);
         setState(res.state)
@@ -279,14 +282,19 @@ const urls=["https://curecovid19.in/readings/readings/get_summary",
       .then(response => response.json())
       .then(res => {
         if(res.success){
-
-          loadStateData(res);
+          setStateData(res);
+          loadStateData(res,0);
 
         }else{
 
         }  
       })
 
+}
+
+function handleSubmit(e){
+  // console.log(e.target.value);
+  loadStateData(stateData,e.target.value)
 }
 
                     return ( 
@@ -406,10 +414,27 @@ const urls=["https://curecovid19.in/readings/readings/get_summary",
                     </div>
                     </div>
 
-                    
-
-                    { stateFlag && (
                         <div className="col-sm-7">
+                        <div className="element-actions d-sm-block">
+                          <form className="form-inline justify-content-sm-end">
+                          <label className="smaller" htmlFor="">View </label>
+                            <select className="form-control form-control-sm form-control-faded" onChange={handleSubmit}>
+                              <option value="0">
+                                All 
+                              </option>
+                              <option value="-14">
+                                Last 2 Weeks 
+                              </option>
+                              <option value="-28">
+                                Last 4 Weeks 
+                              </option>
+                              {/* {this.state.updateData.tags.map((element,i)=><option key={i} value={element}>
+                                {element} 
+                              </option>)} */}
+                            </select>
+                          </form>
+                          </div>
+                        { stateFlag && (
                             <div className="element-wrapper">
                                 <h6 className="element-header">
                                     {state}
@@ -418,58 +443,63 @@ const urls=["https://curecovid19.in/readings/readings/get_summary",
                                 <SimpleGraph values={stateGraph} option={optionProperties} />
                                 </div>
                         </div>
-                        </div>
-                        )}
-                    
-                    <div className="col-sm-4">
-                                <div className="element-wrapper">
-                                    <h6 className="element-header">
-                                        Statewise Map View
-                                    </h6>
+                         )}
 
-                                    <MapState data={point} indiaFlag={true}/>
+                    <div className="col-sm-7">
+                        <div className="element-wrapper">
+                            <h6 className="element-header">
+                                Statewise Map View
+                            </h6>
 
-                                    <div className="element-box pt-0">
-                                    <div data-highcharts-chart="0" style={{overflow: "hidden"}}>
-                                        <HighchartsReact
-                                            constructorType={"mapChart"}
-                                            highcharts={Highcharts}
-                                            options={myMap}
-                                            />
-                                    </div>
-                                    </div>
-                                </div>
+                            <MapState data={point} indiaFlag={true}/>
+
+                            <div className="element-box pt-0">
+                            <div data-highcharts-chart="0" style={{overflow: "hidden"}}>
+                                <HighchartsReact
+                                    constructorType={"mapChart"}
+                                    highcharts={Highcharts}
+                                    options={myMap}
+                                    />
                             </div>
+                            </div>
+                        </div>
+                    </div>
                                         
 
+                    
+                    <div className="col-sm-5">
+                      <div className="element-wrapper pb-2">
+                        <h6 className="element-header">
+                          Age Distribution
+                        </h6>
+                        <div className="element-box pt-0">
+                          <div className="el-chart-w">
+                            <Bar data={barChartData}
+                            height="200px"
+                            options={optionBar} />
+                            <span> *Age data not available for {data.undefinedage} cases</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="element-wrapper">
+                      <h6 className="element-header">
+                          Gender Distribution
+                        </h6>
+                      <div className="element-box pt-0">
+                        <div className="el-chart-w">
+                              <Doughnut data={piedata} 
+                              height="225px"
+                              options={{ maintainAspectRatio: true, cutoutPercentage: 60, legend: { labels:{fontFamily: ["Inter", "Sans-serif"], boxWidth: 12}} }}/>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
 
-                          <div className="col-sm-3">
-                            <div className="element-wrapper pb-2">
-                              <h6 className="element-header">
-                                Age Distribution
-                              </h6>
-                              <div className="element-box pt-0">
-                                <div className="el-chart-w">
-                                  <Bar data={barChartData}
-                                  height="200px"
-                                  options={optionBar} />
-                                  <span> *Age data not available for {data.undefinedage} cases</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="element-wrapper">
-                            <h6 className="element-header">
-                                Gender Distribution
-                              </h6>
-                            <div className="element-box pt-0">
-                              <div className="el-chart-w">
-                                    <Doughnut data={piedata} 
-                                    height="225px"
-                                    options={{ maintainAspectRatio: true, cutoutPercentage: 60, legend: { labels:{fontFamily: ["Inter", "Sans-serif"], boxWidth: 12}} }}/>
-                              </div>
-                            </div>
-                          </div>
-                          </div>
+
+                    </div>
+                       
+                    
+                    
 
 
                     </div>
