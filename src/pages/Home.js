@@ -29,6 +29,10 @@ import sortBy from "lodash/orderBy";
 import cloneDeep from 'lodash/cloneDeep';
 
 highchartsMap(Highcharts);
+
+const urls=["https://curecovid19.in/readings/readings/get_summary",
+"https://www.curecovid19.in/readings/readings/get_statewise_daily"
+]
   
   export default function Home() {
 
@@ -54,16 +58,60 @@ highchartsMap(Highcharts);
 
     useEffect(() => {
         if (fetched === false) {
-          loadUsers();
+          getAllData();
         }
       }, [fetched]);
 
-      const loadUsers = async() =>
-        await fetch("https://curecovid19.in/readings/readings/get_summary")
-        // fetch("http://192.168.1.157:5000/readings/get_summary")
-        .then(res => res.json()
-        .then(data =>{ 
-          setArticles(data.articles);
+      const getAllData = async () => {
+        var promises = urls.map(url => fetch(url).then(res => res.json()));
+        await Promise.all(promises).then(results => {
+            loadUsers(results[0]);
+            loadStateData(results[1]);
+        })}
+
+      const loadStateData = (res) =>{
+        const newData = (res.data).reverse();
+        const stateLineGraph = cloneDeep(lineDataTotal);
+        // console.log(res);
+
+
+        let total = newData[0].confirmed;
+        stateLineGraph.datasets[0].data =[];
+        stateLineGraph.datasets[1].data =[];
+        stateLineGraph.datasets[2].data =[];
+        stateLineGraph.datasets[3].data =[];
+        newData.forEach((element,i) => {
+
+          if(i!=0){
+            total = total + element.confirmed;
+          }
+
+          stateLineGraph.datasets[0].data.push(total);
+          stateLineGraph.datasets[1].data.push(element.confirmed);
+          stateLineGraph.datasets[3].data.push(element.deaths);
+          stateLineGraph.datasets[2].data.push(element.recovered);
+        
+        });
+        
+        // stateLineGraph.datasets[0].data= newData.map((val) => val.confirmed);
+        stateLineGraph.datasets[0].data = stateLineGraph.datasets[0].data.slice(-30);
+
+        
+        stateLineGraph.datasets[1].data  = stateLineGraph.datasets[1].data.slice(-30);
+        stateLineGraph.datasets[2].data = stateLineGraph.datasets[2].data.slice(-30);
+        stateLineGraph.datasets[3].data = stateLineGraph.datasets[3].data.slice(-30);
+
+        
+        stateLineGraph.labels = (newData.map((val) => val.date)).slice(-30);;
+
+        setStateGraph(stateLineGraph);
+        setState(res.state)
+        setStateFlag(true)
+      }
+
+      const loadUsers = (data) =>{
+        
+        setArticles(data.articles);
 
           const map = cloneDeep(mapOptions);
             const indiaData = [];
@@ -179,10 +227,7 @@ highchartsMap(Highcharts);
           setMetaContent(`Total Cases:${data.summary.total},Active Cases:${data.summary.active},Recovered:${data.summary.recovered},Deaths:${data.summary.deaths}`)
 
           setFetched(true);
-
-        })
-       
-      )
+        }
 
     function  orderData(e) {
 
@@ -235,39 +280,7 @@ highchartsMap(Highcharts);
       .then(res => {
         if(res.success){
 
-          const newData = (res.data).reverse();
-          const stateLineGraph = cloneDeep(lineDataTotal);
-          console.log(res);
-
-
-          let total = newData[0].confirmed;
-          newData.forEach((element,i) => {
-
-            if(i!=0){
-              total = total + element.confirmed;
-            }
-
-            stateLineGraph.datasets[0].data.push(total);
-            stateLineGraph.datasets[1].data.push(element.confirmed);
-            stateLineGraph.datasets[2].data.push(element.deaths);
-            stateLineGraph.datasets[3].data.push(element.recovered);
-          
-          });
-          
-          // stateLineGraph.datasets[0].data= newData.map((val) => val.confirmed);
-          stateLineGraph.datasets[0].data = stateLineGraph.datasets[0].data.slice(-30);
-
-          
-          stateLineGraph.datasets[1].data.slice(-30);;
-          stateLineGraph.datasets[2].data.slice(-30);
-          stateLineGraph.datasets[3].data.slice(-30);
-
-          
-          stateLineGraph.labels = (newData.map((val) => val.date)).slice(-30);;
-
-          setStateGraph(stateLineGraph);
-          setState(res.state)
-          setStateFlag(true)
+          loadStateData(res);
 
         }else{
 
