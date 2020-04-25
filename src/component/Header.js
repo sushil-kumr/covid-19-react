@@ -33,7 +33,7 @@ export default function Header() {
     setNavVisibility(!isNavVisible);
   };
 
-  return (<>
+  return (<React.Fragment>
     <div className="menu-mobile menu-activated-on-click color-scheme-light">
            <div className="mm-logo-buttons-w">
              <Link className="mm-logo" to="/" onClick={() => window.location="/"}><img src="img/logos2.png"/><span></span></Link>
@@ -86,7 +86,7 @@ export default function Header() {
             </ul> 
         </div>
     </div>
-    </>
+    </React.Fragment>
   );
 }
 

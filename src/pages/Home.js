@@ -406,10 +406,11 @@ const urls=["https://curecovid19.in/readings/readings/get_summary",
                     </div>
                     </div>
 
-                    
+                    <div className="col-sm-1">
+                    </div>
 
                     { stateFlag && (
-                        <div className="col-sm-7">
+                        <div className="col-sm-5">
                             <div className="element-wrapper">
                                 <h6 className="element-header">
                                     {state}

@@ -9,6 +9,7 @@ import SampleMap from './pages/SampleMap'
 import Updates from './pages/Updates'
 import Login from './pages/Login'
 import AddUpdate from './pages/AddUpdate'
+import ArcgisTrail from './pages/ArcgisTrail'
 
 // Initialize Firebase
 import * as firebase from 'firebase/app';
@@ -46,6 +47,7 @@ if (!firebase.apps.length) {
           <Route path="/updates" exact  component={Updates}/>
           <Route path="/login" exact  component={Login}/>
           <Route path="/addupdate" exact  component={AddUpdate}/>
+          <Route path="/arcgis" exact component={ArcgisTrail}/>
           {/* <Route path="/share" exact  component={SampleMap}/> */}
           <Route path="*" component={NotFound}/>
       </Switch>
