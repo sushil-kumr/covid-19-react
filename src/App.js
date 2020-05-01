@@ -5,7 +5,7 @@ import NotFound  from'./pages/NotFound'
 import Tabs  from './pages/Tabs'
 import Help  from './pages/Help'
 import About  from './pages/About'
-// import SampleMap from './pages/SampleMap'
+import SampleMap from './pages/SampleMap'
 import Updates from './pages/Updates'
 import Login from './pages/Login'
 import AddUpdate from './pages/AddUpdate'
@@ -24,8 +24,6 @@ const firebaseConfig = {
   appId: "1:42215066759:web:06744818a94c7d7f5afc22",
   measurementId: "G-DN2L23PLYQ"
 };
-
-
 
 function App() {
 

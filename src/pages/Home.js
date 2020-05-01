@@ -497,10 +497,6 @@ function handleSubmit(e){
 
 
                     </div>
-                       
-                    
-                    
-
 
                     </div>
                     </React.Fragment>)}
