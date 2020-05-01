@@ -284,7 +284,7 @@ const urls=["https://curecovid19.in/readings/readings/get_summary",
         if(res.success){
           setStateData(res);
           loadStateData(res,0);
-
+          
         }else{
 
         }  

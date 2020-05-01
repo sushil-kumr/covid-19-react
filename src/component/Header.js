@@ -33,6 +33,23 @@ export default function Header() {
     setNavVisibility(!isNavVisible);
   };
 
+  const onSuccess = () =>{}
+
+  const onError = () =>{}
+
+  const share = () => {
+    const title = "COVID-19 | India Dashboard",text="Statewise Statistics of Coronavirus Cases in India",url="www.curecovid19.in";
+    if (window.navigator.share) {
+      window.navigator.share({ title, text, url })
+        .then(onSuccess)
+        .catch(onError);
+    } else {
+      alert("Your Browser does not support Share.")
+      console.log("not support");
+    }
+
+  };
+
   return (<>
     <div className="menu-mobile menu-activated-on-click color-scheme-light">
            <div className="mm-logo-buttons-w">
@@ -40,7 +57,9 @@ export default function Header() {
             <div className="mm-buttons">
               <div className="mobile-menu-trigger">                 
               <div onClick={toggleNav} className="fa fa-bars"><svg height="30" width="12" className="blinking"><circle cx="5" cy="5" r="4" fill="red" /></svg></div>
+              <div onClick={share} className="fa fa-share"></div>
               </div>
+              
              </div>
            </div>
 
