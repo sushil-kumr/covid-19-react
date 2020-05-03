@@ -4,7 +4,7 @@ export default function MapState(props) {
     return (
         <div style={props.data.name===undefined?{display:"none"}:{display:"inline-block"}} >
             <br/>
-            <div className="element-wrapper p-3">
+            <div className="element-wrapper">
                 <div className="element-box-tp">
                 <div className="el-tablo highlight">
                 <div className="label font-weight-bold smaller">

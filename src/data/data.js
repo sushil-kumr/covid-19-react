@@ -829,7 +829,7 @@ export const optionProperties = {
 
 export const piedata = {
     chart: {
-        height:"800px"
+        height:"500px"
       },
 	labels: [
     'Not Available',
@@ -854,7 +854,7 @@ export const piedata = {
 export const mapOptions = {
     chart: {
       map: "",
-      height:"600px"
+      height:"500px"
     },
     title: {
       text: " "
