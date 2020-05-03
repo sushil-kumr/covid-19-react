@@ -30,7 +30,7 @@ import cloneDeep from 'lodash/cloneDeep';
 
 highchartsMap(Highcharts);
 
-const urls=["https://curecovid19.in/readings/readings/get_summary",
+const urls=["https://www.curecovid19.in/readings/readings/get_summary",
 "https://www.curecovid19.in/readings/readings/get_statewise_daily"
 ]
   
@@ -298,7 +298,7 @@ function handleSubmit(e){
 }
 
                     return ( 
-                        <>
+                        <React.Fragment>
                           {!fetched && ( <Loader/> )}
                           {fetched && (  
                           <React.Fragment>
@@ -498,18 +498,12 @@ function handleSubmit(e){
                       </div>
                     </div>
                     </div>
-
-
                     </div>
-                       
-                    
-                    
 
+                    
+                    )}</div></React.Fragment>
+    )}
+</React.Fragment>)}
 
-                    </div>
-                    </React.Fragment>)}
-                    </>
-    )
-}
 
 
