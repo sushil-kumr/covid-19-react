@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect,useRef} from "react";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -270,6 +270,8 @@ const urls=["https://www.curecovid19.in/readings/readings/get_summary",
 	  }
   }
 
+  let myRef = useRef()
+
   function onData(e){
 	
 	// console.log(e.target.id)
@@ -284,6 +286,7 @@ const urls=["https://www.curecovid19.in/readings/readings/get_summary",
 		if(res.success){
 		  setStateData(res);
 		  loadStateData(res,0);
+		  window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
 		  
 		}else{
 
@@ -464,7 +467,7 @@ function handleSubmit(e){
 									</div>
 
 									<div className="col-sm-1"></div>
-									<div className="col-sm-10">
+									<div className="col-sm-10" ref={myRef}>
 										<div className="element-actions d-sm-block">
 											<p style={{fontSize: "12px"}}>* Click on the States in the Statewise Breakup Table to see Statewise Stats</p>
 											<form className="form-inline justify-content-end">

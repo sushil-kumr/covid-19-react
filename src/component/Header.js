@@ -44,7 +44,7 @@ export default function Header() {
         .then(onSuccess)
         .catch(onError);
     } else {
-      alert("Your Browser does not support Share.")
+      alert("Your Mobile Browser does not support Share.")
       console.log("not support");
     }
 
@@ -57,7 +57,7 @@ export default function Header() {
             <div className="mm-buttons">
               <div className="mobile-menu-trigger">                 
               <div onClick={toggleNav} className="fa fa-bars"><svg height="30" width="12" className="blinking"><circle cx="5" cy="5" r="4" fill="red" /></svg></div>
-              <div onClick={share} className="fa fa-share"></div>
+              <div onClick={share} className="fa fa-share-alt"></div>
               </div>
               
              </div>
