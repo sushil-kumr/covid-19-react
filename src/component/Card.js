@@ -9,7 +9,7 @@ export default function Card(props) {
                 <div className="label" style={{fontWeight:"500", fontSize: "10px"}}>
                     {props.name}
                 </div>
-                <div className={`value ${props.styleName} font-weight-bold`} style={{fontSize: "28px"}}>
+                <div className={`value ${props.styleName} font-weight-bold`} style={{fontSize: "24px"}}>
                     {props.data}
                 </div>
                 <div className={`trending ${props.styleName} trending-down-basic`}>
