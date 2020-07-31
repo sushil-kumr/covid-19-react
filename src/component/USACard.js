@@ -32,7 +32,7 @@ export default function USACard(props) {
                 <div className="label" style={{fontWeight:"500", fontSize: "12px"}}>
                 {props.name}
                 </div>
-                <div className={`value ${props.styleName} font-weight-bold`} style={{fontWeight:"500", fontSize: "22px"}}>
+                <div className={`value ${props.styleName} font-weight-bold`} style={{fontWeight:"500", fontSize: "18px"}}>
                 {(all.toLocaleString("en"))}
                 </div>
                 <div className={`trending ${props.styleName} trending-down-basic`}>
